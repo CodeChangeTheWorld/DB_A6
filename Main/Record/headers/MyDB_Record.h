@@ -34,6 +34,8 @@ public:
 	// makes it so that this record is a composite of the two input records
 	void buildFrom (MyDB_RecordPtr left, MyDB_RecordPtr right);
 
+	//filter the record whith the attrs in schema
+	void builtFrom (MyDB_SchemaPtr schema, MyDB_RecordPtr input)
 	// write the contents of the record in binary to the specifed location; return
 	// the location of the next byte that was not writen... thus, the code:
 	//
