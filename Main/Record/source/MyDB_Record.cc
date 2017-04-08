@@ -876,16 +876,6 @@ void MyDB_Record :: buildFrom (MyDB_RecordPtr left, MyDB_RecordPtr right) {
         values = newValues;
 }
 
-void MyDB_Record :: buildFrom (MyDB_SchemaPtr schema, MyDB_RecordPtr input) {
-	vector <MyDB_AttValPtr> newValues;
-	for(auto &val:schema->getAtts()){
-		auto whichAtt = schema->getAttByName (val.first);
-		newValues.push_back(input->getAtt(whichAtt.first));
-	}
-	values = newValues;
-}
-
-
 MyDB_Record :: ~MyDB_Record () {
 	delete [] buffer;
 }
