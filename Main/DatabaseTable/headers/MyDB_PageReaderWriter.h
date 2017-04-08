@@ -30,11 +30,14 @@ public:
 	// constructor for a page in the same file as the parent
 	MyDB_PageReaderWriter (MyDB_TableReaderWriter &parent, int whichPage);
 
-	// constructor for a page that can be pinned, if esired
+	// constructor for a page that can be pinned, if desired
 	MyDB_PageReaderWriter (bool pinned, MyDB_TableReaderWriter &parent, int whichPage);
 
 	// constructor for an anonymous page
 	MyDB_PageReaderWriter (MyDB_BufferManager &parent);
+
+	// constructor for an anonymous page that can be pinned, if desired
+	MyDB_PageReaderWriter (bool pinned, MyDB_BufferManager &parent);
 
 	// empties out the contents of this page, so that it has no records in it
 	// the type of the page is set to MyDB_PageType :: RegularPage

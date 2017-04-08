@@ -48,6 +48,17 @@ MyDB_PageReaderWriter :: MyDB_PageReaderWriter (MyDB_BufferManager &parent) {
 	clear ();
 }
 
+MyDB_PageReaderWriter :: MyDB_PageReaderWriter (bool pinned, MyDB_BufferManager &parent) {
+
+	if (pinned) {
+		myPage = parent.getPinnedPage ();
+	} else {
+		myPage = parent.getPage ();	
+	}
+	pageSize = parent.getPageSize ();
+	clear ();
+}
+
 void MyDB_PageReaderWriter :: clear () {
 	NUM_BYTES_USED = 2 * sizeof (size_t);
 	PAGE_TYPE = MyDB_PageType :: RegularPage;
