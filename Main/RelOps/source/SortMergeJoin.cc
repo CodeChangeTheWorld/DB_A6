@@ -222,6 +222,8 @@ void SortMergeJoin::run() {
     vector <MyDB_RecordIteratorAltPtr> leftIters = sort(RUNSIZE, tempLeft, leftComp, leftInputRec, leftInputRecOther);
     vector <MyDB_RecordIteratorAltPtr> rightIters = sort(RUNSIZE, tempRight, rightComp, rightInputRec, rightInputRecOther);
 
+
+    cout<<"sorted"<<endl;
     // build
 
     MyDB_SchemaPtr mySchemaOut = make_shared <MyDB_Schema> ();
@@ -271,6 +273,9 @@ void SortMergeJoin::run() {
         }
     }
 
+
+    cout<<"pushed"<<endl;
+
     vector <MyDB_PageReaderWriter> leftPages;
     vector <MyDB_PageReaderWriter> rightPages;
 
@@ -278,8 +283,7 @@ void SortMergeJoin::run() {
 
     MyDB_RecordPtr outputRec = output->getEmptyRecord();
 
-//    auto liter;
-//    auto riter;
+    cout<<"begin to merge"<<endl;
 
     while(pqLeft.size() != 0 && pqRight.size() != 0){
 
@@ -290,18 +294,21 @@ void SortMergeJoin::run() {
         riter->getCurrent(rightInputRec);
 
         if(ltComp()){
+            cout<<"left smaller"<<endl;
             pqLeft.pop();
             if(liter->advance()){
                 pqLeft.push(liter);
             }
         }
         else if(gtComp()){
+            cout<<"right smaller"<<endl;
             pqRight.pop();
             if(riter->advance()){
                 pqRight.push(riter);
             }
         }
         else{
+            cout<<"equal!"<<endl;
             MyDB_PageReaderWriter lpage (true, *leftTable->getBufferMgr());
             MyDB_PageReaderWriter rpage (true, *rightTable->getBufferMgr());
             liter->getCurrent(leftInputRecOther);
