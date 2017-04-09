@@ -70,7 +70,7 @@ int main () {
 		MyDB_TableReaderWriterPtr supplierTableOut = make_shared <MyDB_TableReaderWriter> (myTableOut, myMgr);
 
         MyDB_TablePtr myTableBP = make_shared <MyDB_Table>("supplierLeft", "supplierLeft.bin", mySchemaL);
-        MyDB_BPlusTreeReaderWriterPtr supplierBP = make_shared <MyDB_BPlusTreeReaderWriter> ("suppkey", myTableBP, myMgr);
+        MyDB_BPlusTreeReaderWriterPtr supplierBP = make_shared <MyDB_BPlusTreeReaderWriter> ("l_suppkey", myTableBP, myMgr);
 
         MyDB_SchemaPtr mySchemaBPOut = make_shared <MyDB_Schema>();
         mySchemaBPOut->appendAtt(make_pair("l_name", make_shared <MyDB_StringAttType>()));
