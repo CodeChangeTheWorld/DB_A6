@@ -278,15 +278,15 @@ void SortMergeJoin::run() {
 
     MyDB_RecordPtr outputRec = output->getEmptyRecord();
 
-    auto liter;
-    auto riter;
+//    auto liter;
+//    auto riter;
 
     while(pqLeft.size() != 0 && pqRight.size() != 0){
 
-        liter = pqLeft.top();
+        auto liter = pqLeft.top();
         liter->getCurrent(leftInputRec);
 
-        riter = pqRight.top();
+        auto riter = pqRight.top();
         riter->getCurrent(rightInputRec);
 
         if(ltComp()){
@@ -360,12 +360,12 @@ void SortMergeJoin::run() {
                 }
             }
 
-            for(int i = 0; i < leftPages.size(); i++){
-                delete leftPages[i];
-            }
-            for(int i = 0; i < rightPages.size(); i++){
-                delete rightPages[i];
-            }
+//            for(int i = 0; i < leftPages.size(); i++){
+//                delete leftPages[i];
+//            }
+//            for(int i = 0; i < rightPages.size(); i++){
+//                delete rightPages[i];
+//            }
             leftPages.clear();
             rightPages.clear();
 
