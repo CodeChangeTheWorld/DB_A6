@@ -130,7 +130,9 @@ int main () {
 //							make_pair (string ("[l_suppkey]"), string ("[r_suppkey]")), "|| ( == ([l_nationkey], int[3]), == ([l_nationkey], int[4]))",
 //							"== ([r_nationkey], int[3])");
 
-        BPlusSelection myOp (supplierBP, supplierBPOut, low, high, "== ([l_nationkey], int[3])", BPProjections);
+//        BPlusSelection myOp (supplierBP, supplierBPOut, low, high, "== ([l_nationkey], int[3])", BPProjections);
+
+        RegularSelection myOp (supplierTableL, supplierBPOut, "== ([l_nationkey], int[3])", BPProjections);
 
 		cout << "running join\n";
 		myOp.run ();
