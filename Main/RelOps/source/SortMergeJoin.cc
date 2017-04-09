@@ -374,13 +374,17 @@ void SortMergeJoin::run() {
             cout<<"all found"<<endl;
             MyDB_RecordIteratorAltPtr listLeft = getIteratorAlt(leftPages);
             MyDB_RecordIteratorAltPtr listRight = getIteratorAlt(rightPages);
+            int j = 0;
             while(listLeft->advance()){
                 listLeft->getCurrent(leftInputRec);
                 while(listRight->advance()){
+                    cout<<j++<<endl;
                     listRight->getCurrent(rightInputRec);
                     if(finalPredicate() -> toBool()){
+                        cout<<"got one!"<<endl;
                         int i = 0;
                         for(auto f : finalComputations){
+                            cout<<i<<endl;
                             outputRec->getAtt(i++)->set(f());
                         }
 
@@ -388,14 +392,9 @@ void SortMergeJoin::run() {
                         output->append(outputRec);
                     }
                 }
+                listRight = getIteratorAlt(rightPages);
             }
 
-//            for(int i = 0; i < leftPages.size(); i++){
-//                delete leftPages[i];
-//            }
-//            for(int i = 0; i < rightPages.size(); i++){
-//                delete rightPages[i];
-//            }
             leftPages.clear();
             rightPages.clear();
 
