@@ -334,6 +334,7 @@ void SortMergeJoin::run() {
             MyDB_PageReaderWriter rpage (true, *rightTable->getBufferMgr());
             liter->getCurrent(leftInputRecOther);
             while(!leftComp()){
+                cout<<"left"<<endl;
                 if(!lpage.append(leftInputRecOther)){
                     leftPages.push_back(lpage);
                     lpage = MyDB_PageReaderWriter(true, *leftTable->getBufferMgr());
@@ -353,6 +354,7 @@ void SortMergeJoin::run() {
 
             riter->getCurrent(rightInputRecOther);
             while(!rightComp()){
+                cout<<"right"<<endl;
                 if(!rpage.append(rightInputRecOther)){
                     rightPages.push_back(rpage);
                     rpage = MyDB_PageReaderWriter(true, *rightTable->getBufferMgr());
@@ -369,7 +371,7 @@ void SortMergeJoin::run() {
                 riter = pqRight.top();
                 riter->getCurrent(rightInputRecOther);
             }
-
+            cout<<"all found"<<endl;
             MyDB_RecordIteratorAltPtr listLeft = getIteratorAlt(leftPages);
             MyDB_RecordIteratorAltPtr listRight = getIteratorAlt(rightPages);
             while(listLeft->advance()){
