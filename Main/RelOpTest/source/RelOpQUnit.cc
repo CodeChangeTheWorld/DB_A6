@@ -97,11 +97,15 @@ int main () {
 		projections.push_back ("[l_name]");
 		projections.push_back ("+ (+ ([l_comment], string[ ]), [r_comment])");
 
-		ScanJoin myOp (supplierTableL, supplierTableR, supplierTableOut, 
-			"&& ( == ([l_suppkey], [r_suppkey]), == ([l_name], [r_name]))", projections, hashAtts,
-			"|| ( == ([l_nationkey], int[3]), == ([l_nationkey], int[4]))",
-			"== ([r_nationkey], int[3])");
-			
+//		ScanJoin myOp (supplierTableL, supplierTableR, supplierTableOut,
+//			"&& ( == ([l_suppkey], [r_suppkey]), == ([l_name], [r_name]))", projections, hashAtts,
+//			"|| ( == ([l_nationkey], int[3]), == ([l_nationkey], int[4]))",
+//			"== ([r_nationkey], int[3])");
+
+		SortMergeJoin myOp (supplierTableL, supplierTableR, supplierTableOut,
+							"&& ( == ([l_suppkey], [r_suppkey]), == ([l_name], [r_name]))", projections,
+							make_pair (string ("[l_suppkey]"), string ("[r_suppkey]")), "|| ( == ([l_nationkey], int[3]), == ([l_nationkey], int[4]))",
+							"== ([r_nationkey], int[3])");
 		cout << "running join\n";
 		myOp.run ();
 
