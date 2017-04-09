@@ -351,7 +351,7 @@ void SortMergeJoin::run() {
                 liter = pqLeft.top();
                 liter->getCurrent(leftInputRecOther);
             }
-
+            leftPages.push_back(lpage);
             riter->getCurrent(rightInputRecOther);
             while(!rightComp()){
                 cout<<"right"<<endl;
@@ -371,6 +371,9 @@ void SortMergeJoin::run() {
                 riter = pqRight.top();
                 riter->getCurrent(rightInputRecOther);
             }
+
+            rightPages.push_back(rpage);
+
             cout<<"all found"<<endl;
             MyDB_RecordIteratorAltPtr listLeft = getIteratorAlt(leftPages);
             MyDB_RecordIteratorAltPtr listRight = getIteratorAlt(rightPages);
