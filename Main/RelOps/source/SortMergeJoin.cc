@@ -314,14 +314,14 @@ void SortMergeJoin::run() {
         auto riter = pqRight.top();
         riter->getCurrent(rightInputRec);
 
-        if(ltComp()){
+        if(ltComp()->toBool()){
             cout<<"left smaller"<<endl;
             pqLeft.pop();
             if(liter->advance()){
                 pqLeft.push(liter);
             }
         }
-        else if(gtComp()){
+        else if(gtComp()->toBool()){
             cout<<"right smaller"<<endl;
             pqRight.pop();
             if(riter->advance()){
