@@ -69,11 +69,22 @@ int main () {
 		MyDB_TableReaderWriterPtr supplierTableR = make_shared <MyDB_TableReaderWriter> (myTableRight, myMgr);
 		MyDB_TableReaderWriterPtr supplierTableOut = make_shared <MyDB_TableReaderWriter> (myTableOut, myMgr);
 
+        MyDB_TablePtr myTableBP = make_shared <MyDB_Table>("supplierLeft", "supplierLeft.bin", mySchemaL);
+        MyDB_BPlusTreeReaderWriterPtr supplierBP = make_shared <MyDB_BPlusTreeReaderWriter> (myTableBP, myMgr);
+
+        MyDB_SchemaPtr mySchemaBPOut = make_shared <MyDB_Schema>();
+        mySchemaBPOut->appendAtt(make_pair("l_name", make_shared <MyDB_StringAttType>()));
+        mySchemaBPOut->appendAtt(make_pair("selected_commen", make_shared <MyDB_StringAttType>()));
+        MyDB_TablePtr myTableBPOut = make_shared <MyDB_Table>("supplierBPOut", "supplierBPOut.bin", mySchemaBPOut);
+        MyDB_TableReaderWriterPtr supplierBPOut = make_shared <MyDB_TableReaderWriter> (myTableBPOut, myMgr);
+
 		// load up from a text file
 		cout << "loading left\n";
 		supplierTableL->loadFromTextFile ("supplier.tbl");
 		cout << "loading right\n";
 		supplierTableR->loadFromTextFile ("supplierBig.tbl");
+        cout << "loading BP\n";
+        supplierBP->loadFromTextFile("supplier.tbl");
 
 		// This basically runs:
 		//
@@ -97,15 +108,30 @@ int main () {
 		projections.push_back ("[l_name]");
 		projections.push_back ("+ (+ ([l_comment], string[ ]), [r_comment])");
 
+        vector <string> BPProjections;
+        BPProjections.push_back("[l_name]");
+        BPProjections.push_back("[l_comment]");
+
+        int lowBound = 10;
+        int highBound = 1000;
+
+        MyDB_IntAttValPtr low = make_shared <MyDB_IntAttVal> ();
+        low->set (lowBound);
+        MyDB_IntAttValPtr high = make_shared <MyDB_IntAttVal> ();
+        high->set (highBound);
+
 //		ScanJoin myOp (supplierTableL, supplierTableR, supplierTableOut,
 //			"&& ( == ([l_suppkey], [r_suppkey]), == ([l_name], [r_name]))", projections, hashAtts,
 //			"|| ( == ([l_nationkey], int[3]), == ([l_nationkey], int[4]))",
 //			"== ([r_nationkey], int[3])");
 
-		SortMergeJoin myOp (supplierTableL, supplierTableR, supplierTableOut,
-							"&& ( == ([l_suppkey], [r_suppkey]), == ([l_name], [r_name]))", projections,
-							make_pair (string ("[l_suppkey]"), string ("[r_suppkey]")), "|| ( == ([l_nationkey], int[3]), == ([l_nationkey], int[4]))",
-							"== ([r_nationkey], int[3])");
+//		SortMergeJoin myOp (supplierTableL, supplierTableR, supplierTableOut,
+//							"&& ( == ([l_suppkey], [r_suppkey]), == ([l_name], [r_name]))", projections,
+//							make_pair (string ("[l_suppkey]"), string ("[r_suppkey]")), "|| ( == ([l_nationkey], int[3]), == ([l_nationkey], int[4]))",
+//							"== ([r_nationkey], int[3])");
+
+        BPlusSelection myOp (supplierBP, supplierBPOut, low, high, "== ([l_nationkey], int[3])", BPProjections);
+
 		cout << "running join\n";
 		myOp.run ();
 
