@@ -135,13 +135,21 @@ int main () {
 		cout << "running join\n";
 		myOp.run ();
 
-                MyDB_RecordPtr temp = supplierTableOut->getEmptyRecord ();
-                MyDB_RecordIteratorAltPtr myIter = supplierTableOut->getIteratorAlt ();
+//                MyDB_RecordPtr temp = supplierTableOut->getEmptyRecord ();
+//                MyDB_RecordIteratorAltPtr myIter = supplierTableOut->getIteratorAlt ();
+//
+//                while (myIter->advance ()) {
+//                        myIter->getCurrent (temp);
+//			cout << temp << "\n";
+//                }
 
-                while (myIter->advance ()) {
-                        myIter->getCurrent (temp);
-			cout << temp << "\n";
-                }
+        MyDB_RecordPtr temp = supplierBPOut->getEmptyRecord ();
+        MyDB_RecordIteratorAltPtr myIter = supplierBPOut->getIteratorAlt ();
+
+        while (myIter->advance ()) {
+            myIter->getCurrent (temp);
+            cout << temp << "\n";
+        }
 	}
 }
 
