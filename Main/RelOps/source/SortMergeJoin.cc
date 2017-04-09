@@ -150,10 +150,12 @@ vector <MyDB_RecordIteratorAltPtr> sort (int runSize, MyDB_TableReaderWriterPtr 
     vector <MyDB_RecordIteratorAltPtr> runIters;
 
     for (int i = 0; i < sortMe->getNumPages(); i++){
-
+	cout<<i<<endl;
         vector <MyDB_PageReaderWriter> run;
         (*sortMe)[i].sortInPlace(comparator, lhs, rhs);
+        cout<<"sorted in place"<<endl;
         run.push_back((*sortMe)[i]);
+	pagesToSort.push_back(run);
 
         if (pagesToSort.size() != runSize && i != sortMe->getNumPages() - 1){
             continue;
@@ -161,7 +163,7 @@ vector <MyDB_RecordIteratorAltPtr> sort (int runSize, MyDB_TableReaderWriterPtr 
 
         while (pagesToSort.size() > 1){
             vector <vector<MyDB_PageReaderWriter>> newPagesToSort;
-
+	    cout<<pagesToSort.size()<<endl;
             // repeatedly merge the last two pages
             while (pagesToSort.size () > 0) {
 
@@ -214,10 +216,11 @@ void SortMergeJoin::run() {
 
     MyDB_TableReaderWriterPtr tempLeft = make_shared <MyDB_TableReaderWriter>(tempLeftTable, leftTable->getBufferMgr());
     MyDB_TableReaderWriterPtr tempRight = make_shared <MyDB_TableReaderWriter>(tempRightTable, rightTable->getBufferMgr());
-
+    cout<<"prepare to load"<<endl;
     loaddata(leftTable, tempLeft, leftSelectionPredicate);
     loaddata(rightTable, tempRight, rightSelectionPredicate);
-
+    
+    cout<<"loaded"<<endl;
     // sort phase
     vector <MyDB_RecordIteratorAltPtr> leftIters = sort(RUNSIZE, tempLeft, leftComp, leftInputRec, leftInputRecOther);
     vector <MyDB_RecordIteratorAltPtr> rightIters = sort(RUNSIZE, tempRight, rightComp, rightInputRec, rightInputRecOther);
@@ -231,10 +234,11 @@ void SortMergeJoin::run() {
         mySchemaOut->appendAtt (p);
     for (auto p : rightTable->getTable ()->getSchema ()->getAtts ())
         mySchemaOut->appendAtt (p);
+    cout<<"schema buit"<<endl;
 
     // get the combined record
     MyDB_RecordPtr combinedRec = make_shared <MyDB_Record> (mySchemaOut);
-
+    cout<<"combinedRed made"<<endl;
     // and make it a composite of the two input records
 //    if (!hadToSwapThem)
         combinedRec->buildFrom (leftInputRec, rightInputRec);
@@ -249,17 +253,25 @@ void SortMergeJoin::run() {
     for (string s : projections) {
         finalComputations.push_back (combinedRec->compileComputation (s));
     }
-
+    cout<<"final pred and computations built"<<endl;
 
     // merge
     IteratorComparator tempLeftC (leftComp, leftInputRec, leftInputRecOther);
+   
+    cout<<"tempLeftComparator build"<<endl;
+    
     priority_queue <MyDB_RecordIteratorAltPtr, vector <MyDB_RecordIteratorAltPtr>, IteratorComparator> pqLeft (tempLeftC);
 
     IteratorComparator tempRightC (rightComp, rightInputRec, rightInputRecOther);
-    priority_queue <MyDB_RecordIteratorAltPtr, vector <MyDB_RecordIteratorAltPtr>, IteratorComparator> pqRight (tempRightC);
+   cout<<"tempRightComparator build"<<endl;
+     priority_queue <MyDB_RecordIteratorAltPtr, vector <MyDB_RecordIteratorAltPtr>, IteratorComparator> pqRight (tempRightC);
+
+    cout<<"building ltComp and gtComp"<<endl;    
 
     function <bool()> ltComp = buildRecordComparator(leftInputRec, rightInputRec, leftKey);
     function <bool()> gtComp = buildRecordComparator(rightInputRec, leftInputRec, leftKey);
+
+    cout<<"begin to push"<<endl;
 
     for(MyDB_RecordIteratorAltPtr l : leftIters){
         if(l->advance()){
