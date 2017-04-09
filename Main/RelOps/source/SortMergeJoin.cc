@@ -404,7 +404,8 @@ void SortMergeJoin::run() {
         }
     }
 
-
+    remove("tempLeft.bin");
+    remove("tempRight.bin");
 
 
 }
