@@ -15,7 +15,6 @@
 #include "QUnit.h"
 #include "Sorting.h"
 #include "ScanJoin.h"
-#include "Aggregate.h"
 #include "BPlusSelection.h"
 #include "RegularSelection.h"
 #include "ScanJoin.h"
@@ -23,6 +22,7 @@
 #include <iostream>
 #include <vector>
 #include <utility>
+#include "Aggregate.h"
 
 using namespace std;
 
@@ -119,19 +119,19 @@ int main () {
         MyDB_TablePtr aggTable = make_shared <MyDB_Table> ("aggOut", "aggOut.bin", mySchemaOutAgain);
         MyDB_TableReaderWriterPtr aggTableOut = make_shared <MyDB_TableReaderWriter> (aggTable, myMgr);
 
-        Aggregate myOpAgain (supplierTableOut, aggTableOut, aggsToCompute, groupings, "bool[true]");
-        cout << "running aggregate\n";
-        myOpAgain.run ();
-
-        temp = aggTableOut->getEmptyRecord ();
-        myIter = aggTableOut->getIteratorAlt ();
-
-        cout << "Now we count the records.";
-        cout << "\nThe output should be 413:\n";
-        while (myIter->advance ()) {
-            myIter->getCurrent (temp);
-            cout << temp << "\n";
-        }
+//        Aggregate myOpAgain (supplierTableOut, aggTableOut, aggsToCompute, groupings, "bool[true]");
+//        cout << "running aggregate\n";
+//        myOpAgain.run ();
+//
+//        temp = aggTableOut->getEmptyRecord ();
+//        myIter = aggTableOut->getIteratorAlt ();
+//
+//        cout << "Now we count the records.";
+//        cout << "\nThe output should be 413:\n";
+//        while (myIter->advance ()) {
+//            myIter->getCurrent (temp);
+//            cout << temp << "\n";
+//        }
     }
 
     {
@@ -171,19 +171,19 @@ int main () {
         MyDB_TablePtr aggTable = make_shared <MyDB_Table> ("aggOut", "aggOut.bin", mySchemaOutAgain);
         MyDB_TableReaderWriterPtr aggTableOut = make_shared <MyDB_TableReaderWriter> (aggTable, myMgr);
 
-        Aggregate myOpAgain (supplierTableOut, aggTableOut, aggsToCompute, groupings, "bool[true]");
-        cout << "running aggregate\n";
-        myOpAgain.run ();
-
-        temp = aggTableOut->getEmptyRecord ();
-        myIter = aggTableOut->getIteratorAlt ();
-
-        cout << "Now we count the records.";
-        cout << "\nThe output should be 29:\n";
-        while (myIter->advance ()) {
-            myIter->getCurrent (temp);
-            cout << temp << "\n";
-        }
+//        Aggregate myOpAgain (supplierTableOut, aggTableOut, aggsToCompute, groupings, "bool[true]");
+//        cout << "running aggregate\n";
+//        myOpAgain.run ();
+//
+//        temp = aggTableOut->getEmptyRecord ();
+//        myIter = aggTableOut->getIteratorAlt ();
+//
+//        cout << "Now we count the records.";
+//        cout << "\nThe output should be 29:\n";
+//        while (myIter->advance ()) {
+//            myIter->getCurrent (temp);
+//            cout << temp << "\n";
+//        }
     }
 
     {
@@ -277,25 +277,25 @@ int main () {
         MyDB_TablePtr aggTable = make_shared <MyDB_Table> ("aggOut", "aggOut.bin", mySchemaOutAgain);
         MyDB_TableReaderWriterPtr aggTableOut = make_shared <MyDB_TableReaderWriter> (aggTable, myMgr);
 
-        Aggregate myOpAgain (supplierTableOut, aggTableOut, aggsToCompute, groupings,
-                             "&& ( > ([l_name], string[Supplier#000002243]), < ([l_name], string[Supplier#000002303]))");
-        cout << "running aggregate\n";
-        myOpAgain.run ();
-
-        MyDB_RecordPtr temp = aggTableOut->getEmptyRecord ();
-        MyDB_RecordIteratorAltPtr myIter = aggTableOut->getIteratorAlt ();
-
-        cout << "\nThe output should be, in some order:\n";
-        cout << "Supplier#000002245|32|\n";
-        cout << "Supplier#000002264|32|\n";
-        cout << "Supplier#000002265|32|\n";
-        cout << "Supplier#000002272|32|\n";
-        cout << "Supplier#000002282|32|\n";
-        cout << "\nHere goes:\n";
-        while (myIter->advance ()) {
-            myIter->getCurrent (temp);
-            cout << temp << "\n";
-        }
+//        Aggregate myOpAgain (supplierTableOut, aggTableOut, aggsToCompute, groupings,
+//                             "&& ( > ([l_name], string[Supplier#000002243]), < ([l_name], string[Supplier#000002303]))");
+//        cout << "running aggregate\n";
+//        myOpAgain.run ();
+//
+//        MyDB_RecordPtr temp = aggTableOut->getEmptyRecord ();
+//        MyDB_RecordIteratorAltPtr myIter = aggTableOut->getIteratorAlt ();
+//
+//        cout << "\nThe output should be, in some order:\n";
+//        cout << "Supplier#000002245|32|\n";
+//        cout << "Supplier#000002264|32|\n";
+//        cout << "Supplier#000002265|32|\n";
+//        cout << "Supplier#000002272|32|\n";
+//        cout << "Supplier#000002282|32|\n";
+//        cout << "\nHere goes:\n";
+//        while (myIter->advance ()) {
+//            myIter->getCurrent (temp);
+//            cout << temp << "\n";
+//        }
     }
 
     MyDB_BPlusTreeReaderWriterPtr supplierTableR = make_shared <MyDB_BPlusTreeReaderWriter> ("r_address", myTableRight, myMgr);
@@ -366,27 +366,27 @@ int main () {
         MyDB_TablePtr aggTable = make_shared <MyDB_Table> ("aggOut", "aggOut.bin", mySchemaOutAgain);
         MyDB_TableReaderWriterPtr aggTableOut = make_shared <MyDB_TableReaderWriter> (aggTable, myMgr);
 
-        Aggregate myOpAgain (supplierTableR, aggTableOut, aggsToCompute, groupings, "< ([r_suppkey], int[10])");
-
-        // This basically runs:
-        //
-        // SELECT r_suppkey, r_name, AVG (r_suppkey * 1.0), AVG (r_acctbal), COUNT (0)
-        // FROM supplierLeft
-        // WHERE r_suppkey < 10
-        // GROUP BY r_suppkey, r_name
-        //
-        cout << "running agg\n";
-        myOpAgain.run ();
-
-        MyDB_RecordPtr temp = aggTableOut->getEmptyRecord ();
-        MyDB_RecordIteratorAltPtr myIter = aggTableOut->getIteratorAlt ();
-
-        cout << "\nThere should be nine groups, each with 32 records.\n";
-        cout << "One of them should be '5|Supplier#000000005|5.000000|-283.840000|32|'.\n";
-        while (myIter->advance ()) {
-            myIter->getCurrent (temp);
-            cout << temp << "\n";
-        }
+//        Aggregate myOpAgain (supplierTableR, aggTableOut, aggsToCompute, groupings, "< ([r_suppkey], int[10])");
+//
+//        // This basically runs:
+//        //
+//        // SELECT r_suppkey, r_name, AVG (r_suppkey * 1.0), AVG (r_acctbal), COUNT (0)
+//        // FROM supplierLeft
+//        // WHERE r_suppkey < 10
+//        // GROUP BY r_suppkey, r_name
+//        //
+//        cout << "running agg\n";
+//        myOpAgain.run ();
+//
+//        MyDB_RecordPtr temp = aggTableOut->getEmptyRecord ();
+//        MyDB_RecordIteratorAltPtr myIter = aggTableOut->getIteratorAlt ();
+//
+//        cout << "\nThere should be nine groups, each with 32 records.\n";
+//        cout << "One of them should be '5|Supplier#000000005|5.000000|-283.840000|32|'.\n";
+//        while (myIter->advance ()) {
+//            myIter->getCurrent (temp);
+//            cout << temp << "\n";
+//        }
     }
 
     {
@@ -406,56 +406,56 @@ int main () {
         MyDB_TablePtr aggTable = make_shared <MyDB_Table> ("aggOut", "aggOut.bin", mySchemaOutAgain);
         MyDB_TableReaderWriterPtr aggTableOut = make_shared <MyDB_TableReaderWriter> (aggTable, myMgr);
 
-        Aggregate myOpAgain (supplierTableR, aggTableOut, aggsToCompute, groupings, "bool [true]");
-
-        // This basically runs:
-        //
-        // SELECT r_suppkey / 100, AVG (r_suppkey * 1.0), AVG (r_acctbal), COUNT (0)
-        // FROM supplierLeft
-        // GROUP BY r_suppkey / 100
-        //
-        cout << "running agg\n";
-        myOpAgain.run ();
-        MyDB_RecordPtr temp = aggTableOut->getEmptyRecord ();
-        MyDB_RecordIteratorAltPtr myIter = aggTableOut->getIteratorAlt ();
-
-        cout << "\nThere should be 101 groups, each with 3200 records, except for the first and last,\n";
-        cout << "These should be '0|50.000000|4017.558586|3168|' and\n";
-        cout << "'100|10000.000000|8968.420000|32|' respectively.\n";
-        while (myIter->advance ()) {
-            myIter->getCurrent (temp);
-            cout << temp << "\n";
-        }
-
-        aggsToCompute.clear ();
-        aggsToCompute.push_back (make_pair (MyDB_AggType :: sum, "[r_cnt]"));
-
-        groupings.clear ();
-
-        MyDB_SchemaPtr mySchemaOutAgainAgain = make_shared <MyDB_Schema> ();
-        mySchemaOutAgainAgain->appendAtt (make_pair ("final_cnt", make_shared <MyDB_IntAttType> ()));
-        MyDB_TablePtr aggTableFinal = make_shared <MyDB_Table> ("aggOutOut", "aggOutOut.bin", mySchemaOutAgainAgain);
-        MyDB_TableReaderWriterPtr aggTableOutFinal = make_shared <MyDB_TableReaderWriter> (aggTableFinal, myMgr);
-
-        Aggregate myOpOnceAgain (aggTableOut, aggTableOutFinal, aggsToCompute, groupings, "bool [true]");
-        //
-        // Assuming that the output of the last query has the schema (r_suppkey, r_suppkey_avg, r_acctbal_avg, r_cnt)
-        //
-        // This basically runs:
-        //
-        // SELECT SUM (r_cnt)
-        // FROM lastResult
-        //
-        myOpOnceAgain.run ();
-
-        cout << "\nThere should be one result: 320000.\n";
-        temp = aggTableOutFinal->getEmptyRecord ();
-        myIter = aggTableOutFinal->getIteratorAlt ();
-
-        while (myIter->advance ()) {
-            myIter->getCurrent (temp);
-            cout << temp << "\n";
-        }
+//        Aggregate myOpAgain (supplierTableR, aggTableOut, aggsToCompute, groupings, "bool [true]");
+//
+//        // This basically runs:
+//        //
+//        // SELECT r_suppkey / 100, AVG (r_suppkey * 1.0), AVG (r_acctbal), COUNT (0)
+//        // FROM supplierLeft
+//        // GROUP BY r_suppkey / 100
+//        //
+//        cout << "running agg\n";
+//        myOpAgain.run ();
+//        MyDB_RecordPtr temp = aggTableOut->getEmptyRecord ();
+//        MyDB_RecordIteratorAltPtr myIter = aggTableOut->getIteratorAlt ();
+//
+//        cout << "\nThere should be 101 groups, each with 3200 records, except for the first and last,\n";
+//        cout << "These should be '0|50.000000|4017.558586|3168|' and\n";
+//        cout << "'100|10000.000000|8968.420000|32|' respectively.\n";
+//        while (myIter->advance ()) {
+//            myIter->getCurrent (temp);
+//            cout << temp << "\n";
+//        }
+//
+//        aggsToCompute.clear ();
+//        aggsToCompute.push_back (make_pair (MyDB_AggType :: sum, "[r_cnt]"));
+//
+//        groupings.clear ();
+//
+//        MyDB_SchemaPtr mySchemaOutAgainAgain = make_shared <MyDB_Schema> ();
+//        mySchemaOutAgainAgain->appendAtt (make_pair ("final_cnt", make_shared <MyDB_IntAttType> ()));
+//        MyDB_TablePtr aggTableFinal = make_shared <MyDB_Table> ("aggOutOut", "aggOutOut.bin", mySchemaOutAgainAgain);
+//        MyDB_TableReaderWriterPtr aggTableOutFinal = make_shared <MyDB_TableReaderWriter> (aggTableFinal, myMgr);
+//
+//        Aggregate myOpOnceAgain (aggTableOut, aggTableOutFinal, aggsToCompute, groupings, "bool [true]");
+//        //
+//        // Assuming that the output of the last query has the schema (r_suppkey, r_suppkey_avg, r_acctbal_avg, r_cnt)
+//        //
+//        // This basically runs:
+//        //
+//        // SELECT SUM (r_cnt)
+//        // FROM lastResult
+//        //
+//        myOpOnceAgain.run ();
+//
+//        cout << "\nThere should be one result: 320000.\n";
+//        temp = aggTableOutFinal->getEmptyRecord ();
+//        myIter = aggTableOutFinal->getIteratorAlt ();
+//
+//        while (myIter->advance ()) {
+//            myIter->getCurrent (temp);
+//            cout << temp << "\n";
+//        }
     }
 
     {
@@ -527,18 +527,18 @@ int main () {
         MyDB_TablePtr aggTable = make_shared <MyDB_Table> ("aggOut", "aggOut.bin", mySchemaOutAgain);
         MyDB_TableReaderWriterPtr aggTableOut = make_shared <MyDB_TableReaderWriter> (aggTable, myMgr);
 
-        Aggregate myOpAgain (supplierTableOut, aggTableOut, aggsToCompute, groupings, "bool[true]");
-        cout << "running aggregate\n";
-        myOpAgain.run ();
-
-        MyDB_RecordPtr temp = aggTableOut->getEmptyRecord ();
-        MyDB_RecordIteratorAltPtr myIter = aggTableOut->getIteratorAlt ();
-
-        cout << "\nThe output should be\n\t0|64|\n\t1|96|\n\t2|64|\n\t3|96|\n\t4|192|\n\t5|256|\n\t6|192|\n\t7|96|\n\t8|64|\n\t9|128|\n\t11|288|\n\t14|96|\n\t15|128|\n\t16|128|\n\t17|32|\n\t19|64|\n\t20|384|\n\t24|64|\n\n";
-        while (myIter->advance ()) {
-            myIter->getCurrent (temp);
-            cout << temp << "\n";
-        }
+//        Aggregate myOpAgain (supplierTableOut, aggTableOut, aggsToCompute, groupings, "bool[true]");
+//        cout << "running aggregate\n";
+//        myOpAgain.run ();
+//
+//        MyDB_RecordPtr temp = aggTableOut->getEmptyRecord ();
+//        MyDB_RecordIteratorAltPtr myIter = aggTableOut->getIteratorAlt ();
+//
+//        cout << "\nThe output should be\n\t0|64|\n\t1|96|\n\t2|64|\n\t3|96|\n\t4|192|\n\t5|256|\n\t6|192|\n\t7|96|\n\t8|64|\n\t9|128|\n\t11|288|\n\t14|96|\n\t15|128|\n\t16|128|\n\t17|32|\n\t19|64|\n\t20|384|\n\t24|64|\n\n";
+//        while (myIter->advance ()) {
+//            myIter->getCurrent (temp);
+//            cout << temp << "\n";
+//        }
     }
 
     {
@@ -606,18 +606,18 @@ int main () {
         MyDB_TablePtr aggTable = make_shared <MyDB_Table> ("aggOut", "aggOut.bin", mySchemaOutAgain);
         MyDB_TableReaderWriterPtr aggTableOut = make_shared <MyDB_TableReaderWriter> (aggTable, myMgr);
 
-        Aggregate myOpAgain (supplierTableOut, aggTableOut, aggsToCompute, groupings, "bool[true]");
-        cout << "running aggregate (may take some time)\n";
-        myOpAgain.run ();
-
-        MyDB_RecordPtr temp = aggTableOut->getEmptyRecord ();
-        MyDB_RecordIteratorAltPtr myIter = aggTableOut->getIteratorAlt ();
-
-        cout << "\nThe output should be 11103008:\n";
-        while (myIter->advance ()) {
-            myIter->getCurrent (temp);
-            cout << temp << "\n";
-        }
+//        Aggregate myOpAgain (supplierTableOut, aggTableOut, aggsToCompute, groupings, "bool[true]");
+//        cout << "running aggregate (may take some time)\n";
+//        myOpAgain.run ();
+//
+//        MyDB_RecordPtr temp = aggTableOut->getEmptyRecord ();
+//        MyDB_RecordIteratorAltPtr myIter = aggTableOut->getIteratorAlt ();
+//
+//        cout << "\nThe output should be 11103008:\n";
+//        while (myIter->advance ()) {
+//            myIter->getCurrent (temp);
+//            cout << temp << "\n";
+//        }
     }
 
 }
