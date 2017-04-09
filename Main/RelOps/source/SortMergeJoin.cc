@@ -10,6 +10,7 @@
 #include "MyDB_TableReaderWriter.h"
 #include "SortMergeJoin.h"
 #include "MyDB_PageReaderWriter.h"
+#include "MyDB_Record.h"
 
 #define RUNSIZE 64
 
@@ -198,6 +199,22 @@ vector <MyDB_RecordIteratorAltPtr> sort (int runSize, MyDB_TableReaderWriterPtr 
 
 }
 
+function <bool ()> buildRecordComparator (MyDB_RecordPtr lhs,  MyDB_RecordPtr rhs, string computation) {
+
+    // compile a computation over the LHS and over the RHS
+    char *str = (char *) computation.c_str ();
+    pair <func, MyDB_AttTypePtr> lhsFunc = lhs->compileHelper (str);
+
+    str = (char *) computation.c_str ();
+    pair <func, MyDB_AttTypePtr> rhsFunc = rhs->compileHelper (str);
+
+    // and then build a lambda that performs the computatation
+    auto res = lhs->lt (lhsFunc, rhsFunc);
+    func temp = res.first;
+    return [=] {return temp ()->toBool ();};
+
+}
+
 void SortMergeJoin::run() {
 
     string leftKey = equalityCheck.first;
@@ -263,13 +280,20 @@ void SortMergeJoin::run() {
     priority_queue <MyDB_RecordIteratorAltPtr, vector <MyDB_RecordIteratorAltPtr>, IteratorComparator> pqLeft (tempLeftC);
 
     IteratorComparator tempRightC (rightComp, rightInputRec, rightInputRecOther);
-   cout<<"tempRightComparator build"<<endl;
-     priority_queue <MyDB_RecordIteratorAltPtr, vector <MyDB_RecordIteratorAltPtr>, IteratorComparator> pqRight (tempRightC);
+    cout<<"tempRightComparator build"<<endl;
+    priority_queue <MyDB_RecordIteratorAltPtr, vector <MyDB_RecordIteratorAltPtr>, IteratorComparator> pqRight (tempRightC);
 
     cout<<"building ltComp and gtComp"<<endl;    
 
-    function <bool()> ltComp = buildRecordComparator(leftInputRec, rightInputRec, leftKey);
-    function <bool()> gtComp = buildRecordComparator(rightInputRec, leftInputRec, leftKey);
+//    function <bool()> ltComp = buildRecordComparator(leftInputRec, rightInputRec, leftKey);
+//    function <bool()> gtComp = buildRecordComparator(rightInputRec, leftInputRec, leftKey);
+
+//    func leftSmaller = combinedRec->compileComputation (" < (" + equalityCheck.first + ", " + equalityCheck.second + ")");
+//    func rightSmaller = combinedRec->compileComputation (" > (" + equalityCheck.first + ", " + equalityCheck.second + ")");
+//    func areEqual = combinedRec->compileComputation (" == (" + equalityCheck.first + ", " + equalityCheck.second + ")");
+
+    func ltComp = combinedRec->compileComputation (" < (" + equalityCheck.first + ", " + equalityCheck.second + ")");
+    func gtComp = combinedRec->compileComputation (" > (" + equalityCheck.first + ", " + equalityCheck.second + ")");
 
     cout<<"begin to push"<<endl;
 
