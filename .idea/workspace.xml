@@ -43,8 +43,8 @@
       <file leaf-file-name="ScanJoin.cc" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Main/RelOps/source/ScanJoin.cc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="870">
-              <caret line="193" column="0" lean-forward="false" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
+            <state relative-caret-position="-127">
+              <caret line="141" column="18" lean-forward="false" selection-start-line="141" selection-start-column="18" selection-end-line="141" selection-end-column="18" />
               <folding>
                 <element signature="e#42#66#0" expanded="true" />
               </folding>
@@ -67,11 +67,21 @@
       <file leaf-file-name="Aggregate.cc" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Main/RelOps/source/Aggregate.cc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="623">
-              <caret line="131" column="39" lean-forward="true" selection-start-line="131" selection-start-column="39" selection-end-line="131" selection-end-column="39" />
+            <state relative-caret-position="638">
+              <caret line="86" column="25" lean-forward="false" selection-start-line="86" selection-start-column="25" selection-end-line="86" selection-end-column="25" />
               <folding>
                 <element signature="e#42#64#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SortMergeJoin.cc" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Main/RelOps/source/SortMergeJoin.cc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="508">
+              <caret line="249" column="46" lean-forward="false" selection-start-line="249" selection-start-column="46" selection-end-line="249" selection-end-column="46" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -118,6 +128,7 @@
       <find>finalPredicate</find>
       <find>MyDB_PageReaderWriter</find>
       <find>aggTableOut</find>
+      <find>r</find>
     </findStrings>
     <replaceStrings>
       <replace>DB_A6</replace>
@@ -805,7 +816,7 @@
       <workItem from="1491096747926" duration="5235000" />
       <workItem from="1491659322236" duration="3197000" />
       <workItem from="1491662752640" duration="17450000" />
-      <workItem from="1491788272544" duration="6920000" />
+      <workItem from="1491788272544" duration="7754000" />
     </task>
     <task id="LOCAL-00001" summary="fdf">
       <created>1491790151263</created>
@@ -877,11 +888,18 @@
       <option name="project" value="LOCAL" />
       <updated>1491794941806</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="debugging">
+      <created>1491796031296</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1491796031296</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40825000" />
+    <option name="totallyTimeSpent" value="41659000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="0" width="1920" height="1080" extended-state="0" />
@@ -945,13 +963,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Main/SQL/headers/Parser.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Main/SQL/source/ParserHelperFunctions.cc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2760">
@@ -1218,6 +1229,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
           <caret line="94" column="17" lean-forward="false" selection-start-line="94" selection-start-column="17" selection-end-line="94" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1300,16 +1312,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main/RelOps/source/ScanJoin.cc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="870">
-          <caret line="193" column="0" lean-forward="false" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
-          <folding>
-            <element signature="e#42#66#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Main/RelOpTest/source/RelOpQUnit.cc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -1320,10 +1322,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Main/RelOps/source/SortMergeJoin.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="249" column="46" lean-forward="false" selection-start-line="249" selection-start-column="46" selection-end-line="249" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main/RelOps/source/ScanJoin.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-127">
+          <caret line="141" column="18" lean-forward="false" selection-start-line="141" selection-start-column="18" selection-end-line="141" selection-end-column="18" />
+          <folding>
+            <element signature="e#42#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Main/RelOps/source/Aggregate.cc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="131" column="39" lean-forward="true" selection-start-line="131" selection-start-column="39" selection-end-line="131" selection-end-column="39" />
+        <state relative-caret-position="638">
+          <caret line="86" column="25" lean-forward="false" selection-start-line="86" selection-start-column="25" selection-end-line="86" selection-end-column="25" />
           <folding>
             <element signature="e#42#64#0" expanded="true" />
           </folding>

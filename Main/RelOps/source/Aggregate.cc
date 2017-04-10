@@ -71,18 +71,20 @@ void Aggregate::run() {
 
     while (myIter->advance ()) {
         // hash the current record
-        cout<<"1234142"<<endl;
         myIter->getCurrent (inputRec);
+        combinedRec = make_shared <MyDB_Record> (mySchemaOut);
         size_t hashVal = 0;
         int i=0;
         for(auto f:groupFuncs){
             hashVal ^= f ()->hash ();
             combinedRec->getAtt(i++)->set(f());
+            cout<<"f() : " << f() <<endl;
         }
 
         for(auto f:groupAggs){
             hashVal ^= f ()->hash ();
             combinedRec->getAtt(i++)->set(f());
+            cout<<"f() : " << f() <<endl;
         }
 
 
@@ -128,6 +130,7 @@ void Aggregate::run() {
                 }
             }
         }
+
         outputRec->recordContentHasChanged();
         outputTable->append(outputRec);
     }
