@@ -57,6 +57,11 @@ void Aggregate::run() {
     }
 
     cout<<"allData loaded"<<endl;
+    MyDB_RecordIteratorAltPtr myIter = getIteratorAlt(allData);
+
+    while(myIter->getCurrent(inputRec)){
+        cout<< inputRec->getAtt(0)->toString() <<endl;
+    }
 
     //Scan Input table Write, write record to new page & Hash record
     MyDB_RecordPtr combinedRec = make_shared <MyDB_Record> (mySchemaOut);
