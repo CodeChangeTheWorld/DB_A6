@@ -46,7 +46,12 @@ public:
 	// references to a pinned page goes down to zero, then the page should
 	// become unpinned.  
 	~MyDB_PageHandleBase () {
-		page->decRefCount ();
+		if (page != nullptr)
+			page->decRefCount ();
+	}
+
+	void unlink () {
+		page = nullptr;
 	}
 
 	// sets up the page...

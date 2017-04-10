@@ -86,7 +86,7 @@ void MyDB_PageReaderWriter :: setType (MyDB_PageType toMe) {
 	myPage->wroteBytes ();	
 }
 
-void * MyDB_PageReaderWriter :: appendAndReturnLocation (MyDB_RecordPtr appendMe) {
+void *MyDB_PageReaderWriter :: appendAndReturnLocation (MyDB_RecordPtr appendMe) {
 	void *recLocation = NUM_BYTES_USED + (char *)  myPage->getBytes ();
 	if (append (appendMe))
 		return recLocation;

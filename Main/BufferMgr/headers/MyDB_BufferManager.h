@@ -70,6 +70,9 @@ public:
 
 	// returns the page size
 	size_t getPageSize ();
+
+	// returns the number of pages in the buffer manager:
+	size_t getNumberPages();
 	
 private:
 

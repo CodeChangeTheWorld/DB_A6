@@ -7,44 +7,11 @@
 #include "MyDB_TableRecIterator.h"
 #include "MyDB_TableRecIteratorAlt.h"
 #include "MyDB_TableReaderWriter.h"
+#include "MyDB_RunQueueIteratorAlt.h"
 #include "IteratorComparator.h"
 #include "Sorting.h"
 
 using namespace std;
-
-void mergeIntoFile (MyDB_TableReaderWriter &sortIntoMe, vector <MyDB_RecordIteratorAltPtr> &mergeUs, 
-	function <bool ()> comparator, MyDB_RecordPtr lhs, MyDB_RecordPtr rhs) {
-
-	// create the comparator and the priority queue
-	IteratorComparator temp (comparator, lhs, rhs);
-	priority_queue <MyDB_RecordIteratorAltPtr, vector <MyDB_RecordIteratorAltPtr>, IteratorComparator> pq (temp);
-
-	// load up the set
-	for (MyDB_RecordIteratorAltPtr m : mergeUs) {
-		if (m->advance ()) {
-			pq.push (m);
-		}
-	}
-
-	// and write everyone out
-	int counter = 0;
-	while (pq.size () != 0) {
-
-		// write the dude to the output
-		auto myIter = pq.top ();
-		myIter->getCurrent (lhs);
-		sortIntoMe.append (lhs);
-		counter++;
-
-		// remove from the q
-		pq.pop ();
-
-		// re-insert
-		if (myIter->advance ()) {
-			pq.push (myIter);
-		}
-	}
-}
 
 void appendRecord (MyDB_PageReaderWriter &curPage, vector <MyDB_PageReaderWriter> &returnVal, 
 	MyDB_RecordPtr appendMe, MyDB_BufferManagerPtr parent) {
@@ -74,10 +41,10 @@ vector <MyDB_PageReaderWriter> mergeIntoList (MyDB_BufferManagerPtr parent, MyDB
 			appendRecord (curPage, returnVal, rhs, parent);
 		}
 	} else if (!rightIter->advance ()) {
-		while (leftIter->advance ()) {
+		do {
 			leftIter->getCurrent (lhs);
 			appendRecord (curPage, returnVal, lhs, parent);
-		}
+		} while (leftIter->advance ());
 	} else {
 		while (true) {
 	
@@ -132,8 +99,20 @@ vector <MyDB_PageReaderWriter> mergeIntoList (MyDB_BufferManagerPtr parent, MyDB
 	return returnVal;
 }
 	
-void sort (int runSize, MyDB_TableReaderWriter &sortMe, MyDB_TableReaderWriter &sortIntoMe, 
+MyDB_RecordIteratorAltPtr buildItertorOverSortedRuns (int runSize, MyDB_TableReaderWriter &sortMe, 
 	function <bool ()> comparator, MyDB_RecordPtr lhs, MyDB_RecordPtr rhs) {
+
+	return buildItertorOverSortedRuns (runSize, sortMe, comparator, lhs, rhs, "bool[true]");
+}
+
+MyDB_RecordIteratorAltPtr buildItertorOverSortedRuns (int runSize, MyDB_TableReaderWriter &sortMe, 
+	function <bool ()> comparator, MyDB_RecordPtr lhs, MyDB_RecordPtr rhs, string lhsPred) {
+
+	bool skipPred = false;
+	if (lhsPred == "bool[true]")
+		skipPred = true;
+
+	func f = lhs->compileComputation (lhsPred);
 
 	// this is the list of all of the pages in the file
 	vector <vector<MyDB_PageReaderWriter>> allPages;
@@ -144,15 +123,46 @@ void sort (int runSize, MyDB_TableReaderWriter &sortMe, MyDB_TableReaderWriter &
 	// this is the list of all of the iterators, with one for each run
 	vector <MyDB_RecordIteratorAltPtr> runIters;
 	
-	int mySize = 0;
-
 	// process the file 
+	MyDB_PageReaderWriter tempPage (true, *sortMe.getBufferMgr ());
 	for (int i = 0; i < sortMe.getNumPages (); i++) {
+		
+		if (sortMe[i].getType () == MyDB_PageType :: RegularPage) {
 
-		// add this next page
-		vector <MyDB_PageReaderWriter> run;
-		run.push_back (*(sortMe[i].sort (comparator, lhs, rhs)));
-		pagesToSort.push_back (run);
+			if (skipPred) {
+				vector <MyDB_PageReaderWriter> run;
+				run.push_back (*(sortMe[i].sort (comparator, lhs, rhs)));	
+				pagesToSort.push_back (run);
+			} else {
+				MyDB_RecordIteratorAltPtr temp = sortMe[i].getIteratorAlt ();
+				while (temp->advance ()) {
+					temp->getCurrent (lhs);
+
+					if (!f ()->toBool ())
+						continue;
+
+					if (!tempPage.append (lhs)) {
+	
+						// remember the old page
+						vector <MyDB_PageReaderWriter> run;
+						run.push_back (*(tempPage.sort (comparator, lhs, rhs)));
+						pagesToSort.push_back (run);
+	
+						// get the new page
+						tempPage = MyDB_PageReaderWriter (true, *sortMe.getBufferMgr ());	
+						temp->getCurrent (lhs);
+						tempPage.append (lhs);
+					}
+				}
+			}
+		}
+
+		// if we are all done, remember the last page
+		if (i == sortMe.getNumPages () - 1) {
+			vector <MyDB_PageReaderWriter> run;
+			run.push_back (*(tempPage.sort (comparator, lhs, rhs)));
+			pagesToSort.push_back (run);
+		}
 
 		// if we are not done reading this run, go on to the next one
 		if (pagesToSort.size () != runSize && i != sortMe.getNumPages () - 1)
@@ -188,8 +198,8 @@ void sort (int runSize, MyDB_TableReaderWriter &sortMe, MyDB_TableReaderWriter &
 			pagesToSort = newPagesToSort;
 		}
 
+		
 		// now we have a single list, so create an iterator for it
-		mySize += pagesToSort[0].size ();
 		runIters.push_back (getIteratorAlt (pagesToSort[0]));
 
 		// and start over on the next run
@@ -197,7 +207,31 @@ void sort (int runSize, MyDB_TableReaderWriter &sortMe, MyDB_TableReaderWriter &
 	}
 	
 	// and now, we are ready to merge everything
-	mergeIntoFile (sortIntoMe, runIters, comparator, lhs, rhs);
+	MyDB_RunQueueIteratorAltPtr temp = make_shared <MyDB_RunQueueIteratorAlt> (comparator, lhs, rhs);
+
+	// load up the set
+	for (MyDB_RecordIteratorAltPtr m : runIters) {
+		if (m->advance ()) {
+			temp->getQ ().push (m);
+		}
+	}
+
+	return temp;
 }
+
+
+void sort (int runSize, MyDB_TableReaderWriter &sortMe, MyDB_TableReaderWriter &sortIntoMe,
+	function <bool ()> comparator, MyDB_RecordPtr lhs, MyDB_RecordPtr rhs) {
+
+	// get the sorted runs
+	MyDB_RecordIteratorAltPtr myIter = buildItertorOverSortedRuns (runSize, sortMe, comparator, lhs, rhs);
+
+	// and write everyone out
+	while (myIter->advance ()) {
+		myIter->getCurrent (lhs);
+		sortIntoMe.append (lhs);
+	}
+}
+
 
 #endif

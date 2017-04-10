@@ -71,6 +71,7 @@ MyDB_PageHandle MyDB_BufferManager :: getPage () {
 	} else {
 		pos = availablePositions.top ();
 		availablePositions.pop ();
+		//std :: cout << "Allocating " << pos << "\n";
 	}
 
 	MyDB_PagePtr returnVal = make_shared <MyDB_Page> (nullptr, pos, *this);
@@ -118,11 +119,6 @@ void MyDB_BufferManager :: killPage (MyDB_Page &killMe) {
 		// special case is when there are no refs left to this page, but he is pinned
 		// in this case... we just unpin him
 		MyDB_PageHandle temp = make_shared <MyDB_PageHandleBase> (myPtr);
-		if (killMe.bytes != nullptr && lastUsed.count (temp) == 0) {
-			temp->page->incRefCount ();
-			unpin (temp);	
-			return;
-		}
 
 		// kill from the LRU list, if needed
 		if (lastUsed.count (temp) != 0) {
@@ -133,6 +129,7 @@ void MyDB_BufferManager :: killPage (MyDB_Page &killMe) {
 		// kill from the list of all pages
 		auto page = allPages.find (whichPage);
 		allPages.erase (page); 
+		temp->unlink ();
 	}
 
 	// if it is dirty, write it
@@ -332,6 +329,10 @@ MyDB_BufferManager :: ~MyDB_BufferManager () {
 	}
 
 	unlink (tempFile.c_str ());
+}
+
+size_t MyDB_BufferManager :: getNumberPages() {
+	return this->numPages;
 }
 
 
