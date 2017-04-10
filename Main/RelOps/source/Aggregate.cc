@@ -65,7 +65,7 @@ void Aggregate::run() {
 
     //MyDB_BufferManager (size_t pageSize, size_t numPages, string tempFile);
     MyDB_BufferManager bm = MyDB_BufferManager(pagesize,numpage, "Aggregate");
-    MyDB_PageReaderWriterPtr pageRW = make_shared <MyDB_PageReaderWriter>(outputTable->getBufferMgr());
+    MyDB_PageReaderWriterPtr pageRW = make_shared <MyDB_PageReaderWriter>(*outputTable->getBufferMgr());
 
     func finalPredicate = combinedRec->compileComputation (selectionPredicate);
 
