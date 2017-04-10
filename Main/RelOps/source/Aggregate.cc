@@ -75,7 +75,7 @@ void Aggregate::run() {
         int i=0;
         for(auto f:groupFuncs){
             hashVal ^= f ()->hash ();
-            combinedRec->getAtt(i)->set(f());
+            combinedRec->getAtt(i)->set(f ());
             cout<<"f() : " << combinedRec->getAtt(i++) <<endl;
         }
 
@@ -104,7 +104,7 @@ void Aggregate::run() {
         int sum =0;
         for(void* rec:groupRec){
             tempRec->fromBinary(rec);
-            cout<< "tempRec: "<<tempRec->getAtt(0)->toString()<<endl;
+            cout<< "tempRec: "<<tempRec->getAtt(0).get()->toString()<<endl;
 
             for(int i=0;i<tempRec->getSchema()->getAtts().size();i++){
                 if(i>=groupNum && aggsToCompute[i].first == (MyDB_AggType)0) sum += tempRec->getAtt(i).get()->toInt();
