@@ -71,6 +71,8 @@ void Aggregate::run() {
     while (myIter->advance ()) {
         // hash the current record
         myIter->getCurrent (inputRec);
+        cout<<"inputRec:"<<inputRec->getAtt(0).get()->toString()<<endl;
+
         size_t hashVal = 0;
         int i=0;
         for(auto f:groupFuncs){
