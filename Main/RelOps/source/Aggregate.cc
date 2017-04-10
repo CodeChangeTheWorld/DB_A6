@@ -26,11 +26,13 @@ void Aggregate::run() {
 
     vector<func> groupFuncs;
     for (auto g:groupings) {
+        cout<< g <<endl;
         groupFuncs.push_back(inputRec->compileComputation(g));
     }
 
     vector<func> groupAggs;
     for (auto agg:aggsToCompute) {
+        cout<< agg.second <<endl;
         groupAggs.push_back(inputRec->compileComputation(agg.second));
     }
 
