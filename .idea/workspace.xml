@@ -67,8 +67,8 @@
       <file leaf-file-name="Aggregate.cc" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Main/RelOps/source/Aggregate.cc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="53" column="46" lean-forward="false" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="46" />
+            <state relative-caret-position="1033">
+              <caret line="125" column="13" lean-forward="true" selection-start-line="125" selection-start-column="13" selection-end-line="125" selection-end-column="13" />
               <folding>
                 <element signature="e#42#64#0" expanded="true" />
               </folding>
@@ -804,7 +804,7 @@
       <workItem from="1491096747926" duration="5235000" />
       <workItem from="1491659322236" duration="3197000" />
       <workItem from="1491662752640" duration="17450000" />
-      <workItem from="1491788272544" duration="5443000" />
+      <workItem from="1491788272544" duration="6041000" />
     </task>
     <task id="LOCAL-00001" summary="fdf">
       <created>1491790151263</created>
@@ -862,11 +862,18 @@
       <option name="project" value="LOCAL" />
       <updated>1491794010926</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="debugging">
+      <created>1491794270021</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1491794270021</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39348000" />
+    <option name="totallyTimeSpent" value="39946000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -1307,8 +1314,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Main/RelOps/source/Aggregate.cc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="53" column="46" lean-forward="false" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="46" />
+        <state relative-caret-position="1033">
+          <caret line="125" column="13" lean-forward="true" selection-start-line="125" selection-start-column="13" selection-end-line="125" selection-end-column="13" />
           <folding>
             <element signature="e#42#64#0" expanded="true" />
           </folding>

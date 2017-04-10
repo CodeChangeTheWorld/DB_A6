@@ -51,7 +51,7 @@ void Aggregate::run() {
         pagesize = temp.getPageSize();
         if (temp.getType () == MyDB_PageType :: RegularPage){
 //            allData.push_back (inputTable->getPinned (i));
-            allData.push_back(*inputTable[i]);
+            allData.push_back((*inputTable)[i]);
         }
 
     }
@@ -100,17 +100,18 @@ void Aggregate::run() {
     for ( auto it = myHash.begin(); it!= myHash.end(); ++it ){
         vector <void*> &groupRec = myHash [it->first];
         int count = groupRec.size();
-        int aggCount= aggsToCompute.size();
+        int groupNum= groupings.size();
         int sum =0;
         for(void* rec:groupRec){
             tempRec->fromBinary(rec);
-            for(int i=0;i<aggCount;i++){
-                //{sum, avg, cnt}
-                if(aggsToCompute[i].first == (MyDB_AggType)0) sum += tempRec->getAtt(i).get()->toInt();
+            for(int i=0;i<tempRec->getSchema()->getAtts().size();i++){
+                if(i>=groupNum && aggsToCompute[i].first == (MyDB_AggType)0) sum += tempRec->getAtt(i).get()->toInt();
             }
         }
         for(int i=0;i<tempRec->getSchema()->getAtts().size();i++){
-            if(i<aggCount){
+            if(i<groupNum){
+                outputRec->getAtt(i)->set(tempRec->getAtt(i));
+            }else{
                 switch (aggsToCompute[i].first){
                     case (MyDB_AggType)0:
                         outputRec->getAtt(i)->fromInt(sum);
@@ -122,8 +123,6 @@ void Aggregate::run() {
                         outputRec->getAtt(i)->fromInt(count);
                         break;
                 }
-            }else{
-                outputRec->getAtt(i)->set(tempRec->getAtt(i));
             }
         }
         outputRec->recordContentHasChanged();
