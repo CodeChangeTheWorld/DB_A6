@@ -83,11 +83,11 @@ void Aggregate::run() {
             //combinedRec->getAtt(i++)->set(f());
         }
 //
-//        for(auto f:groupAggs){
-//            cout<<"In groupAggs"<<endl;
-//            hashVal ^= f ()->hash ();
-//            //combinedRec->getAtt(i++)->set(f());
-//        }
+        for(auto f:groupAggs){
+            cout<<"In groupAggs"<<endl;
+            hashVal ^= f ()->hash ();
+            //combinedRec->getAtt(i++)->set(f());
+        }
 //
 //
 //       // if(finalPredicate()->toBool()){
