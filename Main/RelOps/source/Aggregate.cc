@@ -34,6 +34,8 @@ void Aggregate::run() {
         groupAggs.push_back(inputRec->compileComputation(agg.second));
     }
 
+    cout<<"pushed"<<endl;
+
     MyDB_SchemaPtr mySchemaOut = make_shared<MyDB_Schema>();
     for (auto p : outputTable->getTable()->getSchema()->getAtts())
         mySchemaOut->appendAtt(p);
@@ -42,6 +44,8 @@ void Aggregate::run() {
     int pagesize=0,numpage=0;
     vector <MyDB_PageReaderWriter> allData;
 
+    cout<<"schema built"<<endl;
+
     for (int i = 0; i < inputTable->getNumPages(); i++) {
         MyDB_PageReaderWriter temp = inputTable->getPinned (i);
         pagesize = temp.getPageSize();
@@ -49,6 +53,7 @@ void Aggregate::run() {
             allData.push_back (inputTable->getPinned (i));
     }
 
+    cout<<"allData loaded"<<endl;
 
     //Scan Input table Write, write record to new page & Hash record
     MyDB_RecordPtr combinedRec = make_shared <MyDB_Record> (mySchemaOut);
@@ -80,6 +85,8 @@ void Aggregate::run() {
         }
 
     }
+
+    cout<<"temp done"<<endl;
 
     MyDB_RecordPtr outputRec = outputTable->getEmptyRecord();
     MyDB_RecordPtr tempRec = make_shared <MyDB_Record> (mySchemaOut);
