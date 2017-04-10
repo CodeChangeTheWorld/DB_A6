@@ -72,7 +72,6 @@ void Aggregate::run() {
     while (myIter->advance ()) {
         // hash the current record
         myIter->getCurrent (inputRec);
-        combinedRec = make_shared <MyDB_Record> (mySchemaOut);
         size_t hashVal = 0;
         int i=0;
         for(auto f:groupFuncs){
