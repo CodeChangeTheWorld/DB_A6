@@ -59,7 +59,7 @@ void Aggregate::run() {
     cout<<"allData loaded"<<endl;
     MyDB_RecordIteratorAltPtr myIter1 = getIteratorAlt(allData);
 
-    while(myIter1->advance){
+    while(myIter1->advance()){
         myIter1->getCurrent (inputRec);
         cout<< inputRec->getAtt(0)->toString() <<endl;
     }
