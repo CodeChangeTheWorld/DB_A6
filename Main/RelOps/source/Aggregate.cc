@@ -98,6 +98,7 @@ void Aggregate::run() {
     MyDB_RecordPtr outputRec = outputTable->getEmptyRecord();
     MyDB_RecordPtr tempRec = make_shared <MyDB_Record> (mySchemaOut);
     for ( auto it = myHash.begin(); it!= myHash.end(); ++it ){
+        cout<<"myHash:"<< it->first <<endl;
         vector <void*> &groupRec = myHash [it->first];
         int count = groupRec.size();
         int groupNum= groupings.size();
