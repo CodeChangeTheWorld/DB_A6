@@ -77,20 +77,20 @@ void Aggregate::run() {
         for(auto f:groupFuncs){
             hashVal ^= f ()->hash ();
             combinedRec->getAtt(i++)->set(f());
-            cout<<"f() : " << f() <<endl;
+            cout<<"f() : " << f () <<endl;
         }
 
         for(auto f:groupAggs){
             hashVal ^= f ()->hash ();
             combinedRec->getAtt(i++)->set(f());
-            cout<<"f() : " << f() <<endl;
+            cout<<"f() : " << f () <<endl;
         }
 
 
-        if(finalPredicate()->toBool()){
+       // if(finalPredicate()->toBool()){
             void * ptr = pageRW->appendAndReturnLocation(combinedRec);
             myHash [hashVal].push_back (ptr);
-        }
+        //}
 
     }
 
