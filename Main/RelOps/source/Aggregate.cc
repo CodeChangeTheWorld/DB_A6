@@ -50,19 +50,12 @@ void Aggregate::run() {
         MyDB_PageReaderWriter temp = inputTable->getPinned (i);
         pagesize = temp.getPageSize();
         if (temp.getType () == MyDB_PageType :: RegularPage){
-//            allData.push_back (inputTable->getPinned (i));
             allData.push_back((*inputTable)[i]);
         }
 
     }
 
     cout<<"allData loaded"<<endl;
-    MyDB_RecordIteratorAltPtr myIter1 = getIteratorAlt(allData);
-
-    while(myIter1->advance()){
-        myIter1->getCurrent (inputRec);
-        cout<< inputRec->getAtt(0)->toString() <<endl;
-    }
 
     //Scan Input table Write, write record to new page & Hash record
     MyDB_RecordPtr combinedRec = make_shared <MyDB_Record> (mySchemaOut);
@@ -82,14 +75,14 @@ void Aggregate::run() {
         int i=0;
         for(auto f:groupFuncs){
             hashVal ^= f ()->hash ();
-            combinedRec->getAtt(i++)->set(f());
-            cout<<"f() : " << f () <<endl;
+            combinedRec->getAtt(i)->set(f());
+            cout<<"f() : " << combinedRec->getAtt(i++) <<endl;
         }
 
         for(auto f:groupAggs){
             hashVal ^= f ()->hash ();
-            combinedRec->getAtt(i++)->set(f());
-            cout<<"f() : " << f () <<endl;
+            combinedRec->getAtt(i)->set(f());
+            cout<<"f() : " << combinedRec->getAtt(i++) <<endl;
         }
 
 
