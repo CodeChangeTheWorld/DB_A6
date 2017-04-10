@@ -50,8 +50,8 @@ void Aggregate::run() {
         MyDB_PageReaderWriter temp = inputTable->getPinned (i);
         pagesize = temp.getPageSize();
         if (temp.getType () == MyDB_PageType :: RegularPage){
-            allData.push_back (inputTable->getPinned (i));
-//            allData.push_back();
+//            allData.push_back (inputTable->getPinned (i));
+            allData.push_back(*inputTable[i]);
         }
 
     }
