@@ -69,32 +69,32 @@ void Aggregate::run() {
     MyDB_PageReaderWriterPtr pageRW = make_shared <MyDB_PageReaderWriter>(*outputTable->getBufferMgr());
 
     //func finalPredicate = combinedRec->compileComputation (selectionPredicate);
-    MyDB_RecordPtr outRec =outputTable->getEmptyRecord();
+
     while (myIter->advance ()) {
         // hash the current record
         myIter->getCurrent (inputRec);
         cout<<"inputRec:"<<inputRec->getAtt(0).get()->toString()<<endl;
 
-        size_t hashVal = 0;
-        int i=0;
-        for(auto f:groupFuncs){
-            cout<<"In groupFunc"<<endl;
-            hashVal ^= f ()->hash ();
-            //combinedRec->getAtt(i++)->set(f());
-        }
-
-        for(auto f:groupAggs){
-            cout<<"In groupAggs"<<endl;
-            hashVal ^= f ()->hash ();
-            //combinedRec->getAtt(i++)->set(f());
-        }
-
-
-       // if(finalPredicate()->toBool()){
-            void * ptr = pageRW->appendAndReturnLocation(combinedRec);
-            myHash [hashVal].push_back (ptr);
-        //}
-        cout <<"HashVal:"<<hashVal << endl;
+//        size_t hashVal = 0;
+//        int i=0;
+//        for(auto f:groupFuncs){
+//            cout<<"In groupFunc"<<endl;
+//            hashVal ^= f ()->hash ();
+//            //combinedRec->getAtt(i++)->set(f());
+//        }
+//
+//        for(auto f:groupAggs){
+//            cout<<"In groupAggs"<<endl;
+//            hashVal ^= f ()->hash ();
+//            //combinedRec->getAtt(i++)->set(f());
+//        }
+//
+//
+//       // if(finalPredicate()->toBool()){
+//            void * ptr = pageRW->appendAndReturnLocation(combinedRec);
+//            myHash [hashVal].push_back (ptr);
+//        //}
+//        cout <<"HashVal:"<<hashVal << endl;
     }
 
     cout<<"temp done"<<endl;
@@ -107,7 +107,7 @@ void Aggregate::run() {
         int count = groupRec.size();
         int groupNum= groupings.size();
         int sum =0;
-        for(void* rec:groupRec){
+       // for(void* rec:groupRec){
             tempRec->fromBinary(rec);
             cout<< "tempRec: "<<tempRec->getAtt(0).get()->toString()<<endl;
 
