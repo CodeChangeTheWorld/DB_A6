@@ -121,13 +121,16 @@ void Aggregate::run() {
                 outputRec->getAtt(i)->set(tempRec->getAtt(i));
             }else{
                 switch (aggsToCompute[i].first){
-                    case (MyDB_AggType)0:
+                    case MyDB_AggType ::sum :
+                        cout<<"agg:sum"<<endl;
                         outputRec->getAtt(i)->fromInt(sum);
                         break;
-                    case (MyDB_AggType)1:
+                    case MyDB_AggType ::avg :
+                        cout<<"agg:avg"<<endl;
                         outputRec->getAtt(i)->fromInt(sum/count);
                         break;
-                    case (MyDB_AggType)2:
+                    case MyDB_AggType :: cnt:
+                        cout<<"agg:count"<<endl;
                         outputRec->getAtt(i)->fromInt(count);
                         break;
                 }
