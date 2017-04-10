@@ -75,13 +75,13 @@ void Aggregate::run() {
         myIter->getCurrent (inputRec);
         cout<<"inputRec:"<<inputRec->getAtt(0).get()->toString()<<endl;
 
-//        size_t hashVal = 0;
-//        int i=0;
-//        for(auto f:groupFuncs){
-//            cout<<"In groupFunc"<<endl;
-//            hashVal ^= f ()->hash ();
-//            //combinedRec->getAtt(i++)->set(f());
-//        }
+        size_t hashVal = 0;
+        int i=0;
+        for(auto f:groupFuncs){
+            cout<<"In groupFunc"<<endl;
+            hashVal ^= f ()->hash ();
+            //combinedRec->getAtt(i++)->set(f());
+        }
 //
 //        for(auto f:groupAggs){
 //            cout<<"In groupAggs"<<endl;
@@ -94,7 +94,7 @@ void Aggregate::run() {
 //            void * ptr = pageRW->appendAndReturnLocation(combinedRec);
 //            myHash [hashVal].push_back (ptr);
 //        //}
-//        cout <<"HashVal:"<<hashVal << endl;
+        cout <<"HashVal:"<<hashVal << endl;
     }
 
     cout<<"temp done"<<endl;
