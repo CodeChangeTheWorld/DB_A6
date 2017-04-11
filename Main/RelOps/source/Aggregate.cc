@@ -42,14 +42,17 @@ void Aggregate::run() {
     for(auto att: outputTable->getTable()->getSchema()->getAtts()){
         mySchemaOut->appendAtt(att);
     }
-    mySchemaOut->appendAtt (make_pair ("myCount", make_shared <MyDB_IntAttType> ()));
+
     int groupNum= groupings.size();
     int aggNum = aggsToCompute.size();
-
     for(int i= groupNum;i<groupNum+aggNum;i++){
         if(aggsToCompute[i-groupNum].first == MyDB_AggType ::sum || aggsToCompute[i-groupNum].first == MyDB_AggType ::avg)
             mySchemaOut->appendAtt(make_pair ("[MyDB_AggAtt" + to_string (i-groupNum) + "]", mySchemaOut->getAtts()[i].second));
     }
+
+    mySchemaOut->appendAtt(make_pair ("MyCount", make_shared <MyDB_IntAttVal>()));
+
+    int attNum = mySchemaOut->getAtts().size();
 
     vector <MyDB_PageReaderWriter> allData;
 
@@ -91,7 +94,9 @@ void Aggregate::run() {
             combinedRec->getAtt(i++)->set(f());
         }
 
-        combinedRec->getAtt(combinedRec->getSchema()->getAtts().size()-1)->fromInt(0);
+        //set to 0
+        for(int i= groupNum+aggNum;i<attNum;i++)
+        combinedRec->getAtt(i)->fromInt(0);
 
         if(finalPredicate ()->toBool()) {
             combinedRec->recordContentHasChanged();
@@ -108,36 +113,53 @@ void Aggregate::run() {
 
     MyDB_RecordPtr outputRec = outputTable->getEmptyRecord();
     MyDB_RecordPtr tempRec = make_shared <MyDB_Record> (mySchemaOut);
+    MyDB_RecordPtr oldRec = make_shared <MyDB_Record> (mySchemaOut);
+    vector<func> aggList;
+    vector<func> avgList;
+
+    for (int i=0;i<aggNum;i++) {
+        auto s = aggsToCompute[i];
+        if(s.first == MyDB_AggType::avg || s.first == MyDB_AggType::sum)
+            aggList.push_back(tempRec->compileComputation("+ (" + s.second + ", [MyDB_AggAtt" + to_string (i) + "])"));
+        if(s.first == MyDB_AggType::avg)
+            avgList.push_back(outputRec->compileComputation("/ (" + s.second + ", [MyCount])"));
+    }
 
 
     for ( auto it = myHash.begin(); it!= myHash.end(); ++it){
         vector <void*> &groupRec = myHash [it->first];
         int count = groupRec.size();
+        for(int i=0;i<count;i++){
 
-        for(int i=0;i<groupNum+aggNum;i++){
             tempRec->fromBinary(groupRec[i]);
-            for(int i=0;i<tempRec->getSchema()->getAtts().size();i++){
-            cout<<"tempRec:"<<tempRec->getAtt(i).get()->toString()<<endl;
-//                if(i>=groupNum && (aggsToCompute[i-groupNum].first == MyDB_AggType ::sum || aggsToCompute[i-groupNum].first == MyDB_AggType ::avg )){
-//                    sum += tempRec->getAtt(i).get()->toInt();
-//                }
+            int app = -1;
+            for(j= groupNum; j<groupNum+aggNum;j++){
+                if(aggsToCompute[j-groupNum].second == MyDB_AggType::sum || aggsToCompute[j-groupNum].second == MyDB_AggType::avg) {
+                    int idx = groupNum + aggNum + (++app);
+                    if (i > 0) tempRec->getAtt(idx)->set(outputRec->getAtt(j));
+                    func f = aggList[app];
+                    tempRec->getAtt(idx)->set(f ());
+                    outputRec->getAtt(j)->set(tempRec->getAtt(idx));
+                }
             }
+
         }
 
+        int div=0;
         for(int i=0;i<outputRec->getSchema()->getAtts().size();i++){
+
             if(i<groupNum){
-                cout<< "group attr"<<endl;
                 outputRec->getAtt(i)->set(tempRec->getAtt(i));
             }else{
                 cout<<"sum:"<<sum<<endl;
                 switch (aggsToCompute[i-groupNum].first){
                     case MyDB_AggType ::sum :
                         cout<<"agg:sum"<<endl;
-                        outputRec->getAtt(i)->fromInt(sum);
                         break;
                     case MyDB_AggType ::avg :
                         cout<<"agg:avg"<<endl;
-                        outputRec->getAtt(i)->fromInt(sum/count);
+                        func f = avgList[div++];
+                        outputRec->getAtt(i)->set(f ());
                         break;
                     case MyDB_AggType :: cnt:
                         cout<<"agg:count"<<endl;
@@ -147,6 +169,7 @@ void Aggregate::run() {
             }
 
         }
+
         for(int i=0;i<outputRec->getSchema()->getAtts().size();i++)  {
             cout<<"outRec Att: "<< outputRec->getAtt(i).get()->toString()<<endl;
         }
