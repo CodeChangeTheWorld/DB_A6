@@ -151,20 +151,25 @@ void Aggregate::run() {
             if(i<groupNum){
                 outputRec->getAtt(i)->set(tempRec->getAtt(i));
             }else{
-
-                switch (aggsToCompute[i-groupNum].first){
-                    case MyDB_AggType ::sum :
+                MyDB_AggType aggtype = aggsToCompute[i-groupNum].first;
+                switch(aggType){
+                    case MyDB_AggType::sum :{
                         cout<<"agg:sum"<<endl;
                         break;
-                    case MyDB_AggType ::avg :
-                        cout<<"agg:avg"<<endl;
-                        func f = avgList[div++];
-                        outputRec->getAtt(i)->set(f ());
+                    }
+                    case MyDB_AggType::avg : {
+                        cout << "agg:avg" << endl;
+                        if (avgList.size() > 0) {
+                            func f = avgList[div++];
+                            outputRec->getAtt(i)->set(f());
+                        }
                         break;
-                    case MyDB_AggType :: cnt:
+                    }
+                    case MyDB_AggType::cnt:{
                         cout<<"agg:count"<<endl;
                         outputRec->getAtt(i)->fromInt(count);
                         break;
+                    }
                 }
             }
 
