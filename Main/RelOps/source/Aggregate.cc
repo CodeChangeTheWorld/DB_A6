@@ -104,16 +104,14 @@ void Aggregate::run() {
         for(auto rec:groupRec){
             cout<<"rec:"<<rec<<endl;
             tempRec->fromBinary(rec);
-            cout<< "tempRec: "<<tempRec->getAtt(0).get()->toString()<<endl;
 
             for(int i=0;i<tempRec->getSchema()->getAtts().size();i++){
                 cout<<"tempRec Att: "<< tempRec->getAtt(i).get()->toString()<<endl;
-
                 if(i>=groupNum && aggsToCompute[i-groupNum].first == MyDB_AggType ::sum) sum += tempRec->getAtt(i).get()->toInt();
             }
         }
 
-        for(int i=0;i<tempRec->getSchema()->getAtts().size();i++){
+        for(int i=0;i<outputRec->getSchema()->getAtts().size();i++){
             if(i<groupNum){
                 cout<< "group attr"<<endl;
                 outputRec->getAtt(i)->set(tempRec->getAtt(i));
@@ -133,6 +131,10 @@ void Aggregate::run() {
                         break;
                 }
             }
+
+        }
+        for(int i=0;i<outputRec->getSchema()->getAtts().size();i++)  {
+            cout<<"outRec Att: "<< outputRec->getAtt(i).get()->toString()<<endl;
         }
 
         outputRec->recordContentHasChanged();
