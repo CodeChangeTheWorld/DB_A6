@@ -40,7 +40,14 @@ void Aggregate::run() {
 
     MyDB_SchemaPtr mySchemaOut = outputTable->getTable()->getSchema();
     mySchemaOut->appendAtt (make_pair ("count", make_shared <MyDB_IntAttType> ()));
+    int groupNum= groupings.size();
+    int aggNum = aggsToCompute.size();
+    vector<func> aggList;
 
+    for(int i= groupNum;i<groupNum+aggNum;i++){
+        if(aggsToCompute[i-groupNum].first == MyDB_AggType ::sum || aggsToCompute[i-groupNum].first == MyDB_AggType ::avg)
+            mySchemaOut->appendAtt(make_pair ("[MyDB_AggAtt" + to_string (i-groupNum) + "]", mySchemaOut->getAtts()[i].second));
+    }
 
     vector <MyDB_PageReaderWriter> allData;
 
@@ -99,14 +106,6 @@ void Aggregate::run() {
 
     MyDB_RecordPtr outputRec = outputTable->getEmptyRecord();
     MyDB_RecordPtr tempRec = make_shared <MyDB_Record> (mySchemaOut);
-    int groupNum= groupings.size();
-    int aggNum = aggsToCompute.size();
-    vector<func> aggList;
-
-    for(int i= groupNum;i<groupNum+aggNum;i++){
-        if(aggsToCompute[i-groupNum].first == MyDB_AggType ::sum || aggsToCompute[i-groupNum].first == MyDB_AggType ::avg)
-            tempRec->getSchema()->appendAtt(make_pair ("[MyDB_AggAtt" + to_string (i-groupNum) + "]", mySchemaOut->getAtts()[i].second));
-    }
 
 
     for ( auto it = myHash.begin(); it!= myHash.end(); ++it){
@@ -116,7 +115,7 @@ void Aggregate::run() {
         for(int i=0;i<groupNum+aggNum;i++){
             tempRec->fromBinary(groupRec[i]);
             for(int i=0;i<tempRec->getSchema()->getAtts().size();i++){
-            cout<<"tempRec:"<<tempRec->getAtt(i)<<endl;
+            cout<<"tempRec:"<<tempRec->getAtt(i).get()->toString()<<endl;
 //                if(i>=groupNum && (aggsToCompute[i-groupNum].first == MyDB_AggType ::sum || aggsToCompute[i-groupNum].first == MyDB_AggType ::avg )){
 //                    sum += tempRec->getAtt(i).get()->toInt();
 //                }
