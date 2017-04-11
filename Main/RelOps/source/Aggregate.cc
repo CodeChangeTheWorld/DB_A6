@@ -98,14 +98,17 @@ void Aggregate::run() {
         cout <<"HashVal:"<<hashVal << endl;
     }
 
-    cout<<"temp done"<<endl;
 
     MyDB_RecordPtr outputRec = outputTable->getEmptyRecord();
     MyDB_RecordPtr tempRec = make_shared <MyDB_Record> (mySchemaOut);
+
+    cout<<"begin group by"<<endl;
+
     for ( auto it = myHash.begin(); it!= myHash.end(); ++it ){
-        cout<<"myHash:"<< it->first <<endl;
-        vector <void*> &groupRec = myHash [it->first];
+
+        vector <void*> groupRec = myHash [it->first];
         int count = groupRec.size();
+        cout<<"myHash: "<< it->first << "Count:"<< count << endl;
         int groupNum= groupings.size();
         int sum =0;
         for(void* rec:groupRec){
