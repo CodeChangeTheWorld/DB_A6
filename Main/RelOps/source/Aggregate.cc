@@ -43,7 +43,7 @@ void Aggregate::run() {
 //        mySchemaOut->appendAtt(p);
 
     //get all pages from input table
-    int pagesize=0,numpage=0;
+
     vector <MyDB_PageReaderWriter> allData;
 
     cout<<"schema built"<<endl;
@@ -61,7 +61,7 @@ void Aggregate::run() {
     //Scan Input table Write, write record to new page & Hash record
     MyDB_RecordPtr combinedRec = make_shared <MyDB_Record> (mySchemaOut);
     MyDB_RecordIteratorAltPtr myIter = getIteratorAlt(allData);
-    MyDB_PageReaderWriterPtr pageRW = make_shared <MyDB_PageReaderWriter>((*outputTable).getBufferMgr());
+    MyDB_PageReaderWriterPtr pageRW = make_shared <MyDB_PageReaderWriter>(*outTable->getBufferMgr());
 
     func finalPredicate = combinedRec->compileComputation (selectionPredicate);
     MyDB_RecordPtr tempRec1 = make_shared <MyDB_Record> (mySchemaOut);
