@@ -50,8 +50,7 @@ void Aggregate::run() {
             mySchemaOut->appendAtt(make_pair ("[MyDB_AggAtt" + to_string (i-groupNum) + "]", mySchemaOut->getAtts()[i].second));
     }
 
-    mySchemaOut->appendAtt(make_pair ("MyCount", make_shared <MyDB_IntAttVal>()));
-
+    mySchemaOut->appendAtt (make_pair ("MyCount", make_shared <MyDB_IntAttType> ()));
     int attNum = mySchemaOut->getAtts().size();
 
     vector <MyDB_PageReaderWriter> allData;
