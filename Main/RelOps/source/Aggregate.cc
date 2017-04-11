@@ -103,7 +103,7 @@ void Aggregate::run() {
         for(auto rec:groupRec){
             cout<<"rec:"<<rec<<endl;
             outputRec->fromBinary(rec);
-            cout<< "tempRec: "<<tempRec->getAtt(0).get()->toString()<<endl;
+            cout<< "tempRec: "<<outputRec->getAtt(0).get()->toString()<<endl;
 
             for(int i=0;i<tempRec->getSchema()->getAtts().size();i++){
                 if(i>=groupNum && aggsToCompute[i].first == MyDB_AggType ::sum) sum += tempRec->getAtt(i).get()->toInt();
