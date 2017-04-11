@@ -88,11 +88,11 @@ void Aggregate::run() {
             }
             combinedRec->recordContentHasChanged();
             void *ptr = pageRW->appendAndReturnLocation(combinedRec);
-            tempRec1->fromBinary(ptr);
+            myHash[hashVal].push_back(ptr);
+            tempRec1->fromBinary( myHash[hashVal][ myHash[hashVal].size()-1]);
             for(int i=0;i<tempRec1->getSchema()->getAtts().size();i++){
                 cout<<"tempRec1 Att:" << tempRec1->getAtt(i).get()->toString() << endl;
             }
-            myHash[hashVal].push_back(ptr);
         }
     }
 
