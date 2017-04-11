@@ -151,7 +151,7 @@ void Aggregate::run() {
             if(i<groupNum){
                 outputRec->getAtt(i)->set(tempRec->getAtt(i));
             }else{
-                cout<<"sum:"<<sum<<endl;
+
                 switch (aggsToCompute[i-groupNum].first){
                     case MyDB_AggType ::sum :
                         cout<<"agg:sum"<<endl;
