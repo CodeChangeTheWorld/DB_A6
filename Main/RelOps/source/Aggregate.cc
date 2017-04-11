@@ -77,17 +77,18 @@ void Aggregate::run() {
 
         size_t hashVal = 0;
         int i=0;
-//        for(auto f:groupFuncs){
-//            cout<<"In groupFunc"<<endl;
-//            hashVal ^= f ()->hash ();
-//            //combinedRec->getAtt(i++)->set(f());
-//        }
-//
+        for(auto f:groupFuncs){
+            hashVal ^= f ()->hash ();
+            combinedRec->getAtt(i++)->set(f());
+        }
+
+        cout<<"i: "<<i<<endl;
         for(auto f:groupAggs){
             cout<<"In groupAggs"<<endl;
             hashVal ^= f ()->hash ();
             combinedRec->getAtt(i++)->set(f());
         }
+        cout<<"i: "<<i<<endl;
 //
 //
 //       // if(finalPredicate()->toBool()){
