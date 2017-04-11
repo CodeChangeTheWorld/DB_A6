@@ -84,6 +84,7 @@ void Aggregate::run() {
 
         if(finalPredicate ()->toBool()) {
             cout<<"inputRec:"<<inputRec->getAtt(0).get()->toString()<<endl;
+            cout<<"combinedRec:"<<combinedRec->getAtt(0).get()->toString()<<endl;
             void *ptr = pageRW->appendAndReturnLocation(combinedRec);
             myHash[hashVal].push_back(ptr);
         }
