@@ -61,10 +61,7 @@ void Aggregate::run() {
 
     //Scan Input table Write, write record to new page & Hash record
     MyDB_RecordPtr combinedRec = make_shared <MyDB_Record> (mySchemaOut);
-//    MyDB_RecordPtr combinedRec = outputTable->getEmptyRecord();
     MyDB_RecordIteratorAltPtr myIter = getIteratorAlt(allData);
-
-    //MyDB_BufferManager (size_t pageSize, size_t numPages, string tempFile);
     MyDB_BufferManager bm = MyDB_BufferManager(pagesize,numpage, "Aggregate");
     MyDB_PageReaderWriterPtr pageRW = make_shared <MyDB_PageReaderWriter>(*inputTable->getBufferMgr());
 
@@ -73,7 +70,6 @@ void Aggregate::run() {
     while (myIter->advance ()) {
         // hash the current record
         myIter->getCurrent (inputRec);
-        cout<<"inputRec:"<<inputRec->getAtt(0).get()->toString()<<endl;
 
         size_t hashVal = 0;
         int i=0;
@@ -82,30 +78,25 @@ void Aggregate::run() {
             combinedRec->getAtt(i++)->set(f());
         }
 
-        cout<<"i: "<<i<<endl;
         for(auto f:groupAggs){
-            cout<<"In groupAggs"<<endl;
             hashVal ^= f ()->hash ();
             combinedRec->getAtt(i++)->set(f());
         }
-        cout<<"i: "<<i<<endl;
-//
-//
-        if(finalPredicate()->toBool()){
-            void * ptr = pageRW->appendAndReturnLocation(combinedRec);
-            myHash [hashVal].push_back (ptr);
-            cout<< "hash:"<<myHash [hashVal][myHash [hashVal].size()-1] << endl;
+
+          if(finalPredicate ()->toBool()) {
+              cout<<"inputRec:"<<inputRec->getAtt(0).get()->toString()<<endl;
+              void *ptr = pageRW->appendAndReturnLocation(combinedRec);
+              myHash[hashVal].push_back(ptr);
+          }
         }
-        cout <<"HashVal:"<<hashVal << endl;
     }
 
 
     MyDB_RecordPtr outputRec = outputTable->getEmptyRecord();
     MyDB_RecordPtr tempRec = make_shared <MyDB_Record> (mySchemaOut);
 
-    cout<<"begin group by"<<endl;
 
-    for ( auto it = myHash.begin(); it!= myHash.end(); ++it ){
+    for ( auto it = myHash.begin(); it!= myHash.end(); ++it){
 
         vector <void*> &groupRec = myHash [it->first];
         int count = groupRec.size();
