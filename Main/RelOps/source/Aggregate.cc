@@ -82,8 +82,6 @@ void Aggregate::run() {
         }
 
         if(finalPredicate ()->toBool()) {
-            cout<<"inputRec:"<<inputRec->getAtt(0).get()->toString()<<endl;
-            cout<<"combinedRec:"<<combinedRec->getAtt(0).get()->toString()<<endl;
             combinedRec->recordContentHasChanged();
             void *ptr = pageRW->appendAndReturnLocation(combinedRec);
             myHash[hashVal].push_back(ptr);
@@ -105,6 +103,8 @@ void Aggregate::run() {
             cout<< "tempRec: "<<tempRec->getAtt(0).get()->toString()<<endl;
 
             for(int i=0;i<tempRec->getSchema()->getAtts().size();i++){
+                cout<<"tempRec Att: "<< tempRec->getAtt(i).get()->toString()<<endl;
+
                 if(i>=groupNum && aggsToCompute[i-groupNum].first == MyDB_AggType ::sum) sum += tempRec->getAtt(i).get()->toInt();
             }
         }
