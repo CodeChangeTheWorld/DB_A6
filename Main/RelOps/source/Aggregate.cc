@@ -62,7 +62,9 @@ void Aggregate::run() {
     MyDB_RecordPtr combinedRec = make_shared <MyDB_Record> (mySchemaOut);
     MyDB_RecordIteratorAltPtr myIter = getIteratorAlt(allData);
     MyDB_BufferManagerPtr myMgr1 = make_shared <MyDB_BufferManager> (131072, 128, "tempFile1");
-    MyDB_PageReaderWriterPtr pageRW = make_shared <MyDB_PageReaderWriter>(*myMgr1);//*outputTable->getBufferMgr());
+    vector <MyDB_PageReaderWriter> tmpPages;
+    MyDB_PageReaderWriter pageRW =  MyDB_PageReaderWriter(*myMgr1);//*outputTable->getBufferMgr());
+
 
     func finalPredicate = combinedRec->compileComputation (selectionPredicate);
     MyDB_RecordPtr tempRec1 = make_shared <MyDB_Record> (mySchemaOut);
@@ -88,7 +90,13 @@ void Aggregate::run() {
                 cout<<"combinedRec Att: "<< combinedRec->getAtt(i).get()->toString() <<endl;
             }
             combinedRec->recordContentHasChanged();
-            void *ptr = pageRW->appendAndReturnLocation(combinedRec);
+            void *ptr = pageRW.appendAndReturnLocation(combinedRec);
+
+            if(ptr == nullptr){
+                tmpPages.push_back(pageRW);
+                pageRW = MyDB_PageReaderWriter(*myMgr1);
+                ptr= pageRW.appendAndReturnLocation(combinedRec);
+            }
             myHash[hashVal].push_back(ptr);
             tempRec1->fromBinary( myHash[hashVal][ myHash[hashVal].size()-1]);
             for(int i=0;i<tempRec1->getSchema()->getAtts().size();i++){
@@ -148,6 +156,7 @@ void Aggregate::run() {
         outputTable->append(outputRec);
     }
 
+        tmpPages.clear();
         remove("tempFile1");
 }
 
