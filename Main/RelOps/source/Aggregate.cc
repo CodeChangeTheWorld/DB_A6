@@ -39,10 +39,6 @@ void Aggregate::run() {
     cout<<"pushed"<<endl;
 
     MyDB_SchemaPtr mySchemaOut = outputTable->getTable()->getSchema();
-//    for (auto p : outputTable->getTable()->getSchema()->getAtts())
-//        mySchemaOut->appendAtt(p);
-
-    //get all pages from input table
 
     vector <MyDB_PageReaderWriter> allData;
 
@@ -113,15 +109,14 @@ void Aggregate::run() {
         vector <void*> &groupRec = myHash [it->first];
         int count = groupRec.size();
         int groupNum= groupings.size();
-        int sum =0;
+        double sum =0;
 
         for(int i=0;i<groupRec.size();i++){
-            cout<<"Rec :"<< groupRec[i] << endl;
             tempRec->fromBinary(groupRec[i]);
-
             for(int i=0;i<tempRec->getSchema()->getAtts().size();i++){
-                cout<<"tempRec Att: "<< tempRec->getAtt(i).get()->toString()<<endl;
-                if(i>=groupNum && aggsToCompute[i-groupNum].first == MyDB_AggType ::sum) sum += tempRec->getAtt(i).get()->toInt();
+                if(i>=groupNum && (aggsToCompute[i-groupNum].first == MyDB_AggType ::sum || aggsToCompute[i-groupNum].first == MyDB_AggType ::avg )){
+                    sum += tempRec->getAtt(i).get()->toDouble();
+                }
             }
         }
 
@@ -138,7 +133,9 @@ void Aggregate::run() {
                         break;
                     case MyDB_AggType ::avg :
                         cout<<"agg:avg"<<endl;
-                        outputRec->getAtt(i)->fromInt(sum/count);
+                        MyDB_DoubleAttValPtr temp = make_shared <MyDB_DoubleAttVal> ();
+                        temp->set (sum/count);
+                        outputRec->getAtt(i)->set(*temp);
                         break;
                     case MyDB_AggType :: cnt:
                         cout<<"agg:count"<<endl;
