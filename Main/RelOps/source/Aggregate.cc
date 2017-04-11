@@ -62,7 +62,6 @@ void Aggregate::run() {
     //Scan Input table Write, write record to new page & Hash record
     MyDB_RecordPtr combinedRec = make_shared <MyDB_Record> (mySchemaOut);
     MyDB_RecordIteratorAltPtr myIter = getIteratorAlt(allData);
-    MyDB_BufferManager bm = MyDB_BufferManager(pagesize,numpage, "Aggregate");
     MyDB_PageReaderWriterPtr pageRW = make_shared <MyDB_PageReaderWriter>(*inputTable->getBufferMgr());
 
     func finalPredicate = combinedRec->compileComputation (selectionPredicate);
@@ -83,18 +82,15 @@ void Aggregate::run() {
             combinedRec->getAtt(i++)->set(f());
         }
 
-          if(finalPredicate ()->toBool()) {
-              cout<<"inputRec:"<<inputRec->getAtt(0).get()->toString()<<endl;
-              void *ptr = pageRW->appendAndReturnLocation(combinedRec);
-              myHash[hashVal].push_back(ptr);
-          }
+        if(finalPredicate ()->toBool()) {
+            cout<<"inputRec:"<<inputRec->getAtt(0).get()->toString()<<endl;
+            void *ptr = pageRW->appendAndReturnLocation(combinedRec);
+            myHash[hashVal].push_back(ptr);
         }
     }
 
-
     MyDB_RecordPtr outputRec = outputTable->getEmptyRecord();
     MyDB_RecordPtr tempRec = make_shared <MyDB_Record> (mySchemaOut);
-
 
     for ( auto it = myHash.begin(); it!= myHash.end(); ++it){
 
