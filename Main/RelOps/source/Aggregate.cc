@@ -61,10 +61,11 @@ void Aggregate::run() {
     //Scan Input table Write, write record to new page & Hash record
     MyDB_RecordPtr combinedRec = make_shared <MyDB_Record> (mySchemaOut);
     MyDB_RecordIteratorAltPtr myIter = getIteratorAlt(allData);
-    MyDB_PageReaderWriterPtr pageRW = make_shared <MyDB_PageReaderWriter>(*inputTable->getBufferMgr());
+    MyDB_TablePtr tempTable = make_shared <MyDB_Table> ("tempAgg", "tempAgg.bin", mySchemaOut);
+    MyDB_PageReaderWriterPtr pageRW = make_shared <MyDB_PageReaderWriter>(tempTable->getBufferMgr());
 
     func finalPredicate = combinedRec->compileComputation (selectionPredicate);
-
+    MyDB_RecordPtr tempRec1 = make_shared <MyDB_Record> (mySchemaOut);
     while (myIter->advance ()) {
         // hash the current record
         myIter->getCurrent (inputRec);
@@ -88,6 +89,8 @@ void Aggregate::run() {
             }
             combinedRec->recordContentHasChanged();
             void *ptr = pageRW->appendAndReturnLocation(combinedRec);
+            tempRec1->fromBinary(ptr);
+
             myHash[hashVal].push_back(ptr);
         }
     }
