@@ -133,7 +133,7 @@ void Aggregate::run() {
 
             tempRec->fromBinary(groupRec[i]);
             int app = -1;
-            for(j= groupNum; j<groupNum+aggNum;j++){
+            for(int j= groupNum; j<groupNum+aggNum;j++){
                 if(aggsToCompute[j-groupNum].second == MyDB_AggType::sum || aggsToCompute[j-groupNum].second == MyDB_AggType::avg) {
                     int idx = groupNum + aggNum + (++app);
                     if (i > 0) tempRec->getAtt(idx)->set(outputRec->getAtt(j));
