@@ -101,7 +101,7 @@ void Aggregate::run() {
 
         for(auto rec:groupRec){
             cout<<"rec:"<<rec<<endl;
-            tempRec->fromBinary(rec);
+            outputRec->fromBinary(rec);
             cout<< "tempRec: "<<tempRec->getAtt(0).get()->toString()<<endl;
 
             for(int i=0;i<tempRec->getSchema()->getAtts().size();i++){
