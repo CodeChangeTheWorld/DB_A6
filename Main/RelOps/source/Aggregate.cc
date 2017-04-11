@@ -66,9 +66,9 @@ void Aggregate::run() {
 
     //MyDB_BufferManager (size_t pageSize, size_t numPages, string tempFile);
     MyDB_BufferManager bm = MyDB_BufferManager(pagesize,numpage, "Aggregate");
-    MyDB_PageReaderWriterPtr pageRW = make_shared <MyDB_PageReaderWriter>(*outputTable->getBufferMgr());
+    MyDB_PageReaderWriterPtr pageRW = make_shared <MyDB_PageReaderWriter>(*inputTable->getBufferMgr());
 
-    //func finalPredicate = combinedRec->compileComputation (selectionPredicate);
+    func finalPredicate = combinedRec->compileComputation (selectionPredicate);
 
     while (myIter->advance ()) {
         // hash the current record
@@ -91,11 +91,11 @@ void Aggregate::run() {
         cout<<"i: "<<i<<endl;
 //
 //
-//       // if(finalPredicate()->toBool()){
+        if(finalPredicate()->toBool()){
             void * ptr = pageRW->appendAndReturnLocation(combinedRec);
             myHash [hashVal].push_back (ptr);
             cout<< myHash [hashVal][myHash [hashVal].size()-1] << endl;
-//        //}
+        }
         cout <<"HashVal:"<<hashVal << endl;
     }
 
