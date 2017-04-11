@@ -123,8 +123,7 @@ void Aggregate::run() {
                         break;
                     case MyDB_AggType ::avg :
                         cout<<"agg:avg"<<endl;
-                        MyDB_DoubleAttValPtr val = make_shared<MyDB_DoubleAttVal>(sum*1.0/count);
-                        outputRec->getAtt(i)->set(val);
+                        outputRec->getAtt(i)->fromInt(sum/count);
                         break;
                     case MyDB_AggType :: cnt:
                         cout<<"agg:count"<<endl;
