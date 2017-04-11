@@ -38,11 +38,13 @@ void Aggregate::run() {
 
     cout<<"pushed"<<endl;
 
-    MyDB_SchemaPtr mySchemaOut = outputTable->getTable()->getSchema();
-    mySchemaOut->appendAtt (make_pair ("count", make_shared <MyDB_IntAttType> ()));
+    MyDB_SchemaPtr mySchemaOut = make_shared <MyDB_Schema> ();
+    for(auto att: outputTable->getTable()->getSchema()->getAtts()){
+        mySchemaOut->appendAtt(att);
+    }
+    mySchemaOut->appendAtt (make_pair ("myCount", make_shared <MyDB_IntAttType> ()));
     int groupNum= groupings.size();
     int aggNum = aggsToCompute.size();
-    vector<func> aggList;
 
     for(int i= groupNum;i<groupNum+aggNum;i++){
         if(aggsToCompute[i-groupNum].first == MyDB_AggType ::sum || aggsToCompute[i-groupNum].first == MyDB_AggType ::avg)
@@ -69,7 +71,7 @@ void Aggregate::run() {
     MyDB_RecordIteratorAltPtr myIter = getIteratorAlt(allData);
     MyDB_BufferManagerPtr myMgr1 = make_shared <MyDB_BufferManager> (131072, 128, "tempFile1");
     vector <MyDB_PageReaderWriter> tmpPages;
-    MyDB_PageReaderWriter pageRW =  MyDB_PageReaderWriter(*myMgr1);//*outputTable->getBufferMgr());
+    MyDB_PageReaderWriter pageRW =  MyDB_PageReaderWriter(*myMgr1);
 
 
     func finalPredicate = combinedRec->compileComputation (selectionPredicate);
