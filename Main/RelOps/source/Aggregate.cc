@@ -107,21 +107,27 @@ void Aggregate::run() {
                 ptr= pageRW.appendAndReturnLocation(combinedRec);
             }
             myHash[hashVal].push_back(ptr);
+            for(int i=0;i<attNum-1;i++){
+                cout<<"combinedrec:" << combinedRec->getAtt(i).get()->toString()<<endl;
+            }
         }
     }
 
+    cout<< "Finished hash" <<endl;
+
     MyDB_RecordPtr outputRec = outputTable->getEmptyRecord();
     MyDB_RecordPtr tempRec = make_shared <MyDB_Record> (mySchemaOut);
-    MyDB_RecordPtr oldRec = make_shared <MyDB_Record> (mySchemaOut);
     vector<func> aggList;
     vector<func> avgList;
 
     for (int i=0;i<aggNum;i++) {
         auto s = aggsToCompute[i];
-        if(s.first == MyDB_AggType::avg || s.first == MyDB_AggType::sum)
-            aggList.push_back(tempRec->compileComputation("+ (" + s.second + ", [MyDB_AggAtt" + to_string (i) + "])"));
-        if(s.first == MyDB_AggType::avg)
-            avgList.push_back(outputRec->compileComputation("/ (" + s.second + ", [MyCount])"));
+        if(s.first == MyDB_AggType::avg || s.first == MyDB_AggType::sum){
+            cout<<"Build Agg List: "<<endl;
+            aggList.push_back(tempRec->compileComputation("+ (" + s.second + ", [MyDB_AggAtt" + to_string (i) + "])"));}
+        if(s.first == MyDB_AggType::avg){
+            cout<<"Build Avg List: "<<endl;
+            avgList.push_back(outputRec->compileComputation("/ (" + s.second + ", [MyCount])"));}
     }
 
 
@@ -131,6 +137,9 @@ void Aggregate::run() {
         for(int i=0;i<count;i++){
 
             tempRec->fromBinary(groupRec[i]);
+            for(int i=0;i<attNum;i++){
+                cout<<"tempRec:"<<tempRec->getAtt(i).get()->toString() <<endl;
+            }
             int app = -1;
             for(int j= groupNum; j<groupNum+aggNum;j++){
                 if(aggsToCompute[j-groupNum].first == MyDB_AggType::sum || aggsToCompute[j-groupNum].first == MyDB_AggType::avg) {
