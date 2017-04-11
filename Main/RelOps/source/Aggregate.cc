@@ -83,7 +83,7 @@ void Aggregate::run() {
 
         if(finalPredicate ()->toBool()) {
             for(int i=0;i<combinedRec->getSchema()->getAtts().size();i++){
-                cout<<"inputRec Att: "<< inputRec->getAtt(i).get()->toString() <<endl;
+               // cout<<"inputRec Att: "<< inputRec->getAtt(i).get()->toString() <<endl;
                 cout<<"combinedRec Att: "<< combinedRec->getAtt(i).get()->toString() <<endl;
             }
             combinedRec->recordContentHasChanged();
