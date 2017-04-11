@@ -105,7 +105,7 @@ void Aggregate::run() {
             cout<< "tempRec: "<<tempRec->getAtt(0).get()->toString()<<endl;
 
             for(int i=0;i<tempRec->getSchema()->getAtts().size();i++){
-                if(i>=groupNum && aggsToCompute[i].first == (MyDB_AggType)0) sum += tempRec->getAtt(i).get()->toInt();
+                if(i>=groupNum && aggsToCompute[i].first == MyDB_AggType ::sum) sum += tempRec->getAtt(i).get()->toInt();
             }
         }
 
