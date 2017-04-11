@@ -105,7 +105,7 @@ void Aggregate::run() {
 
     for(int i= groupNum;i<groupNum+aggNum;i++){
         if(aggsToCompute[i-groupNum].first == MyDB_AggType ::sum || aggsToCompute[i-groupNum].first == MyDB_AggType ::avg)
-            tempRec->getSchema()->appendAtt("[MyDB_AggAtt" + to_string (i-groupNum) + "]", mySchemaOut->getAtts()[i].second);
+            tempRec->getSchema()->appendAtt(make_pair ("[MyDB_AggAtt" + to_string (i-groupNum) + "]", mySchemaOut->getAtts()[i].second));
     }
 
 
@@ -113,7 +113,7 @@ void Aggregate::run() {
         vector <void*> &groupRec = myHash [it->first];
         int count = groupRec.size();
 
-        for(int i=0;i<groupRec.size();i++){
+        for(int i=0;i<groupNum+aggNum;i++){
             tempRec->fromBinary(groupRec[i]);
             for(int i=0;i<tempRec->getSchema()->getAtts().size();i++){
 
