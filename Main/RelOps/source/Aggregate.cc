@@ -148,7 +148,7 @@ void Aggregate::run() {
         outputTable->append(outputRec);
     }
 
-        remove(tempFile1);
+        remove("tempFile1");
 }
 
 #endif
