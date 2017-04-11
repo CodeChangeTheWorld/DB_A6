@@ -123,7 +123,7 @@ void Aggregate::run() {
                         break;
                     case MyDB_AggType ::avg :
                         cout<<"agg:avg"<<endl;
-                        outputRec->getAtt(i)->fromDouble(sum*1.0/count);
+                        outputRec->getAtt(i)->fromBinary((double*)(sum*1.0/count));
                         break;
                     case MyDB_AggType :: cnt:
                         cout<<"agg:count"<<endl;
