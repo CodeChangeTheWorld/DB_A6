@@ -38,9 +38,9 @@ void Aggregate::run() {
 
     cout<<"pushed"<<endl;
 
-    MyDB_SchemaPtr mySchemaOut = make_shared<MyDB_Schema>();
-    for (auto p : outputTable->getTable()->getSchema()->getAtts())
-        mySchemaOut->appendAtt(p);
+    MyDB_SchemaPtr mySchemaOut = outputTable->getTable()->getSchema();
+//    for (auto p : outputTable->getTable()->getSchema()->getAtts())
+//        mySchemaOut->appendAtt(p);
 
     //get all pages from input table
     int pagesize=0,numpage=0;
@@ -103,7 +103,8 @@ void Aggregate::run() {
 
         for(auto rec:groupRec){
             cout<<"rec:"<<rec<<endl;
-            tempRec->fromBinary(rec);
+            void* a = (void*)rec;
+            tempRec->fromBinary(a);
 
             for(int i=0;i<tempRec->getSchema()->getAtts().size();i++){
                 cout<<"tempRec Att: "<< tempRec->getAtt(i).get()->toString()<<endl;
