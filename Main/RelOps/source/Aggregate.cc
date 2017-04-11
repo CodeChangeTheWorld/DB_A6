@@ -49,10 +49,9 @@ void Aggregate::run() {
     cout<<"schema built"<<endl;
 
     for (int i = 0; i < inputTable->getNumPages(); i++) {
-        MyDB_PageReaderWriter temp = inputTable->getPinned (i);
-        pagesize = temp.getPageSize();
+        MyDB_PageReaderWriter temp = (*inputTable)[i];
         if (temp.getType () == MyDB_PageType :: RegularPage){
-            allData.push_back((*inputTable)[i]);
+            allData.push_back(temp);
         }
 
     }
