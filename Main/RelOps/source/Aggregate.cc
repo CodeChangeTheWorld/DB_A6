@@ -112,8 +112,7 @@ void Aggregate::run() {
         int groupNum= groupings.size();
         int sum =0;
         for(int i=0;i<count;i++){
-            void* rec = groupRec[i];
-            cout<<"groupRec:"<<groupRec[i] <<endl;
+            void* &rec = groupRec[i];
             cout<<"rec:"<<rec<<endl;
             tempRec->fromBinary(rec);
             cout<< "tempRec: "<<tempRec->getAtt(0).get()->toString()<<endl;
