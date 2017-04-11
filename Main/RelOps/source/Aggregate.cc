@@ -61,6 +61,7 @@ void Aggregate::run() {
     //Scan Input table Write, write record to new page & Hash record
     MyDB_RecordPtr combinedRec = make_shared <MyDB_Record> (mySchemaOut);
     MyDB_RecordIteratorAltPtr myIter = getIteratorAlt(allData);
+    //MyDB_BufferManagerPtr myMgr1 = make_shared <MyDB_BufferManager> (131072, 128, "tempFile1");
     MyDB_PageReaderWriterPtr pageRW = make_shared <MyDB_PageReaderWriter>(*outputTable->getBufferMgr());
 
     func finalPredicate = combinedRec->compileComputation (selectionPredicate);
@@ -110,41 +111,41 @@ void Aggregate::run() {
             cout<<"Rec :"<< groupRec[i] << endl;
             tempRec->fromBinary(groupRec[i]);
 
-            for(int i=0;i<tempRec->getSchema()->getAtts().size();i++){
-                cout<<"tempRec Att: "<< tempRec->getAtt(i).get()->toString()<<endl;
-                if(i>=groupNum && aggsToCompute[i-groupNum].first == MyDB_AggType ::sum) sum += tempRec->getAtt(i).get()->toInt();
-            }
+//            for(int i=0;i<tempRec->getSchema()->getAtts().size();i++){
+//                cout<<"tempRec Att: "<< tempRec->getAtt(i).get()->toString()<<endl;
+//                if(i>=groupNum && aggsToCompute[i-groupNum].first == MyDB_AggType ::sum) sum += tempRec->getAtt(i).get()->toInt();
+//            }
         }
 
-        for(int i=0;i<outputRec->getSchema()->getAtts().size();i++){
-            if(i<groupNum){
-                cout<< "group attr"<<endl;
-                outputRec->getAtt(i)->set(tempRec->getAtt(i));
-            }else{
-                cout<<"sum:"<<sum<<endl;
-                switch (aggsToCompute[i-groupNum].first){
-                    case MyDB_AggType ::sum :
-                        cout<<"agg:sum"<<endl;
-                        outputRec->getAtt(i)->fromInt(sum);
-                        break;
-                    case MyDB_AggType ::avg :
-                        cout<<"agg:avg"<<endl;
-                        outputRec->getAtt(i)->fromInt(sum/count);
-                        break;
-                    case MyDB_AggType :: cnt:
-                        cout<<"agg:count"<<endl;
-                        outputRec->getAtt(i)->fromInt(count);
-                        break;
-                }
-            }
-
-        }
-        for(int i=0;i<outputRec->getSchema()->getAtts().size();i++)  {
-            cout<<"outRec Att: "<< outputRec->getAtt(i).get()->toString()<<endl;
-        }
-
-        outputRec->recordContentHasChanged();
-        outputTable->append(outputRec);
+//        for(int i=0;i<outputRec->getSchema()->getAtts().size();i++){
+//            if(i<groupNum){
+//                cout<< "group attr"<<endl;
+//                outputRec->getAtt(i)->set(tempRec->getAtt(i));
+//            }else{
+//                cout<<"sum:"<<sum<<endl;
+//                switch (aggsToCompute[i-groupNum].first){
+//                    case MyDB_AggType ::sum :
+//                        cout<<"agg:sum"<<endl;
+//                        outputRec->getAtt(i)->fromInt(sum);
+//                        break;
+//                    case MyDB_AggType ::avg :
+//                        cout<<"agg:avg"<<endl;
+//                        outputRec->getAtt(i)->fromInt(sum/count);
+//                        break;
+//                    case MyDB_AggType :: cnt:
+//                        cout<<"agg:count"<<endl;
+//                        outputRec->getAtt(i)->fromInt(count);
+//                        break;
+//                }
+//            }
+//
+//        }
+//        for(int i=0;i<outputRec->getSchema()->getAtts().size();i++)  {
+//            cout<<"outRec Att: "<< outputRec->getAtt(i).get()->toString()<<endl;
+//        }
+//
+//        outputRec->recordContentHasChanged();
+//        outputTable->append(outputRec);
     }
 
 }
