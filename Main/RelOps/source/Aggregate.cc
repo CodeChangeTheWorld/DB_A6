@@ -94,7 +94,6 @@ void Aggregate::run() {
     MyDB_RecordPtr tempRec = make_shared <MyDB_Record> (mySchemaOut);
 
     for ( auto it = myHash.begin(); it!= myHash.end(); ++it){
-
         vector <void*> &groupRec = myHash [it->first];
         int count = groupRec.size();
         int groupNum= groupings.size();
@@ -106,12 +105,13 @@ void Aggregate::run() {
             cout<< "tempRec: "<<tempRec->getAtt(0).get()->toString()<<endl;
 
             for(int i=0;i<tempRec->getSchema()->getAtts().size();i++){
-                if(i>=groupNum && aggsToCompute[i].first == MyDB_AggType ::sum) sum += tempRec->getAtt(i).get()->toInt();
+                if(i>=groupNum && aggsToCompute[i-groupNum].first == MyDB_AggType ::sum) sum += tempRec->getAtt(i).get()->toInt();
             }
         }
 
         for(int i=0;i<tempRec->getSchema()->getAtts().size();i++){
             if(i<groupNum){
+                cout<< "group attr"<<endl;
                 outputRec->getAtt(i)->set(tempRec->getAtt(i));
             }else{
                 switch (aggsToCompute[i-groupNum].first){
