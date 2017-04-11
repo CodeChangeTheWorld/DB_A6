@@ -113,39 +113,39 @@ void Aggregate::run() {
 
             for(int i=0;i<tempRec->getSchema()->getAtts().size();i++){
                 cout<<"tempRec Att: "<< tempRec->getAtt(i).get()->toString()<<endl;
-               // if(i>=groupNum && aggsToCompute[i-groupNum].first == MyDB_AggType ::sum) sum += tempRec->getAtt(i).get()->toInt();
+                if(i>=groupNum && aggsToCompute[i-groupNum].first == MyDB_AggType ::sum) sum += tempRec->getAtt(i).get()->toInt();
             }
         }
 
-//        for(int i=0;i<outputRec->getSchema()->getAtts().size();i++){
-//            if(i<groupNum){
-//                cout<< "group attr"<<endl;
-//                outputRec->getAtt(i)->set(tempRec->getAtt(i));
-//            }else{
-//                cout<<"sum:"<<sum<<endl;
-//                switch (aggsToCompute[i-groupNum].first){
-//                    case MyDB_AggType ::sum :
-//                        cout<<"agg:sum"<<endl;
-//                        outputRec->getAtt(i)->fromInt(sum);
-//                        break;
-//                    case MyDB_AggType ::avg :
-//                        cout<<"agg:avg"<<endl;
-//                        outputRec->getAtt(i)->fromInt(sum/count);
-//                        break;
-//                    case MyDB_AggType :: cnt:
-//                        cout<<"agg:count"<<endl;
-//                        outputRec->getAtt(i)->fromInt(count);
-//                        break;
-//                }
-//            }
-//
-//        }
-//        for(int i=0;i<outputRec->getSchema()->getAtts().size();i++)  {
-//            cout<<"outRec Att: "<< outputRec->getAtt(i).get()->toString()<<endl;
-//        }
-//
-//        outputRec->recordContentHasChanged();
-//        outputTable->append(outputRec);
+        for(int i=0;i<outputRec->getSchema()->getAtts().size();i++){
+            if(i<groupNum){
+                cout<< "group attr"<<endl;
+                outputRec->getAtt(i)->set(tempRec->getAtt(i));
+            }else{
+                cout<<"sum:"<<sum<<endl;
+                switch (aggsToCompute[i-groupNum].first){
+                    case MyDB_AggType ::sum :
+                        cout<<"agg:sum"<<endl;
+                        outputRec->getAtt(i)->fromInt(sum);
+                        break;
+                    case MyDB_AggType ::avg :
+                        cout<<"agg:avg"<<endl;
+                        outputRec->getAtt(i)->fromInt(sum/count);
+                        break;
+                    case MyDB_AggType :: cnt:
+                        cout<<"agg:count"<<endl;
+                        outputRec->getAtt(i)->fromInt(count);
+                        break;
+                }
+            }
+
+        }
+        for(int i=0;i<outputRec->getSchema()->getAtts().size();i++)  {
+            cout<<"outRec Att: "<< outputRec->getAtt(i).get()->toString()<<endl;
+        }
+
+        outputRec->recordContentHasChanged();
+        outputTable->append(outputRec);
     }
 
 }
