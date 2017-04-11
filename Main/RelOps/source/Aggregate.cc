@@ -39,6 +39,8 @@ void Aggregate::run() {
     cout<<"pushed"<<endl;
 
     MyDB_SchemaPtr mySchemaOut = outputTable->getTable()->getSchema();
+    mySchemaOut->appendAtt (make_pair ("count", make_shared <MyDB_IntAttType> ()));
+
 
     vector <MyDB_PageReaderWriter> allData;
 
@@ -56,6 +58,7 @@ void Aggregate::run() {
 
     //Scan Input table Write, write record to new page & Hash record
     MyDB_RecordPtr combinedRec = make_shared <MyDB_Record> (mySchemaOut);
+
     MyDB_RecordIteratorAltPtr myIter = getIteratorAlt(allData);
     MyDB_BufferManagerPtr myMgr1 = make_shared <MyDB_BufferManager> (131072, 128, "tempFile1");
     vector <MyDB_PageReaderWriter> tmpPages;
@@ -63,7 +66,6 @@ void Aggregate::run() {
 
 
     func finalPredicate = combinedRec->compileComputation (selectionPredicate);
-    MyDB_RecordPtr tempRec1 = make_shared <MyDB_Record> (mySchemaOut);
     while (myIter->advance ()) {
         // hash the current record
         myIter->getCurrent (inputRec);
@@ -80,11 +82,9 @@ void Aggregate::run() {
             combinedRec->getAtt(i++)->set(f());
         }
 
+        combinedRec->getAtt(combinedRec->getSchema()->getAtts().size()-1)->fromInt(0);
+
         if(finalPredicate ()->toBool()) {
-            for(int i=0;i<combinedRec->getSchema()->getAtts().size();i++){
-               // cout<<"inputRec Att: "<< inputRec->getAtt(i).get()->toString() <<endl;
-                cout<<"combinedRec Att: "<< combinedRec->getAtt(i).get()->toString() <<endl;
-            }
             combinedRec->recordContentHasChanged();
             void *ptr = pageRW.appendAndReturnLocation(combinedRec);
 
@@ -94,26 +94,29 @@ void Aggregate::run() {
                 ptr= pageRW.appendAndReturnLocation(combinedRec);
             }
             myHash[hashVal].push_back(ptr);
-            tempRec1->fromBinary( myHash[hashVal][ myHash[hashVal].size()-1]);
-            for(int i=0;i<tempRec1->getSchema()->getAtts().size();i++){
-                cout<<"tempRec1 Att:" << tempRec1->getAtt(i).get()->toString() << endl;
-            }
         }
     }
 
     MyDB_RecordPtr outputRec = outputTable->getEmptyRecord();
     MyDB_RecordPtr tempRec = make_shared <MyDB_Record> (mySchemaOut);
-    cout<<"HashSize :"<<myHash.size()<<endl;
+    int groupNum= groupings.size();
+    int aggNum = aggsToCompute.size();
+    vector<func> aggList;
+
+    for(int i= groupNum;i<groupNum+aggNum;i++){
+        if(aggsToCompute[i-groupNum].first == MyDB_AggType ::sum || aggsToCompute[i-groupNum].first == MyDB_AggType ::avg)
+            tempRec->getSchema()->appendAtt("[MyDB_AggAtt" + to_string (i-groupNum) + "]", mySchemaOut->getAtts()[i].second);
+    }
+
 
     for ( auto it = myHash.begin(); it!= myHash.end(); ++it){
         vector <void*> &groupRec = myHash [it->first];
         int count = groupRec.size();
-        int groupNum= groupings.size();
-        double sum =0;
 
         for(int i=0;i<groupRec.size();i++){
             tempRec->fromBinary(groupRec[i]);
             for(int i=0;i<tempRec->getSchema()->getAtts().size();i++){
+
                 if(i>=groupNum && (aggsToCompute[i-groupNum].first == MyDB_AggType ::sum || aggsToCompute[i-groupNum].first == MyDB_AggType ::avg )){
                     sum += tempRec->getAtt(i).get()->toInt();
                 }
