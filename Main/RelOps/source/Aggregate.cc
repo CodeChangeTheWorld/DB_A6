@@ -106,13 +106,12 @@ void Aggregate::run() {
 
     for ( auto it = myHash.begin(); it!= myHash.end(); ++it ){
 
-        vector <void*> groupRec = myHash [it->first];
+        vector <void*> &groupRec = myHash [it->first];
         int count = groupRec.size();
-        cout<<"myHash: "<< it->first << " Count:"<< count << endl;
         int groupNum= groupings.size();
         int sum =0;
-        for(int i=0;i<count;i++){
-            void* &rec = groupRec[i];
+
+        for(auto rec:groupRec){
             cout<<"rec:"<<rec<<endl;
             tempRec->fromBinary(rec);
             cout<< "tempRec: "<<tempRec->getAtt(0).get()->toString()<<endl;
