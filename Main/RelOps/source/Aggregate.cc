@@ -115,7 +115,7 @@ void Aggregate::run() {
             tempRec->fromBinary(groupRec[i]);
             for(int i=0;i<tempRec->getSchema()->getAtts().size();i++){
                 if(i>=groupNum && (aggsToCompute[i-groupNum].first == MyDB_AggType ::sum || aggsToCompute[i-groupNum].first == MyDB_AggType ::avg )){
-                    sum += tempRec->getAtt(i).get()->toDouble();
+                    sum += tempRec->getAtt(i).get();
                 }
             }
         }
@@ -133,9 +133,7 @@ void Aggregate::run() {
                         break;
                     case MyDB_AggType ::avg :
                         cout<<"agg:avg"<<endl;
-                        MyDB_DoubleAttValPtr temp = make_shared <MyDB_DoubleAttVal> ();
-                        temp->set (sum/count);
-                        outputRec->getAtt(i)->set(*temp);
+                        outputRec->getAtt(i)->fromInt(sum/count);
                         break;
                     case MyDB_AggType :: cnt:
                         cout<<"agg:count"<<endl;
