@@ -98,6 +98,7 @@ void Aggregate::run() {
 
     MyDB_RecordPtr outputRec = outputTable->getEmptyRecord();
     MyDB_RecordPtr tempRec = make_shared <MyDB_Record> (mySchemaOut);
+    cout<<"HashSize :"<<myHash.size()<<endl;
 
     for ( auto it = myHash.begin(); it!= myHash.end(); ++it){
         vector <void*> &groupRec = myHash [it->first];
@@ -105,10 +106,9 @@ void Aggregate::run() {
         int groupNum= groupings.size();
         int sum =0;
 
-        for(auto rec:groupRec){
-            cout<<"rec:"<<rec<<endl;
-            void* a = (void*)rec;
-            tempRec->fromBinary(a);
+        for(int i=0;i<groupRec.size();i++){
+            cout<<"Rec :"<< groupRec[i] << endl;
+            tempRec->fromBinary(groupRec[i]);
 
             for(int i=0;i<tempRec->getSchema()->getAtts().size();i++){
                 cout<<"tempRec Att: "<< tempRec->getAtt(i).get()->toString()<<endl;
@@ -121,6 +121,7 @@ void Aggregate::run() {
                 cout<< "group attr"<<endl;
                 outputRec->getAtt(i)->set(tempRec->getAtt(i));
             }else{
+                cout<<"sum:"<<sum<<endl;
                 switch (aggsToCompute[i-groupNum].first){
                     case MyDB_AggType ::sum :
                         cout<<"agg:sum"<<endl;
