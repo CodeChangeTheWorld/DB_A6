@@ -86,13 +86,13 @@ void Aggregate::run() {
         for(auto f:groupAggs){
             cout<<"In groupAggs"<<endl;
             hashVal ^= f ()->hash ();
-            //combinedRec->getAtt(i++)->set(f());
+            combinedRec->getAtt(i++)->set(f());
         }
 //
 //
 //       // if(finalPredicate()->toBool()){
-//            void * ptr = pageRW->appendAndReturnLocation(combinedRec);
-//            myHash [hashVal].push_back (ptr);
+            void * ptr = pageRW->appendAndReturnLocation(combinedRec);
+            myHash [hashVal].push_back (ptr);
 //        //}
         cout <<"HashVal:"<<hashVal << endl;
     }
