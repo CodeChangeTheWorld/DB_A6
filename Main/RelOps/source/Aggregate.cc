@@ -131,7 +131,7 @@ void Aggregate::run() {
 //            cout<<"Build Avg List: "<<"/( [MyDB_AggAtt" + to_string (i) + "],[MyCount])" <<endl;
 //           // avgList.push_back(tempRec->compileComputation("/([MyDB_AggAtt" + to_string (i) + "],[MyCount])"));
 //        }
-        cout<"aggList Size:"<<aggList.size()<<endl;
+        cout<"aggList Size:"<< to_string(aggList.size()) <<endl;
     }
 
     for ( auto it = myHash.begin(); it!= myHash.end(); ++it){
