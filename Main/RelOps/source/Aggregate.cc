@@ -134,14 +134,17 @@ void Aggregate::run() {
     for ( auto it = myHash.begin(); it!= myHash.end(); ++it){
         vector <void*> &groupRec = myHash [it->first];
         int count = groupRec.size();
+        cout<<"Hash Count: "<< count <<endl;
         for(int i=0;i<count;i++){
-
+            cout<<"groupRec[i]:"<<groupRec[i]<<endl;
             tempRec->fromBinary(groupRec[i]);
+
             for(int i=0;i<attNum;i++){
                 cout<<"tempRec:"<<tempRec->getAtt(i).get()->toString() <<endl;
             }
             int app = -1;
             for(int j= groupNum; j<groupNum+aggNum;j++){
+                cout<<"groupNum+aggNum:"<<groupNum+aggNum<<endl;
                 if(aggsToCompute[j-groupNum].first == MyDB_AggType::sum || aggsToCompute[j-groupNum].first == MyDB_AggType::avg) {
                     int idx = groupNum + aggNum + (++app);
                     if (i > 0) tempRec->getAtt(idx)->set(outputRec->getAtt(j));
