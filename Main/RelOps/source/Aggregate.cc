@@ -102,13 +102,14 @@ void Aggregate::run() {
             myHash[hashVal].push_back(ptr);
             testRec->fromBinary(myHash[hashVal][0]);
 
-
         }
         cout<<"print first"<<endl;
-        for(int k=0;k<myHash[hashVal].size();k++){
-            cout<<"Hash Val:"<< hashVal<< endl;
-            cout<< "myHash adds: "<<myHash[hashVal][k] <<endl;
-            cout<<"New comb Att:" << testRec->getAtt(0).get()->toString()<<endl;
+        if(hashVal==100){
+            for(int k=0;k<myHash[hashVal].size();k++){
+                cout<<"Hash Val:"<< hashVal<< endl;
+                cout<< "myHash adds: "<<myHash[hashVal][k] <<endl;
+                cout<<"New comb Att:" << testRec->getAtt(0).get()->toString()<<endl;
+            }
         }
     }
 
@@ -117,11 +118,12 @@ void Aggregate::run() {
          for ( unsigned i = 0; i < myHash.bucket_count(); ++i) {
              for ( auto local_it = myHash.begin(i); local_it!= myHash.end(i); ++local_it ){
                  size_t hashVal = local_it->first;
-                 cout<<"HashVal:"<<hashVal<<endl;
-                 for(int k=0;k<myHash[hashVal].size();k++){
-                     cout<<"hash adds:"<< myHash[hashVal][k]<<endl;
-                     testRec->fromBinary(myHash[hashVal][k]);
-                     cout<<"Hash Att:" << testRec->getAtt(0).get()->toString()<<endl;
+                 if(hashVal==100){
+                     for(int k=0;k<myHash[hashVal].size();k++){
+                         cout<<"hash adds:"<< myHash[hashVal][k]<<endl;
+                         testRec->fromBinary(myHash[hashVal][k]);
+                         cout<<"Hash Att:" << testRec->getAtt(0).get()->toString()<<endl;
+                     }
                  }
              }
          }
