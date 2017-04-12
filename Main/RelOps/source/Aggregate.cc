@@ -111,7 +111,12 @@ void Aggregate::run() {
         }
     }
 
-    cout << "how many hash? "<<myHash.size()<<'\n';
+    cout << "print hash"<< myHash.size() << endl;
+         for(auto it:myHash){
+             cout<<"HashVal:"<<it.first<<endl;
+             testRec->fromBinary(it.second[0])->getAtt(0).get()->toString()<<endl;
+         }
+
     MyDB_RecordPtr outputRec = outputTable->getEmptyRecord();
     MyDB_RecordPtr tempRec = make_shared <MyDB_Record> (mySchemaOut);
     vector<func> aggList;
@@ -181,7 +186,7 @@ void Aggregate::run() {
                     }
                 }
             }
-            
+
             cout<< "outputRec:"<< outputRec->getAtt(i).get()->toString() <<endl;
         }
 
