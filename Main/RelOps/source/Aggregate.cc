@@ -131,6 +131,7 @@ void Aggregate::run() {
     }
 
     for ( auto it = myHash.begin(); it!= myHash.end(); ++it){
+        cout<< "hashVal:"<<it->first<<endl;
         vector <void*> &groupRec = myHash [it->first];
         int count = groupRec.size();
 
