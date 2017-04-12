@@ -48,7 +48,7 @@ void Aggregate::run() {
 
     for(int i= 0;i<aggNum;i++){
         if(aggsToCompute[i].first == MyDB_AggType ::sum || aggsToCompute[i].first == MyDB_AggType ::avg)
-            mySchemaOut->appendAtt(make_pair ("[MyDB_AggAtt" + to_string (i) + "]", mySchemaOut->getAtts()[i+groupNum].second));
+            mySchemaOut->appendAtt(make_pair ("MyDB_AggAtt" + to_string (i), mySchemaOut->getAtts()[i+groupNum].second));
     }
 
     mySchemaOut->appendAtt (make_pair ("MyCount", make_shared <MyDB_IntAttType> ()));
@@ -122,7 +122,7 @@ void Aggregate::run() {
     for (int i=0;i<aggNum;i++) {
         auto s = aggsToCompute[i];
         if(s.first == MyDB_AggType::avg || s.first == MyDB_AggType::sum){
-            cout<<"Build Agg List: "<<endl;
+            cout<<"Build Agg List: "<<"+ (" + s.second + ", [MyDB_AggAtt" + to_string (i) + "])" <<endl;
             aggList.push_back(tempRec->compileComputation("+ (" + s.second + ", [MyDB_AggAtt" + to_string (i) + "])"));
 
         }
