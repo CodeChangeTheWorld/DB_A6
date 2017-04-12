@@ -183,7 +183,7 @@ void Aggregate::run() {
                     }
                 }
             }
-            cout<< "outputRec:"<< outputRec->getAtt(i).get()->toString() <<end;
+            cout<< "outputRec:"<< outputRec->getAtt(i).get()->toString() <<endl;
         }
 
         outputRec->recordContentHasChanged();
