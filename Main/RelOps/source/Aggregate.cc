@@ -132,12 +132,11 @@ void Aggregate::run() {
         cout<<"Hash val new:"<<it.first<<endl;
         vector <void*> &groupRec = it.second;
         int count = groupRec.size();
+        cout<<"bucket count:"<<count;
         for(int i=0;i<count;i++){
             cout<<"groupRec[i]:"<<groupRec[i]<<endl;
             tempRec->fromBinary(groupRec[i]);
-                for(int i=0;i<attNum;i++){
-                cout<<"tempRec:"<<tempRec->getAtt(i).get()->toString() <<endl;
-                }
+            cout<<"tempRec:"<<tempRec->getAtt(0).get()->toString() <<endl;
 
             int app = -1;
             for(int j= groupNum; j<groupNum+aggNum;j++){
@@ -182,6 +181,7 @@ void Aggregate::run() {
                     }
                 }
             }
+            
             cout<< "outputRec:"<< outputRec->getAtt(i).get()->toString() <<endl;
         }
 
