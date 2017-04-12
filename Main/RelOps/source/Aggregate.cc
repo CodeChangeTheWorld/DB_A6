@@ -154,6 +154,7 @@ void Aggregate::run() {
                     if (i > 0) tempRec->getAtt(idx)->set(outputRec->getAtt(j));
                     func f = aggList[app];
                     tempRec->getAtt(idx)->set(f ());
+                    cout << "New Assigned Sum : "<< tempRec->getAtt(idx).get()->toString()<<endl;
                     outputRec->getAtt(j)->set(tempRec->getAtt(idx));
                 }
             }
