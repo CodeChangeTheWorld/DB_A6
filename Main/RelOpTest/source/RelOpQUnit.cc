@@ -280,22 +280,22 @@ int main () {
         Aggregate myOpAgain (supplierTableOut, aggTableOut, aggsToCompute, groupings,
                              "&& ( > ([l_name], string[Supplier#000002243]), < ([l_name], string[Supplier#000002303]))");
         cout << "running aggregate\n";
-//        myOpAgain.run ();
-//
-//        MyDB_RecordPtr temp = aggTableOut->getEmptyRecord ();
-//        MyDB_RecordIteratorAltPtr myIter = aggTableOut->getIteratorAlt ();
-//
-//        cout << "\nThe output should be, in some order:\n";
-//        cout << "Supplier#000002245|32|\n";
-//        cout << "Supplier#000002264|32|\n";
-//        cout << "Supplier#000002265|32|\n";
-//        cout << "Supplier#000002272|32|\n";
-//        cout << "Supplier#000002282|32|\n";
-//        cout << "\nHere goes:\n";
-//        while (myIter->advance ()) {
-//            myIter->getCurrent (temp);
-//            cout << temp << "\n";
-//        }
+        myOpAgain.run ();
+
+        MyDB_RecordPtr temp = aggTableOut->getEmptyRecord ();
+        MyDB_RecordIteratorAltPtr myIter = aggTableOut->getIteratorAlt ();
+
+        cout << "\nThe output should be, in some order:\n";
+        cout << "Supplier#000002245|32|\n";
+        cout << "Supplier#000002264|32|\n";
+        cout << "Supplier#000002265|32|\n";
+        cout << "Supplier#000002272|32|\n";
+        cout << "Supplier#000002282|32|\n";
+        cout << "\nHere goes:\n";
+        while (myIter->advance ()) {
+            myIter->getCurrent (temp);
+            cout << temp << "\n";
+        }
     }
 
     MyDB_BPlusTreeReaderWriterPtr supplierTableR = make_shared <MyDB_BPlusTreeReaderWriter> ("r_address", myTableRight, myMgr);
