@@ -298,11 +298,11 @@ int main () {
 //        }
 //    }
 
-//    MyDB_BPlusTreeReaderWriterPtr supplierTableR = make_shared <MyDB_BPlusTreeReaderWriter> ("r_address", myTableRight, myMgr);
-//    MyDB_TablePtr myTableRightNoBPlus = make_shared <MyDB_Table> ("supplierRightNoBPlus", "supplierRightNoBPlus.bin", mySchemaR);
-//
-//    cout << "loading right into B+-Tree indexed on r_address.\n";
-//    supplierTableR->loadFromTextFile ("supplierBig.tbl");
+    MyDB_BPlusTreeReaderWriterPtr supplierTableR = make_shared <MyDB_BPlusTreeReaderWriter> ("r_address", myTableRight, myMgr);
+    MyDB_TablePtr myTableRightNoBPlus = make_shared <MyDB_Table> ("supplierRightNoBPlus", "supplierRightNoBPlus.bin", mySchemaR);
+
+    cout << "loading right into B+-Tree indexed on r_address.\n";
+    supplierTableR->loadFromTextFile ("supplierBig.tbl");
 //
 //    {
 //
