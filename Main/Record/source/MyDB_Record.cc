@@ -387,6 +387,7 @@ pair <func, MyDB_AttTypePtr> MyDB_Record :: compileHelper(char * &vals) {
 			vals++;
 		}
 	}
+	cout<<"Compile Computation Succeed" <<endl;
 }
 
 pair <func, MyDB_AttTypePtr> MyDB_Record :: fromData (string attName) {

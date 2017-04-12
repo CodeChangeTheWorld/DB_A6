@@ -45,9 +45,10 @@ void Aggregate::run() {
 
     int groupNum= groupings.size();
     int aggNum = aggsToCompute.size();
-    for(int i= groupNum;i<groupNum+aggNum;i++){
-        if(aggsToCompute[i-groupNum].first == MyDB_AggType ::sum || aggsToCompute[i-groupNum].first == MyDB_AggType ::avg)
-            mySchemaOut->appendAtt(make_pair ("[MyDB_AggAtt" + to_string (i-groupNum) + "]", mySchemaOut->getAtts()[i].second));
+
+    for(int i= 0;i<aggNum;i++){
+        if(aggsToCompute[i].first == MyDB_AggType ::sum || aggsToCompute[i].first == MyDB_AggType ::avg)
+            mySchemaOut->appendAtt(make_pair ("[MyDB_AggAtt" + to_string (i) + "]", mySchemaOut->getAtts()[i+groupNum].second));
     }
 
     mySchemaOut->appendAtt (make_pair ("MyCount", make_shared <MyDB_IntAttType> ()));
@@ -122,13 +123,15 @@ void Aggregate::run() {
         auto s = aggsToCompute[i];
         if(s.first == MyDB_AggType::avg || s.first == MyDB_AggType::sum){
             cout<<"Build Agg List: "<<endl;
-            aggList.push_back(tempRec->compileComputation("+ (" + s.second + ", [MyDB_AggAtt" + to_string (i) + "])"));}
+            aggList.push_back(tempRec->compileComputation("+ (" + s.second + ", [MyDB_AggAtt" + to_string (i) + "])"));
+
+        }
         if(s.first == MyDB_AggType::avg){
             cout<<"Build Avg List: "<<endl;
             avgList.push_back(tempRec->compileComputation("/ (" + s.second + ", [MyCount])"));}
     }
-
     cout<<"Hash Count1: "<< myHash.size() <<endl;
+
     for ( auto it = myHash.begin(); it!= myHash.end(); ++it){
         vector <void*> &groupRec = myHash [it->first];
         int count = groupRec.size();
