@@ -72,11 +72,12 @@ void Aggregate::run() {
     MyDB_RecordPtr testRec = make_shared <MyDB_Record> (mySchemaOut);
     func finalPredicate = combinedRec->compileComputation (selectionPredicate);
 
+    size_t hashVal = 0;
     while (myIter->advance ()) {
         // hash the current record
         myIter->getCurrent (inputRec);
 
-        size_t hashVal = 0;
+        hashVal = 0;
         int i=0;
         for(auto f:groupFuncs){
             hashVal ^= f ()->hash ();
@@ -100,23 +101,26 @@ void Aggregate::run() {
                 ptr= pageRW.appendAndReturnLocation(combinedRec);
             }
             myHash[hashVal].push_back(ptr);
-            testRec->fromBinary(ptr);
+            testRec->fromBinary(myHash[hashVal][myHash[hashVal].size()-1]);
 
             cout<<"Hash Val:"<< hashVal<< endl;
             cout<< "myHash adds: "<<myHash[hashVal][myHash[hashVal].size()-1] <<endl;
-            cout<<"New comb Att begin:" << testRec->getAtt(0).get()->toString()<<endl;
+            cout<<"New comb Att:" << testRec->getAtt(0).get()->toString()<<endl;
         }
     }
 
     cout << "print hash:"<< myHash.size() << endl;
 
-         for(auto it:myHash){
-             cout<<"HashVal:"<<it.first<<endl;
-             cout<<"Hash Address begin:"<< it.second[0]<<endl;
-             cout<<"Hash Address end:"<< it.second[myHash[it.first].size()-1]<<endl;
-             testRec->fromBinary(it.second[0]);
+         for ( unsigned i = 0; i < myHash.bucket_count(); ++i) {
+             std::cout << "bucket #" << i << " contains:";
+             for ( auto local_it = myHash.begin(i); local_it!= myHash.end(i); ++local_it )
+                 std::cout << " " << local_it->first << ":" << local_it->second;
+             cout<<"HashVal:"<<local_it.first<<endl;
+             cout<<"Hash Address begin:"<< local_it.second[0]<<endl;
+             cout<<"Hash Address end:"<< local_it.second[myHash[local_it.first].size()-1]<<endl;
+             testRec->fromBinary(local_it.second[0]);
              cout<<"Hash Att begin:"<<testRec->getAtt(0).get()->toString()<<endl;
-             testRec->fromBinary(it.second[myHash[it.first].size()-1]);
+             testRec->fromBinary(it.second[myHash[local_it.first].size()-1]);
              cout<<"Hash Att end:"<<testRec->getAtt(0).get()->toString()<<endl;
          }
 
