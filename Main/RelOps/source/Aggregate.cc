@@ -46,20 +46,18 @@ void Aggregate::run() {
 
     for(int i= 0;i<aggNum;i++){
         if(aggsToCompute[i].first == MyDB_AggType ::sum || aggsToCompute[i].first == MyDB_AggType ::avg)
-            mySchemaOut->appendAtt(make_pair ("MyDB_AggAtt" + to_string (i), mySchemaOut->getAtts()[i+groupNum].second));
+            mySchemaOut->appendAtt(make_pair ("MyDB_AggAtt" + to_string (i), outputTable->getTable()->getSchema()->getAtts()[i+groupNum].second));
     }
 
     mySchemaOut->appendAtt (make_pair ("MyCount", make_shared <MyDB_IntAttType> ()));
 
-//    for(auto att:mySchemaOut->getAtts()){
-//        cout<<"SchemaOut: "<< att.first<<endl;
-//        cout<<"SchemaOut Type: "<< att.second->toString()<<endl;
-//    }
+    for(auto att:mySchemaOut->getAtts()){
+        cout<<"SchemaOut: "<< att.first<<endl;
+        cout<<"SchemaOut Type: "<< att.second->toString()<<endl;
+    }
+
     int attNum = mySchemaOut->getAtts().size();
-
     vector <MyDB_PageReaderWriter> allData;
-
-    cout<<"schema built"<<endl;
 
     for (int i = 0; i < inputTable->getNumPages(); i++) {
         MyDB_PageReaderWriter temp = (*inputTable)[i];
@@ -67,8 +65,6 @@ void Aggregate::run() {
             allData.push_back(temp);
         }
     }
-
-    cout<<"allData loaded"<<endl;
 
     //Scan Input table Write, write record to new page & Hash record
     MyDB_RecordPtr combinedRec = make_shared <MyDB_Record> (mySchemaOut);
@@ -110,10 +106,10 @@ void Aggregate::run() {
                 ptr= pageRW.appendAndReturnLocation(combinedRec);
             }
             myHash[hashVal].push_back(ptr);
-            //testRec->fromBinary(myHash[hashVal][myHash[hashVal].size()-1]);
-//            for(int i=0;i<attNum;i++){
-//                cout<<"combinedrec Att:" << testRec->getAtt(i).get()->toString()<<endl;
-//            }
+            testRec->fromBinary(myHash[hashVal][myHash[hashVal].size()-1]);
+            for(int i=0;i<attNum;i++){
+                cout<<"combinedrec Att:" << testRec->getAtt(i).get()->toString()<<endl;
+            }
         }
     }
 
@@ -145,9 +141,9 @@ void Aggregate::run() {
            // cout<<"groupRec[i]:"<<groupRec[i]<<endl;
             tempRec->fromBinary(groupRec[i]);
 
-//            for(int i=0;i<attNum;i++){
-//                cout<<"tempRec:"<<tempRec->getAtt(i).get()->toString() <<endl;
-//            }
+            for(int i=0;i<attNum;i++){
+                cout<<"tempRec:"<<tempRec->getAtt(i).get()->toString() <<endl;
+            }
             int app = -1;
             for(int j= groupNum; j<groupNum+aggNum;j++){
                 if(aggsToCompute[j-groupNum].first == MyDB_AggType::sum || aggsToCompute[j-groupNum].first == MyDB_AggType::avg) {
