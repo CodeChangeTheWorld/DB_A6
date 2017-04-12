@@ -136,7 +136,7 @@ void Aggregate::run() {
     }
 
     for ( auto it = myHash.begin(); it!= myHash.end(); ++it){
-        cout<< "hashVal:"<<it->first<<endl;
+        
         vector <void*> &groupRec = myHash [it->first];
         int count = groupRec.size();
 
@@ -149,7 +149,6 @@ void Aggregate::run() {
             }
             int app = -1;
             for(int j= groupNum; j<groupNum+aggNum;j++){
-                cout<<"groupNum+aggNum:"<<groupNum+aggNum<<endl;
                 if(aggsToCompute[j-groupNum].first == MyDB_AggType::sum || aggsToCompute[j-groupNum].first == MyDB_AggType::avg) {
                     int idx = groupNum + aggNum + (++app);
                     if (i > 0) tempRec->getAtt(idx)->set(outputRec->getAtt(j));
