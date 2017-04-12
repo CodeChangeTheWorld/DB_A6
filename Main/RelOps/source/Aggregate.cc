@@ -176,6 +176,7 @@ void Aggregate::run() {
                     case MyDB_AggType::avg : {
                         cout << "agg:avg" << endl;
                         if (avgList.size() > 0) {
+                            cout<<"in div"<<endl;
                             func f = avgList[div++];
                             outputRec->getAtt(i)->set(f());
                            // outputRec->getAtt(i)->fromInt(0);
