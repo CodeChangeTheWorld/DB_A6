@@ -127,7 +127,7 @@ void Aggregate::run() {
             aggList.push_back(tempRec->compileComputation("+ (" + s.second + ", [MyDB_AggAtt" + to_string (i) + "])"));}
         if(s.first == MyDB_AggType::avg){
             cout<<"Build Avg List: "<<endl;
-            avgList.push_back(outputRec->compileComputation("/ (" + s.second + ", [MyCount])"));}
+            avgList.push_back(tempRec->compileComputation("/ (" + s.second + ", [MyCount])"));}
     }
 
 
@@ -153,7 +153,7 @@ void Aggregate::run() {
                     outputRec->getAtt(j)->set(tempRec->getAtt(idx));
                 }
             }
-
+            tempRec->getAtt(attNum-1)->fromInt(count);
         }
 
         int div=0;
