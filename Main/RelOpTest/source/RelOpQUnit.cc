@@ -348,6 +348,7 @@ int main () {
 	}
 
 	{
+		cout<<"In this test"<<endl;
 		vector <pair <MyDB_AggType, string>> aggsToCompute;
 		aggsToCompute.push_back (make_pair (MyDB_AggType :: avg, "* ([r_suppkey], double[1.0])"));
 		aggsToCompute.push_back (make_pair (MyDB_AggType :: avg, "[r_acctbal]"));
