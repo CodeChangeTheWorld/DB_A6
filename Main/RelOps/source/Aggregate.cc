@@ -117,7 +117,7 @@ void Aggregate::run() {
     MyDB_RecordPtr outputRec = outputTable->getEmptyRecord();
     MyDB_RecordPtr tempRec = make_shared <MyDB_Record> (mySchemaOut);
     vector<func> aggList;
-    vector<func> avgList;
+    //vector<func> avgList;
 
     for (int i=0;i<aggNum;i++) {
         auto s = aggsToCompute[i];
@@ -126,12 +126,10 @@ void Aggregate::run() {
             aggList.push_back(tempRec->compileComputation("+ (" + s.second + ", [MyDB_AggAtt" + to_string (i) + "])"));
 
         }
-        if(s.first == MyDB_AggType::avg){
-            cout<<"Build Avg List: "<<"/ ( [MyDB_AggAtt" + to_string (i) + "],[MyCount])" <<endl;
-           // avgList.push_back(tempRec->compileComputation("/ ([MyDB_AggAtt" + to_string (i) + "],[MyCount])"));
-            if(s.second.equals("[r_acctbal]"))
-                avgList.push_back(tempRec->compileComputation("/ ([MyDB_AggAtt1],[MyCount])"));
-        }
+//        if(s.first == MyDB_AggType::avg){
+//            cout<<"Build Avg List: "<<"/ ( [MyDB_AggAtt" + to_string (i) + "],[MyCount])" <<endl;
+//            avgList.push_back(tempRec->compileComputation("/ ([MyDB_AggAtt" + to_string (i) + "],[MyCount])"));
+//        }
     }
     cout<<"Hash Count1: "<< myHash.size() <<endl;
 
@@ -175,8 +173,9 @@ void Aggregate::run() {
                     case MyDB_AggType::avg : {
                         cout << "agg:avg" << endl;
                         if (avgList.size() > 0) {
-                            func f = avgList[div++];
-                            outputRec->getAtt(i)->set(f());
+                           // func f = avgList[div++];
+                           // outputRec->getAtt(i)->set(f());
+                            outputRec->getAtt(i)->fromInt(0);
                         }
                         break;
                     }
