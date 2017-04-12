@@ -127,7 +127,7 @@ void Aggregate::run() {
 
         }
         if(s.first == MyDB_AggType::avg){
-            cout<<"Build Avg List: "<<"/ (" + "[MyDB_AggAtt" + to_string (i) + "],[MyCount])" <<endl;
+            cout<<"Build Avg List: "<<"/ ( [MyDB_AggAtt" + to_string (i) + "],[MyCount])" <<endl;
             avgList.push_back(tempRec->compileComputation("/ ([MyDB_AggAtt" + to_string (i) + "],[MyCount])"));
         }
     }
