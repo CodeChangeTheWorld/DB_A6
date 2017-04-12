@@ -101,7 +101,7 @@ void Aggregate::run() {
                 ptr= pageRW.appendAndReturnLocation(combinedRec);
             }
             myHash[hashVal].push_back(ptr);
-            testRec->fromBinary(myHash[hashVal][myHash[hashVal].size()-1]);
+            testRec->fromBinary(ptr);
 
             cout<<"Hash Val:"<< hashVal<< endl;
             cout<< "myHash adds: "<<myHash[hashVal][myHash[hashVal].size()-1] <<endl;
