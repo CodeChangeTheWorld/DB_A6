@@ -114,13 +114,13 @@ void Aggregate::run() {
          for ( unsigned i = 0; i < myHash.bucket_count(); ++i) {
              std::cout << "bucket #" << i << " contains:";
              for ( auto local_it = myHash.begin(i); local_it!= myHash.end(i); ++local_it ){
-                 std::cout << " " << local_it->first << ":" << local_it->second;
-                 cout<<"HashVal:"<<local_it.first<<endl;
-                 cout<<"Hash Address begin:"<< local_it.second[0]<<endl;
-                 cout<<"Hash Address end:"<< local_it.second[myHash[local_it.first].size()-1]<<endl;
-                 testRec->fromBinary(local_it.second[0]);
+
+                 cout<<"HashVal:"<<local_it->first<<endl;
+                 cout<<"Hash Address begin:"<< local_it->second[0]<<endl;
+                 cout<<"Hash Address end:"<< local_it->second[myHash[local_it->first].size()-1]<<endl;
+                 testRec->fromBinary(local_it->second[0]);
                  cout<<"Hash Att begin:"<<testRec->getAtt(0).get()->toString()<<endl;
-                 testRec->fromBinary(local_it.second[myHash[local_it.first].size()-1]);
+                 testRec->fromBinary(local_it->second[myHash[local_it->first].size()-1]);
                  cout<<"Hash Att end:"<<testRec->getAtt(0).get()->toString()<<endl;
              }
          }
