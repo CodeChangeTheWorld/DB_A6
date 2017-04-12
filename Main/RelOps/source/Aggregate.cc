@@ -84,7 +84,6 @@ void Aggregate::run() {
             cout<<"combinedRec:"<<combinedRec->getAtt(i++).get()->toString()<<endl;
         }
 
-
         for(auto f:groupAggs){
             combinedRec->getAtt(i++)->set(f());
         }
@@ -106,14 +105,14 @@ void Aggregate::run() {
             cout<<"Hash Val:"<< hashVal<< endl;
             cout<< "myHash adds: "<<myHash[hashVal][myHash[hashVal].size()-1] <<endl;
             cout<<"New comb Att:" << testRec->getAtt(0).get()->toString()<<endl;
-
-
         }
     }
 
     cout << "print hash"<< myHash.size() << endl;
          for(auto it:myHash){
              cout<<"HashVal:"<<it.first<<endl;
+             cout<<"Hash Address begin:"<< it.second[0];
+             cout<<"Hash Address end:"<< it.second[myHash[it.first].size()-1];
              testRec->fromBinary(it.second[0]);
              cout<<"Hash Att:"<<testRec->getAtt(0).get()->toString()<<endl;
          }
