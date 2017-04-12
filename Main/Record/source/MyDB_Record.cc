@@ -105,7 +105,7 @@ pair <func, MyDB_AttTypePtr> MyDB_Record :: compileHelper(char * &vals) {
 			
 			// find the r-paren
 			vals = findsymbol (')', vals);
-			cout<< "successfully compile add "<< endl;
+			
 			// outta here!
 			return plus (lres, rres);
 
@@ -387,7 +387,6 @@ pair <func, MyDB_AttTypePtr> MyDB_Record :: compileHelper(char * &vals) {
 			vals++;
 		}
 	}
-	cout<<"Compile Computation Succeed" <<endl;
 }
 
 pair <func, MyDB_AttTypePtr> MyDB_Record :: fromData (string attName) {
@@ -398,12 +397,12 @@ pair <func, MyDB_AttTypePtr> MyDB_Record :: fromData (string attName) {
 }
 
 pair <func, MyDB_AttTypePtr> MyDB_Record :: plus (pair <func, MyDB_AttTypePtr> lhs, pair <func, MyDB_AttTypePtr> rhs) {
-    cout<<"in plus func"<<endl;
+
 	// if both sides can be cast upwards to be ints, then do so
 	if (lhs.second->promotableToInt () && rhs.second->promotableToInt ()) {
 		MyDB_IntAttValPtr temp = make_shared <MyDB_IntAttVal> ();
 		scratch.push_back (temp);
-		cout << "plus int called"<<endl;
+
 		// returns a lambda that computes the result
 		return make_pair ([temp, lhs, rhs] {temp->set (lhs.first ()->toInt () + rhs.first ()->toInt ()); return temp;},
 			make_shared <MyDB_IntAttType> ());
@@ -412,7 +411,7 @@ pair <func, MyDB_AttTypePtr> MyDB_Record :: plus (pair <func, MyDB_AttTypePtr> l
 	} else if (lhs.second->promotableToDouble () && rhs.second->promotableToDouble ()) {
 		MyDB_DoubleAttValPtr temp = make_shared <MyDB_DoubleAttVal> ();
 		scratch.push_back (temp);
-		cout << "plus double called"<<endl;
+
 		// returns a lambda that computes the result
 		return make_pair ([temp, lhs, rhs] {temp->set (lhs.first ()->toDouble () + rhs.first ()->toDouble ()); return temp;},
 			make_shared <MyDB_DoubleAttType> ());
@@ -421,7 +420,7 @@ pair <func, MyDB_AttTypePtr> MyDB_Record :: plus (pair <func, MyDB_AttTypePtr> l
 	} else if (lhs.second->promotableToString () && rhs.second->promotableToString ()) {
 		MyDB_StringAttValPtr temp = make_shared <MyDB_StringAttVal> ();
 		scratch.push_back (temp);
-		cout << "plus string called"<<endl;
+
 		// returns a lambda that computes the result
 		return make_pair ([temp, lhs, rhs] {temp->set (lhs.first ()->toString () + rhs.first ()->toString ()); return temp;},
 			make_shared <MyDB_StringAttType> ());
@@ -516,7 +515,7 @@ pair <func, MyDB_AttTypePtr> MyDB_Record :: divide (pair <func, MyDB_AttTypePtr>
 	if (lhs.second->promotableToInt () && rhs.second->promotableToInt ()) {
 		MyDB_IntAttValPtr temp = make_shared <MyDB_IntAttVal> ();
 		scratch.push_back (temp);
-		cout << "divide int called"<<endl;
+
 		// returns a lambda that computes the result
 		return make_pair ([temp, lhs, rhs] {temp->set (lhs.first ()->toInt () / rhs.first ()->toInt ()); return temp;},
 			make_shared <MyDB_IntAttType> ());
@@ -525,7 +524,7 @@ pair <func, MyDB_AttTypePtr> MyDB_Record :: divide (pair <func, MyDB_AttTypePtr>
 	} else if (lhs.second->promotableToDouble () && rhs.second->promotableToDouble ()) {
 		MyDB_DoubleAttValPtr temp = make_shared <MyDB_DoubleAttVal> ();
 		scratch.push_back (temp);
-		cout << "divide double called"<<endl;
+
 		// returns a lambda that computes the result
 		return make_pair ([temp, lhs, rhs] {temp->set (lhs.first ()->toDouble () / rhs.first ()->toDouble ()); return temp;},
 			make_shared <MyDB_DoubleAttType> ());
