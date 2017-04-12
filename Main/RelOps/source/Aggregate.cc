@@ -114,6 +114,7 @@ void Aggregate::run() {
              for ( auto local_it = myHash.begin(i); local_it!= myHash.end(i); ++local_it ){
                  cout<<"HashVal:"<<local_it->first<<endl;
                  for(auto vec:local_it->second){
+                     cout<<"hash adds:"<< vec;
                      testRec->fromBinary(vec);
                      cout<<"Hash Att:" << testRec->getAtt(0).get()->toString()<<endl;
                  }
