@@ -75,7 +75,7 @@ void Aggregate::run() {
     vector <MyDB_PageReaderWriter> tmpPages;
     MyDB_PageReaderWriter pageRW =  MyDB_PageReaderWriter(*myMgr1);
 
-
+    MyDB_RecordPtr testRec = make_shared <MyDB_Record> (mySchemaOut);
     func finalPredicate = combinedRec->compileComputation (selectionPredicate);
 
     while (myIter->advance ()) {
@@ -106,8 +106,9 @@ void Aggregate::run() {
                 ptr= pageRW.appendAndReturnLocation(combinedRec);
             }
             myHash[hashVal].push_back(ptr);
+            testRec->fromBinary(myHash[hashVal][myHash[hashVal].size()-1]);
             for(int i=0;i<attNum-1;i++){
-                cout<<"combinedrec:" << myHash[hashVal][myHash[hashVal].size()-1]->getAtt(i).get()->toString()<<endl;
+                cout<<"combinedrec Att:" << testRec->getAtt(i).get()->toString()<<endl;
             }
         }
     }
