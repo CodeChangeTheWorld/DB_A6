@@ -30,24 +30,48 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.cc" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Main/SQLTest/source/main.cc">
+      <file leaf-file-name="Aggregate.cc" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Main/RelOps/source/Aggregate.cc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="59" column="52" lean-forward="true" selection-start-line="59" selection-start-column="52" selection-end-line="59" selection-end-column="52" />
+            <state relative-caret-position="488">
+              <caret line="138" column="8" lean-forward="false" selection-start-line="138" selection-start-column="8" selection-end-line="138" selection-end-column="8" />
+              <folding>
+                <element signature="e#42#64#0" expanded="true" />
+                <marker date="1491997289000" expanded="true" signature="4614:4868" ph="..." />
+                <marker date="1491997289000" expanded="true" signature="4658:4858" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MyDB_Record.cc" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Main/Record/source/MyDB_Record.cc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="239">
+              <caret line="400" column="31" lean-forward="false" selection-start-line="400" selection-start-column="31" selection-end-line="400" selection-end-column="31" />
+              <folding>
+                <element signature="e#25012#25559#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Aggregate.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Main/RelOps/headers/Aggregate.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="434">
+              <caret line="62" column="11" lean-forward="false" selection-start-line="62" selection-start-column="11" selection-end-line="62" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Aggregate.cc" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Main/RelOps/source/Aggregate.cc">
+      <file leaf-file-name="RelOpQUnit.cc" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Main/RelOpTest/source/RelOpQUnit.cc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="154" column="30" lean-forward="false" selection-start-line="154" selection-start-column="23" selection-end-line="154" selection-end-column="30" />
-              <folding>
-                <element signature="e#42#64#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-226">
+              <caret line="571" column="42" lean-forward="true" selection-start-line="571" selection-start-column="42" selection-end-line="571" selection-end-column="42" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -62,57 +86,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyDB_Record.cc" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Main/Record/source/MyDB_Record.cc">
+      <file leaf-file-name="ScanJoin.cc" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Main/RelOps/source/ScanJoin.cc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="752" column="43" lean-forward="false" selection-start-line="752" selection-start-column="20" selection-end-line="752" selection-end-column="43" />
-              <folding>
-                <element signature="e#24711#25258#0" expanded="false" />
-                <marker date="1491951735000" expanded="true" signature="26067:26089" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyDB_Record.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Main/Record/headers/MyDB_Record.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+            <state relative-caret-position="-565">
+              <caret line="116" column="30" lean-forward="false" selection-start-line="116" selection-start-column="21" selection-end-line="116" selection-end-column="30" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ParserTypes.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Main/SQL/headers/ParserTypes.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="281" column="5" lean-forward="true" selection-start-line="281" selection-start-column="5" selection-end-line="281" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ExprTree.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Main/SQL/headers/ExprTree.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="335" column="48" lean-forward="false" selection-start-line="335" selection-start-column="16" selection-end-line="335" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RelOpQUnit.cc" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Main/RelOpTest/source/RelOpQUnit.cc">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="397" column="34" lean-forward="true" selection-start-line="397" selection-start-column="8" selection-end-line="397" selection-end-column="34" />
-              <folding>
-                <element signature="e#44#71#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -120,18 +99,18 @@
       <file leaf-file-name="SortMergeJoin.cc" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Main/RelOps/source/SortMergeJoin.cc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4442">
-              <caret line="313" column="0" lean-forward="true" selection-start-line="313" selection-start-column="0" selection-end-line="313" selection-end-column="0" />
+            <state relative-caret-position="179">
+              <caret line="177" column="65" lean-forward="false" selection-start-line="177" selection-start-column="60" selection-end-line="177" selection-end-column="73" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScanJoin.cc" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Main/RelOps/source/ScanJoin.cc">
+      <file leaf-file-name="SortMergeJoin.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Main/RelOps/headers/SortMergeJoin.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="114" column="62" lean-forward="true" selection-start-line="114" selection-start-column="4" selection-end-line="114" selection-end-column="62" />
+            <state relative-caret-position="374">
+              <caret line="49" column="26" lean-forward="false" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -141,11 +120,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>combin</find>
-      <find>Aggregate</find>
-      <find>-&gt;advance ()</find>
-      <find>running aggregate</find>
-      <find>for(void*</find>
       <find>groupAggs</find>
       <find>MyDB_Buffer</find>
       <find>-&gt;fromBinary</find>
@@ -165,12 +139,17 @@
       <find>myMgr</find>
       <find>append</find>
       <find>double</find>
-      <find>avg</find>
       <find>return null pointer</find>
       <find>MyDB_AggAtt</find>
       <find>sum</find>
       <find>mySchemaOut</find>
       <find>/ (</find>
+      <find>appendAtt</find>
+      <find>avg</find>
+      <find>Build Avg List:</find>
+      <find>aggNum</find>
+      <find>avgList</find>
+      <find>aggList</find>
     </findStrings>
     <replaceStrings>
       <replace>DB_A6</replace>
@@ -192,10 +171,10 @@
         <option value="$PROJECT_DIR$/Main/SQLTest/source/main.cc" />
         <option value="$PROJECT_DIR$/Main/RelOps/source/ScanJoin.cc" />
         <option value="$PROJECT_DIR$/Main/RelOps/headers/Aggregate.h" />
-        <option value="$PROJECT_DIR$/Main/RelOpTest/source/RelOpQUnit.cc" />
         <option value="$PROJECT_DIR$/Main/DatabaseTable/source/MyDB_PageReaderWriter.cc" />
-        <option value="$PROJECT_DIR$/Main/Record/source/MyDB_Record.cc" />
         <option value="$PROJECT_DIR$/Main/Record/headers/MyDB_Record.h" />
+        <option value="$PROJECT_DIR$/Main/RelOpTest/source/RelOpQUnit.cc" />
+        <option value="$PROJECT_DIR$/Main/Record/source/MyDB_Record.cc" />
         <option value="$PROJECT_DIR$/Main/RelOps/source/Aggregate.cc" />
       </list>
     </option>
@@ -405,14 +384,6 @@
               <option name="myItemId" value="Main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RecordTest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="source" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -455,20 +426,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="headers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DB_A6" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DB_A6" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -849,301 +806,7 @@
       <workItem from="1491788272544" duration="8638000" />
       <workItem from="1491846657742" duration="2171000" />
       <workItem from="1491849514209" duration="27343000" />
-      <workItem from="1491924696917" duration="24457000" />
-    </task>
-    <task id="LOCAL-00045" summary="debugging">
-      <created>1491874384567</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1491874384567</updated>
-    </task>
-    <task id="LOCAL-00046" summary="debugging">
-      <created>1491874673383</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1491874673383</updated>
-    </task>
-    <task id="LOCAL-00047" summary="debugging">
-      <created>1491874894030</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1491874894030</updated>
-    </task>
-    <task id="LOCAL-00048" summary="debugging">
-      <created>1491875966913</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1491875966913</updated>
-    </task>
-    <task id="LOCAL-00049" summary="debugging">
-      <created>1491877565876</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1491877565876</updated>
-    </task>
-    <task id="LOCAL-00050" summary="debugging">
-      <created>1491877883398</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1491877883399</updated>
-    </task>
-    <task id="LOCAL-00051" summary="debugging">
-      <created>1491878252851</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1491878252851</updated>
-    </task>
-    <task id="LOCAL-00052" summary="debugging">
-      <created>1491878920280</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1491878920280</updated>
-    </task>
-    <task id="LOCAL-00053" summary="debugging">
-      <created>1491914664668</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1491914664668</updated>
-    </task>
-    <task id="LOCAL-00054" summary="debugging">
-      <created>1491915515528</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1491915515528</updated>
-    </task>
-    <task id="LOCAL-00055" summary="debugging">
-      <created>1491915964528</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1491915964528</updated>
-    </task>
-    <task id="LOCAL-00056" summary="debugging">
-      <created>1491917260715</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1491917260715</updated>
-    </task>
-    <task id="LOCAL-00057" summary="debugging">
-      <created>1491918684156</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1491918684156</updated>
-    </task>
-    <task id="LOCAL-00058" summary="debugging">
-      <created>1491919605645</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1491919605646</updated>
-    </task>
-    <task id="LOCAL-00059" summary="debugging">
-      <created>1491919691564</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1491919691565</updated>
-    </task>
-    <task id="LOCAL-00060" summary="debugging">
-      <created>1491919874453</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1491919874453</updated>
-    </task>
-    <task id="LOCAL-00061" summary="debugging">
-      <created>1491919999079</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1491919999080</updated>
-    </task>
-    <task id="LOCAL-00062" summary="debugging">
-      <created>1491921437651</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1491921437651</updated>
-    </task>
-    <task id="LOCAL-00063" summary="debugging">
-      <created>1491923347352</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1491923347353</updated>
-    </task>
-    <task id="LOCAL-00064" summary="debugging">
-      <created>1491925309789</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1491925309790</updated>
-    </task>
-    <task id="LOCAL-00065" summary="debugging">
-      <created>1491926086850</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1491926086850</updated>
-    </task>
-    <task id="LOCAL-00066" summary="debugging">
-      <created>1491926949957</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1491926949957</updated>
-    </task>
-    <task id="LOCAL-00067" summary="debugging">
-      <created>1491927710000</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1491927710000</updated>
-    </task>
-    <task id="LOCAL-00068" summary="debugging">
-      <created>1491927888423</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1491927888423</updated>
-    </task>
-    <task id="LOCAL-00069" summary="debugging">
-      <created>1491928355713</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1491928355713</updated>
-    </task>
-    <task id="LOCAL-00070" summary="debugging">
-      <created>1491928857309</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1491928857309</updated>
-    </task>
-    <task id="LOCAL-00071" summary="debugging">
-      <created>1491929297853</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1491929297853</updated>
-    </task>
-    <task id="LOCAL-00072" summary="debugging">
-      <created>1491931444455</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1491931444455</updated>
-    </task>
-    <task id="LOCAL-00073" summary="debugging">
-      <created>1491931626503</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1491931626503</updated>
-    </task>
-    <task id="LOCAL-00074" summary="debugging">
-      <created>1491932903839</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1491932903840</updated>
-    </task>
-    <task id="LOCAL-00075" summary="debugging">
-      <created>1491933121477</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1491933121477</updated>
-    </task>
-    <task id="LOCAL-00076" summary="debugging">
-      <created>1491933389985</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1491933389985</updated>
-    </task>
-    <task id="LOCAL-00077" summary="debugging">
-      <created>1491933478573</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1491933478573</updated>
-    </task>
-    <task id="LOCAL-00078" summary="debugging">
-      <created>1491934538873</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1491934538873</updated>
-    </task>
-    <task id="LOCAL-00079" summary="debugging">
-      <created>1491935272334</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1491935272334</updated>
-    </task>
-    <task id="LOCAL-00080" summary="debugging">
-      <created>1491935520430</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1491935520430</updated>
-    </task>
-    <task id="LOCAL-00081" summary="debugging">
-      <created>1491937057346</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1491937057347</updated>
-    </task>
-    <task id="LOCAL-00082" summary="debugging">
-      <created>1491938254587</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1491938254587</updated>
-    </task>
-    <task id="LOCAL-00083" summary="debugging">
-      <created>1491939821320</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1491939821320</updated>
-    </task>
-    <task id="LOCAL-00084" summary="debugging">
-      <created>1491939881520</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1491939881520</updated>
-    </task>
-    <task id="LOCAL-00085" summary="debugging">
-      <created>1491944540230</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1491944540231</updated>
-    </task>
-    <task id="LOCAL-00086" summary="debugging">
-      <created>1491944786158</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1491944786158</updated>
+      <workItem from="1491924696917" duration="42553000" />
     </task>
     <task id="LOCAL-00087" summary="debugging">
       <created>1491944943501</created>
@@ -1194,22 +857,316 @@
       <option name="project" value="LOCAL" />
       <updated>1491952344221</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="debugging">
+      <created>1491952966656</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1491952966657</updated>
+    </task>
+    <task id="LOCAL-00095" summary="debugging">
+      <created>1491953064120</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1491953064120</updated>
+    </task>
+    <task id="LOCAL-00096" summary="debugging">
+      <created>1491954097638</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1491954097638</updated>
+    </task>
+    <task id="LOCAL-00097" summary="debugging">
+      <created>1491954690645</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1491954690646</updated>
+    </task>
+    <task id="LOCAL-00098" summary="debugging">
+      <created>1491955737627</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1491955737627</updated>
+    </task>
+    <task id="LOCAL-00099" summary="debugging">
+      <created>1491956556357</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1491956556357</updated>
+    </task>
+    <task id="LOCAL-00100" summary="debugging">
+      <created>1491956844392</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1491956844392</updated>
+    </task>
+    <task id="LOCAL-00101" summary="debugging">
+      <created>1491957310069</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1491957310070</updated>
+    </task>
+    <task id="LOCAL-00102" summary="debugging">
+      <created>1491958046701</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1491958046701</updated>
+    </task>
+    <task id="LOCAL-00103" summary="debugging">
+      <created>1491958710814</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1491958710814</updated>
+    </task>
+    <task id="LOCAL-00104" summary="debugging">
+      <created>1491959609647</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1491959609647</updated>
+    </task>
+    <task id="LOCAL-00105" summary="debugging">
+      <created>1491960345062</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1491960345062</updated>
+    </task>
+    <task id="LOCAL-00106" summary="debugging">
+      <created>1491960551513</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1491960551513</updated>
+    </task>
+    <task id="LOCAL-00107" summary="debugging">
+      <created>1491960698144</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1491960698144</updated>
+    </task>
+    <task id="LOCAL-00108" summary="debugging">
+      <created>1491960815834</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1491960815834</updated>
+    </task>
+    <task id="LOCAL-00109" summary="debugging">
+      <created>1491961666876</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1491961666876</updated>
+    </task>
+    <task id="LOCAL-00110" summary="debugging">
+      <created>1491962397563</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1491962397563</updated>
+    </task>
+    <task id="LOCAL-00111" summary="debugging">
+      <created>1491962596763</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1491962596764</updated>
+    </task>
+    <task id="LOCAL-00112" summary="debugging">
+      <created>1491962707162</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1491962707163</updated>
+    </task>
+    <task id="LOCAL-00113" summary="debugging">
+      <created>1491963318811</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1491963318811</updated>
+    </task>
+    <task id="LOCAL-00114" summary="debugging">
+      <created>1491963782055</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1491963782055</updated>
+    </task>
+    <task id="LOCAL-00115" summary="debugging">
+      <created>1491964029886</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1491964029886</updated>
+    </task>
+    <task id="LOCAL-00116" summary="debugging">
+      <created>1491987823872</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1491987823873</updated>
+    </task>
+    <task id="LOCAL-00117" summary="debugging">
+      <created>1491988487546</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1491988487547</updated>
+    </task>
+    <task id="LOCAL-00118" summary="debugging">
+      <created>1491988608297</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1491988608298</updated>
+    </task>
+    <task id="LOCAL-00119" summary="debugging">
+      <created>1491989323538</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1491989323539</updated>
+    </task>
+    <task id="LOCAL-00120" summary="debugging">
+      <created>1491989594074</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1491989594074</updated>
+    </task>
+    <task id="LOCAL-00121" summary="debugging">
+      <created>1491991604223</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1491991604223</updated>
+    </task>
+    <task id="LOCAL-00122" summary="debugging">
+      <created>1491991923747</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1491991923747</updated>
+    </task>
+    <task id="LOCAL-00123" summary="debugging">
+      <created>1491992305133</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1491992305133</updated>
+    </task>
+    <task id="LOCAL-00124" summary="debugging">
+      <created>1491992459860</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1491992459860</updated>
+    </task>
+    <task id="LOCAL-00125" summary="debugging">
+      <created>1491992610588</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1491992610588</updated>
+    </task>
+    <task id="LOCAL-00126" summary="debugging">
+      <created>1491993208161</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1491993208162</updated>
+    </task>
+    <task id="LOCAL-00127" summary="debugging">
+      <created>1491993955774</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1491993955774</updated>
+    </task>
+    <task id="LOCAL-00128" summary="debugging">
+      <created>1491994471302</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1491994471302</updated>
+    </task>
+    <task id="LOCAL-00129" summary="debugging">
+      <created>1491994581369</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1491994581369</updated>
+    </task>
+    <task id="LOCAL-00130" summary="debugging">
+      <created>1491995443339</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1491995443339</updated>
+    </task>
+    <task id="LOCAL-00131" summary="debugging">
+      <created>1491995547416</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1491995547417</updated>
+    </task>
+    <task id="LOCAL-00132" summary="debugging">
+      <created>1491995615929</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1491995615929</updated>
+    </task>
+    <task id="LOCAL-00133" summary="debugging">
+      <created>1491995859092</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1491995859092</updated>
+    </task>
+    <task id="LOCAL-00134" summary="debugging">
+      <created>1491996430855</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1491996430856</updated>
+    </task>
+    <task id="LOCAL-00135" summary="debugging">
+      <created>1491997002755</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1491997002755</updated>
+    </task>
+    <option name="localTasksCounter" value="136" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96514000" />
+    <option name="totallyTimeSpent" value="114610000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2109375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1921875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35095447" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23295455" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934928" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.187251" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17131475" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47122863" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1257,7 +1214,14 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="12" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Main/Record/source/MyDB_Record.cc</url>
+          <line>23</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="15" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1325,6 +1289,8 @@
           <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding>
             <element signature="e#42#64#0" expanded="true" />
+            <marker date="1491997289000" expanded="true" signature="4614:4868" ph="..." />
+            <marker date="1491997289000" expanded="true" signature="4658:4858" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1407,22 +1373,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-463">
           <caret line="64" column="75" lean-forward="true" selection-start-line="64" selection-start-column="4" selection-end-line="64" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/utility">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="257" column="8" lean-forward="false" selection-start-line="257" selection-start-column="8" selection-end-line="257" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Main/RelOps/headers/Aggregate.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="13" column="19" lean-forward="false" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1514,14 +1464,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main/RelOps/headers/SortMergeJoin.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="36" column="30" lean-forward="true" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Main/BufferTest/source/BufferQUnit.cc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1554,22 +1496,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main/RelOps/source/SortMergeJoin.cc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4442">
-          <caret line="313" column="0" lean-forward="true" selection-start-line="313" selection-start-column="0" selection-end-line="313" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Main/Catalog/source/MyDB_Schema.cc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="41" column="77" lean-forward="true" selection-start-line="41" selection-start-column="77" selection-end-line="41" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Main/DatabaseTable/source/MyDB_PageReaderWriter.cc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="254">
@@ -1586,18 +1512,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main/RelOps/source/ScanJoin.cc">
+    <entry file="file://$PROJECT_DIR$/Main/Catalog/source/MyDB_Schema.cc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="114" column="62" lean-forward="true" selection-start-line="114" selection-start-column="4" selection-end-line="114" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Main/SQLTest/source/main.cc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="59" column="52" lean-forward="true" selection-start-line="59" selection-start-column="52" selection-end-line="59" selection-end-column="52" />
+        <state relative-caret-position="239">
+          <caret line="79" column="56" lean-forward="false" selection-start-line="79" selection-start-column="56" selection-end-line="79" selection-end-column="56" />
           <folding />
         </state>
       </provider>
@@ -1610,14 +1528,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main/Record/source/MyDB_Record.cc">
+    <entry file="file://$PROJECT_DIR$/Main/SQLTest/source/main.cc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="752" column="43" lean-forward="false" selection-start-line="752" selection-start-column="20" selection-end-line="752" selection-end-column="43" />
-          <folding>
-            <element signature="e#24711#25258#0" expanded="false" />
-            <marker date="1491951735000" expanded="true" signature="26067:26089" ph="{...}" />
-          </folding>
+        <state relative-caret-position="810">
+          <caret line="59" column="52" lean-forward="true" selection-start-line="59" selection-start-column="52" selection-end-line="59" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/utility">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="258" column="8" lean-forward="false" selection-start-line="258" selection-start-column="8" selection-end-line="258" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main/RelOps/headers/SortMergeJoin.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="49" column="26" lean-forward="false" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main/RelOps/headers/Aggregate.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="62" column="11" lean-forward="false" selection-start-line="62" selection-start-column="11" selection-end-line="62" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1631,20 +1570,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Main/RelOpTest/source/RelOpQUnit.cc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="397" column="34" lean-forward="true" selection-start-line="397" selection-start-column="8" selection-end-line="397" selection-end-column="34" />
+        <state relative-caret-position="-226">
+          <caret line="571" column="42" lean-forward="true" selection-start-line="571" selection-start-column="42" selection-end-line="571" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main/RelOps/source/ScanJoin.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-565">
+          <caret line="116" column="30" lean-forward="false" selection-start-line="116" selection-start-column="21" selection-end-line="116" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main/Record/source/MyDB_Record.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="400" column="31" lean-forward="false" selection-start-line="400" selection-start-column="31" selection-end-line="400" selection-end-column="31" />
           <folding>
-            <element signature="e#44#71#0" expanded="true" />
+            <element signature="e#25012#25559#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main/RelOps/source/SortMergeJoin.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="177" column="65" lean-forward="false" selection-start-line="177" selection-start-column="60" selection-end-line="177" selection-end-column="73" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Main/RelOps/source/Aggregate.cc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="154" column="30" lean-forward="false" selection-start-line="154" selection-start-column="23" selection-end-line="154" selection-end-column="30" />
+        <state relative-caret-position="488">
+          <caret line="138" column="8" lean-forward="false" selection-start-line="138" selection-start-column="8" selection-end-line="138" selection-end-column="8" />
           <folding>
             <element signature="e#42#64#0" expanded="true" />
+            <marker date="1491997289000" expanded="true" signature="4614:4868" ph="..." />
+            <marker date="1491997289000" expanded="true" signature="4658:4858" ph="..." />
           </folding>
         </state>
       </provider>

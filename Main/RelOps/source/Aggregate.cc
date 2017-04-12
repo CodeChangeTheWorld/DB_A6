@@ -116,10 +116,11 @@ void Aggregate::run() {
         }
     }
 
+    cout << "how many hash? "<<myHash.size()<<'\n';
     MyDB_RecordPtr outputRec = outputTable->getEmptyRecord();
     MyDB_RecordPtr tempRec = make_shared <MyDB_Record> (mySchemaOut);
     vector<func> aggList;
-    //vector<func> avgList;
+    vector<func> avgList;
 
 
     for (int i=0;i<aggsToCompute.size();i++) {
@@ -130,12 +131,12 @@ void Aggregate::run() {
         }
         if(s.first == MyDB_AggType::avg){
             cout<<"Build Avg List: "<<"/( [MyDB_AggAtt" + to_string (i) + "],[MyCount])" <<endl;
-           // avgList.push_back(tempRec->compileComputation("/([MyDB_AggAtt" + to_string (i) + "],[MyCount])"));
+            avgList.push_back(tempRec->compileComputation("/([MyDB_AggAtt" + to_string (i) + "],[MyCount])"));
         }
     }
 
     for ( auto it = myHash.begin(); it!= myHash.end(); ++it){
-        cout<< "hashVal:"<<it->first<<endl;
+
         vector <void*> &groupRec = myHash [it->first];
         int count = groupRec.size();
 
@@ -148,7 +149,6 @@ void Aggregate::run() {
             }
             int app = -1;
             for(int j= groupNum; j<groupNum+aggNum;j++){
-                cout<<"groupNum+aggNum:"<<groupNum+aggNum<<endl;
                 if(aggsToCompute[j-groupNum].first == MyDB_AggType::sum || aggsToCompute[j-groupNum].first == MyDB_AggType::avg) {
                     int idx = groupNum + aggNum + (++app);
                     if (i > 0) tempRec->getAtt(idx)->set(outputRec->getAtt(j));
@@ -174,11 +174,11 @@ void Aggregate::run() {
                     }
                     case MyDB_AggType::avg : {
                         cout << "agg:avg" << endl;
-                        //if (avgList.size() > 0) {
-                           // func f = avgList[div++];
-                           // outputRec->getAtt(i)->set(f());
-                            outputRec->getAtt(i)->fromInt(0);
-                       // }
+                        if (avgList.size() > 0) {
+                            func f = avgList[div++];
+                            outputRec->getAtt(i)->set(f());
+                           // outputRec->getAtt(i)->fromInt(0);
+                        }
                         break;
                     }
                     case MyDB_AggType::cnt:{
