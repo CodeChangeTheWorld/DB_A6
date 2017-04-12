@@ -128,10 +128,10 @@ void Aggregate::run() {
             cout<<"Build Agg List: "<<"+([" + mySchemaOut->getAtts()[i+groupNum].first + "], [MyDB_AggAtt" + to_string (i) + "])" <<endl;
             aggList.push_back(tempRec->compileComputation("+([" + mySchemaOut->getAtts()[i+groupNum].first + "], [MyDB_AggAtt" + to_string (i) + "])"));
         }
-//        if(s.first == MyDB_AggType::avg){
-//            cout<<"Build Avg List: "<<"/( [MyDB_AggAtt" + to_string (i) + "],[MyCount])" <<endl;
-//           // avgList.push_back(tempRec->compileComputation("/([MyDB_AggAtt" + to_string (i) + "],[MyCount])"));
-//        }
+        if(s.first == MyDB_AggType::avg){
+            cout<<"Build Avg List: "<<"/( [MyDB_AggAtt" + to_string (i) + "],[MyCount])" <<endl;
+           // avgList.push_back(tempRec->compileComputation("/([MyDB_AggAtt" + to_string (i) + "],[MyCount])"));
+        }
     }
 
     for ( auto it = myHash.begin(); it!= myHash.end(); ++it){
@@ -152,8 +152,8 @@ void Aggregate::run() {
                 if(aggsToCompute[j-groupNum].first == MyDB_AggType::sum || aggsToCompute[j-groupNum].first == MyDB_AggType::avg) {
                     int idx = groupNum + aggNum + (++app);
                     if (i > 0) tempRec->getAtt(idx)->set(outputRec->getAtt(j));
-                //    func f = aggList[app];
-                  //  tempRec->getAtt(idx)->set(f ());
+                    func f = aggList[app];
+                    tempRec->getAtt(idx)->set(f ());
                     outputRec->getAtt(j)->set(tempRec->getAtt(idx));
                 }
             }
