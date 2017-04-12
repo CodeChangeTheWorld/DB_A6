@@ -128,9 +128,9 @@ void Aggregate::run() {
         }
     }
 
-    for ( auto it = myHash.begin(); it!= myHash.end(); ++it){
+    for ( auto it: myHash){
         cout<<"Hash val new:"<<it->first<<endl;
-        vector <void*> &groupRec = myHash [it->first];
+        vector <void*> &groupRec = it.second;
         int count = groupRec.size();
         for(int i=0;i<count;i++){
             cout<<"groupRec[i]:"<<groupRec[i]<<endl;
