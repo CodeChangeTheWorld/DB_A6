@@ -93,7 +93,7 @@ void Aggregate::run() {
         }
 
         for(auto f:groupAggs){
-            hashVal ^= f ()->hash ();
+            //hashVal ^= f ()->hash ();
             combinedRec->getAtt(i++)->set(f());
         }
 
