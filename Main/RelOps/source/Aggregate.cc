@@ -51,10 +51,6 @@ void Aggregate::run() {
 
     mySchemaOut->appendAtt (make_pair ("MyCount", make_shared <MyDB_IntAttType> ()));
 
-//    for(auto att:mySchemaOut->getAtts()){
-//        cout<<"SchemaOut: "<< att.first<<endl;
-//        cout<<"SchemaOut Type: "<< att.second->toString()<<endl;
-//    }
 
     int attNum = mySchemaOut->getAtts().size();
     vector <MyDB_PageReaderWriter> allData;
@@ -68,14 +64,12 @@ void Aggregate::run() {
 
     //Scan Input table Write, write record to new page & Hash record
     MyDB_RecordPtr combinedRec = make_shared <MyDB_Record> (mySchemaOut);
-
     MyDB_RecordIteratorAltPtr myIter = getIteratorAlt(allData);
     MyDB_BufferManagerPtr myMgr1 = make_shared <MyDB_BufferManager> (131072, 128, "tempFile1");
     vector <MyDB_PageReaderWriter> tmpPages;
     MyDB_PageReaderWriter pageRW =  MyDB_PageReaderWriter(*myMgr1);
 
     MyDB_RecordPtr testRec = make_shared <MyDB_Record> (mySchemaOut);
-
     func finalPredicate = combinedRec->compileComputation (selectionPredicate);
 
     while (myIter->advance ()) {
@@ -89,9 +83,6 @@ void Aggregate::run() {
             combinedRec->getAtt(i++)->set(f());
         }
 
-//        if(combinedRec->getAtt(0).get()->toInt()==100){
-//            cout<<"combinedRec Att:"<<combinedRec->getAtt(0).get()->toString()<<endl;
-//        }
 
         for(auto f:groupAggs){
             //hashVal ^= f ()->hash ();2
@@ -110,13 +101,13 @@ void Aggregate::run() {
                 ptr= pageRW.appendAndReturnLocation(combinedRec);
             }
             myHash[hashVal].push_back(ptr);
-//            testRec->fromBinary(myHash[hashVal][myHash[hashVal].size()-1]);
-//            if(testRec->getAtt(0).get()->toInt()==100){
-//                for(int i=0;i<attNum;i++){
-//                    cout<< "myHash adds: "<<myHash[hashVal][myHash[hashVal].size()-1] <<endl;
-//                    cout<<"New comb Att:" << testRec->getAtt(i).get()->toString()<<endl;
-//                }
-//            }
+            testRec->fromBinary(myHash[hashVal][myHash[hashVal].size()-1]);
+            if(testRec->getAtt(0).get()->toInt()==100){
+                for(int i=0;i<attNum;i++){
+                    cout<< "myHash adds: "<<myHash[hashVal][myHash[hashVal].size()-1] <<endl;
+                    cout<<"New comb Att:" << testRec->getAtt(i).get()->toString()<<endl;
+                }
+            }
         }
     }
 
