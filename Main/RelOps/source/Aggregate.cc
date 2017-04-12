@@ -161,7 +161,7 @@ void Aggregate::run() {
         int div=0;
         for(int i=0;i<outputRec->getSchema()->getAtts().size();i++){
 
-            if(i<groupNum){
+            if(i<groupNum ){
                 outputRec->getAtt(i)->set(tempRec->getAtt(i));
             }else{
                 MyDB_AggType aggtype = aggsToCompute[i-groupNum].first;
