@@ -172,11 +172,11 @@ void Aggregate::run() {
                     }
                     case MyDB_AggType::avg : {
                         cout << "agg:avg" << endl;
-                        if (avgList.size() > 0) {
+                        //if (avgList.size() > 0) {
                            // func f = avgList[div++];
                            // outputRec->getAtt(i)->set(f());
                             outputRec->getAtt(i)->fromInt(0);
-                        }
+                       // }
                         break;
                     }
                     case MyDB_AggType::cnt:{
