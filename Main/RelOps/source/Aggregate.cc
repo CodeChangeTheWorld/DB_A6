@@ -90,7 +90,8 @@ void Aggregate::run() {
         }
 
         for(auto f:groupAggs){
-            //hashVal ^= f ()->hash ();
+            //hashVal ^= f ()->hash ();2
+
             combinedRec->getAtt(i++)->set(f());
         }
 
@@ -177,7 +178,6 @@ void Aggregate::run() {
                         //    cout<<"in div"<<endl;
                             func f = avgList[div++];
                             outputRec->getAtt(i)->set(f());
-                           // outputRec->getAtt(i)->fromInt(0);
                         }
                         break;
                     }
