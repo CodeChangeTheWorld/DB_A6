@@ -77,6 +77,7 @@ void Aggregate::run() {
 
 
     func finalPredicate = combinedRec->compileComputation (selectionPredicate);
+
     while (myIter->advance ()) {
         // hash the current record
         myIter->getCurrent (inputRec);
@@ -93,9 +94,7 @@ void Aggregate::run() {
             combinedRec->getAtt(i++)->set(f());
         }
 
-        //set to 0
-        for(int i= groupNum+aggNum;i<attNum;i++)
-        combinedRec->getAtt(i)->fromInt(0);
+        while(i<attNum) combinedRec->getAtt(i++)->fromInt(0);
 
         if(finalPredicate ()->toBool()) {
             combinedRec->recordContentHasChanged();
@@ -108,7 +107,7 @@ void Aggregate::run() {
             }
             myHash[hashVal].push_back(ptr);
             for(int i=0;i<attNum-1;i++){
-                cout<<"combinedrec:" << combinedRec->getAtt(i).get()->toString()<<endl;
+                cout<<"combinedrec:" << myHash[hashVal][myHash[hashVal].size()-1]->getAtt(i).get()->toString()<<endl;
             }
         }
     }
