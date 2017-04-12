@@ -114,19 +114,6 @@ void Aggregate::run() {
 //            }
     }
 
-    cout << "print hash:"<< myHash.size() << endl;
-
-         for ( unsigned i = 0; i < myHash.bucket_count(); ++i) {
-             for ( auto local_it = myHash.begin(i); local_it!= myHash.end(i); ++local_it ){
-                 size_t hashVal = local_it->first;
-                     for(int k=0;k<myHash[hashVal].size();k++){
-                         cout<<"hash adds:"<< myHash[hashVal][k]<<endl;
-                         testRec->fromBinary(myHash[hashVal][k]);
-                         cout<<"Hash Att:" << testRec->getAtt(0).get()->toString()<<endl;
-                     }
-
-             }
-         }
 
     MyDB_RecordPtr outputRec = outputTable->getEmptyRecord();
     MyDB_RecordPtr tempRec = make_shared <MyDB_Record> (mySchemaOut);
