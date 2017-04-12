@@ -53,6 +53,7 @@ void Aggregate::run() {
 
     for(auto att:mySchemaOut->getAtts()){
         cout<<"SchemaOut: "<< att.first<<endl;
+        cout<<"SchemaOut Type: "<< att.second->toString()<<endl;
     }
     int attNum = mySchemaOut->getAtts().size();
 
