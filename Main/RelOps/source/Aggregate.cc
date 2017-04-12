@@ -115,7 +115,7 @@ void Aggregate::run() {
          for(auto it:myHash){
              cout<<"HashVal:"<<it.first<<endl;
              testRec->fromBinary(it.second[0]);
-             testRec->getAtt(0).get()->toString()<<endl;
+             cout<<"Hash Att:"<<testRec->getAtt(0).get()->toString()<<endl;
          }
 
     MyDB_RecordPtr outputRec = outputTable->getEmptyRecord();
