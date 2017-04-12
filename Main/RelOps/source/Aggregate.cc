@@ -113,8 +113,6 @@ void Aggregate::run() {
         }
     }
 
-    cout<< "Finished hash" <<endl;
-
     MyDB_RecordPtr outputRec = outputTable->getEmptyRecord();
     MyDB_RecordPtr tempRec = make_shared <MyDB_Record> (mySchemaOut);
     vector<func> aggList;
@@ -130,7 +128,7 @@ void Aggregate::run() {
             avgList.push_back(tempRec->compileComputation("/ (" + s.second + ", [MyCount])"));}
     }
 
-
+    cout<<"Hash Count1: "<< myHash.size() <<endl;
     for ( auto it = myHash.begin(); it!= myHash.end(); ++it){
         vector <void*> &groupRec = myHash [it->first];
         int count = groupRec.size();
