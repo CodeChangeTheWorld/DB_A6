@@ -128,10 +128,11 @@ void Aggregate::run() {
         }
         if(s.first == MyDB_AggType::avg){
             cout<<"Build Avg List: "<<"/ ( [MyDB_AggAtt" + to_string (i) + "],[MyCount])" <<endl;
-            avgList.push_back(tempRec->compileComputation("/ ([MyDB_AggAtt" + to_string (i) + "],[MyCount])"));
+           // avgList.push_back(tempRec->compileComputation("/ ([MyDB_AggAtt" + to_string (i) + "],[MyCount])"));
+            if(s.second.equals("[r_acctbal]"))
+                avgList.push_back(tempRec->compileComputation("/ ([MyDB_AggAtt1],[MyCount])"));
         }
     }
-
     cout<<"Hash Count1: "<< myHash.size() <<endl;
 
     for ( auto it = myHash.begin(); it!= myHash.end(); ++it){
