@@ -26,13 +26,13 @@ void Aggregate::run() {
 
     vector<func> groupFuncs;
     for (auto g:groupings) {
-        cout<< g <<endl;
+//        cout<< g <<endl;
         groupFuncs.push_back(inputRec->compileComputation(g));
     }
 
     vector<func> groupAggs;
     for (auto agg:aggsToCompute) {
-        cout<< agg.second <<endl;
+//        cout<< agg.second <<endl;
         groupAggs.push_back(inputRec->compileComputation(agg.second));
     }
 
@@ -120,7 +120,7 @@ void Aggregate::run() {
         }
     }
 
-    cout << "how many hash? "<<myHash.size()<<'\n';
+//    cout << "how many hash? "<<myHash.size()<<'\n';
     MyDB_RecordPtr outputRec = outputTable->getEmptyRecord();
     MyDB_RecordPtr tempRec = make_shared <MyDB_Record> (mySchemaOut);
     vector<func> aggList;
@@ -142,7 +142,7 @@ void Aggregate::run() {
         vector <void*> &groupRec = myHash [it->first];
         int count = groupRec.size();
         for(int i=0;i<count;i++){
-            cout<<"groupRec[i]:"<<groupRec[i]<<endl;
+//            cout<<"groupRec[i]:"<<groupRec[i]<<endl;
             tempRec->fromBinary(groupRec[i]);
 //            if(tempRec->getAtt(0).get()->toInt()==100){
 //                for(int i=0;i<attNum;i++){

@@ -60,10 +60,10 @@ vector <MyDB_RecordIteratorAltPtr> sort (int runSize, MyDB_TableReaderWriterPtr 
     vector <MyDB_RecordIteratorAltPtr> runIters;
 
     for (int i = 0; i < sortMe->getNumPages(); i++){
-	cout<<i<<endl;
+//	cout<<i<<endl;
         vector <MyDB_PageReaderWriter> run;
         (*sortMe)[i].sortInPlace(comparator, lhs, rhs);
-        cout<<"sorted in place"<<endl;
+//        cout<<"sorted in place"<<endl;
         run.push_back((*sortMe)[i]);
 	pagesToSort.push_back(run);
 
@@ -73,7 +73,7 @@ vector <MyDB_RecordIteratorAltPtr> sort (int runSize, MyDB_TableReaderWriterPtr 
 
         while (pagesToSort.size() > 1){
             vector <vector<MyDB_PageReaderWriter>> newPagesToSort;
-	    cout<<pagesToSort.size()<<endl;
+//	    cout<<pagesToSort.size()<<endl;
             // repeatedly merge the last two pages
             while (pagesToSort.size () > 0) {
 
@@ -127,17 +127,17 @@ void SortMergeJoin::run() {
 
     MyDB_TableReaderWriterPtr tempLeft = make_shared <MyDB_TableReaderWriter>(tempLeftTable, leftTable->getBufferMgr());
     MyDB_TableReaderWriterPtr tempRight = make_shared <MyDB_TableReaderWriter>(tempRightTable, rightTable->getBufferMgr());
-    cout<<"prepare to load"<<endl;
+//    cout<<"prepare to load"<<endl;
     loaddata(leftTable, tempLeft, leftSelectionPredicate);
     loaddata(rightTable, tempRight, rightSelectionPredicate);
     
-    cout<<"loaded"<<endl;
+//    cout<<"loaded"<<endl;
     // sort phase
     vector <MyDB_RecordIteratorAltPtr> leftIters = sort(RUNSIZE, tempLeft, leftComp, leftInputRec, leftInputRecOther);
     vector <MyDB_RecordIteratorAltPtr> rightIters = sort(RUNSIZE, tempRight, rightComp, rightInputRec, rightInputRecOther);
 
 
-    cout<<"sorted"<<endl;
+//    cout<<"sorted"<<endl;
     // build
 
     MyDB_SchemaPtr mySchemaOut = make_shared <MyDB_Schema> ();
@@ -145,10 +145,10 @@ void SortMergeJoin::run() {
         mySchemaOut->appendAtt (p);
     for (auto p : rightTable->getTable ()->getSchema ()->getAtts ())
         mySchemaOut->appendAtt (p);
-    cout<<"schema buit"<<endl;
+//    cout<<"schema buit"<<endl;
 
     MyDB_RecordPtr combinedRec = make_shared <MyDB_Record> (mySchemaOut);
-    cout<<"combinedRed made"<<endl;
+//    cout<<"combinedRed made"<<endl;
     combinedRec->buildFrom (leftInputRec, rightInputRec);
 
     // now, get the final predicate over it
@@ -159,26 +159,26 @@ void SortMergeJoin::run() {
     for (string s : projections) {
         finalComputations.push_back (combinedRec->compileComputation (s));
     }
-    cout<<"final pred and computations built"<<endl;
+//    cout<<"final pred and computations built"<<endl;
 
     // merge
     IteratorComparator tempLeftC (leftComp, leftInputRec, leftInputRecOther);
    
-    cout<<"tempLeftComparator build"<<endl;
+//    cout<<"tempLeftComparator build"<<endl;
     
     priority_queue <MyDB_RecordIteratorAltPtr, vector <MyDB_RecordIteratorAltPtr>, IteratorComparator> pqLeft (tempLeftC);
 
     IteratorComparator tempRightC (rightComp, rightInputRec, rightInputRecOther);
-    cout<<"tempRightComparator build"<<endl;
+//    cout<<"tempRightComparator build"<<endl;
     priority_queue <MyDB_RecordIteratorAltPtr, vector <MyDB_RecordIteratorAltPtr>, IteratorComparator> pqRight (tempRightC);
 
-    cout<<"building ltComp and gtComp"<<endl;    
+//    cout<<"building ltComp and gtComp"<<endl;
 
 
     func ltComp = combinedRec->compileComputation (" < (" + equalityCheck.first + ", " + equalityCheck.second + ")");
     func gtComp = combinedRec->compileComputation (" > (" + equalityCheck.first + ", " + equalityCheck.second + ")");
 
-    cout<<"begin to push"<<endl;
+//    cout<<"begin to push"<<endl;
 
     for(MyDB_RecordIteratorAltPtr l : leftIters){
         if(l->advance()){
@@ -193,7 +193,7 @@ void SortMergeJoin::run() {
     }
 
 
-    cout<<"pushed"<<endl;
+//    cout<<"pushed"<<endl;
 
     vector <MyDB_PageReaderWriter> leftPages;
     vector <MyDB_PageReaderWriter> rightPages;
@@ -202,7 +202,7 @@ void SortMergeJoin::run() {
 
     MyDB_RecordPtr outputRec = output->getEmptyRecord();
 
-    cout<<"begin to merge"<<endl;
+//    cout<<"begin to merge"<<endl;
 
     while(pqLeft.size() != 0 && pqRight.size() != 0){
 
@@ -213,26 +213,26 @@ void SortMergeJoin::run() {
         riter->getCurrent(rightInputRec);
 
         if(ltComp()->toBool()){
-            cout<<"left smaller"<<endl;
+//            cout<<"left smaller"<<endl;
             pqLeft.pop();
             if(liter->advance()){
                 pqLeft.push(liter);
             }
         }
         else if(gtComp()->toBool()){
-            cout<<"right smaller"<<endl;
+//            cout<<"right smaller"<<endl;
             pqRight.pop();
             if(riter->advance()){
                 pqRight.push(riter);
             }
         }
         else{
-            cout<<"equal!"<<endl;
+//            cout<<"equal!"<<endl;
             MyDB_PageReaderWriter lpage (true, *leftTable->getBufferMgr());
             MyDB_PageReaderWriter rpage (true, *rightTable->getBufferMgr());
             liter->getCurrent(leftInputRecOther);
             while(!leftComp()){
-                cout<<"left"<<endl;
+//                cout<<"left"<<endl;
                 if(!lpage.append(leftInputRecOther)){
                     leftPages.push_back(lpage);
                     lpage = MyDB_PageReaderWriter(true, *leftTable->getBufferMgr());
@@ -252,7 +252,7 @@ void SortMergeJoin::run() {
             leftPages.push_back(lpage);
             riter->getCurrent(rightInputRecOther);
             while(!rightComp()){
-                cout<<"right"<<endl;
+//                cout<<"right"<<endl;
                 if(!rpage.append(rightInputRecOther)){
                     rightPages.push_back(rpage);
                     rpage = MyDB_PageReaderWriter(true, *rightTable->getBufferMgr());
@@ -272,20 +272,20 @@ void SortMergeJoin::run() {
 
             rightPages.push_back(rpage);
 
-            cout<<"all found"<<endl;
+//            cout<<"all found"<<endl;
             MyDB_RecordIteratorAltPtr listLeft = getIteratorAlt(leftPages);
             MyDB_RecordIteratorAltPtr listRight = getIteratorAlt(rightPages);
             int j = 0;
             while(listLeft->advance()){
                 listLeft->getCurrent(leftInputRec);
                 while(listRight->advance()){
-                    cout<<j++<<endl;
+//                    cout<<j++<<endl;
                     listRight->getCurrent(rightInputRec);
                     if(finalPredicate() -> toBool()){
-                        cout<<"got one!"<<endl;
+//                        cout<<"got one!"<<endl;
                         int i = 0;
                         for(auto f : finalComputations){
-                            cout<<i<<endl;
+//                            cout<<i<<endl;
                             outputRec->getAtt(i++)->set(f());
                         }
 
