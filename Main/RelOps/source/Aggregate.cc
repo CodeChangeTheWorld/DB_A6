@@ -103,11 +103,10 @@ void Aggregate::run() {
             myHash[hashVal].push_back(ptr);
             testRec->fromBinary(myHash[hashVal][myHash[hashVal].size()-1]);
 
-            for(int i=0;i<attNum;i++){
-                cout<<"Hash Val:"<< hashVal<< endl;
-                cout<< "myHash adds: "<<myHash[hashVal][myHash[hashVal].size()-1] <<endl;
-                cout<<"New comb Att:" << testRec->getAtt(i).get()->toString()<<endl;
-            }
+            cout<<"Hash Val:"<< hashVal<< endl;
+            cout<< "myHash adds: "<<myHash[hashVal][myHash[hashVal].size()-1] <<endl;
+            cout<<"New comb Att:" << testRec->getAtt(0).get()->toString()<<endl;
+
 
         }
     }
