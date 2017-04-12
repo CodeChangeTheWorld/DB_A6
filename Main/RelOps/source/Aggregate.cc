@@ -123,7 +123,7 @@ void Aggregate::run() {
     int k=0;
     for (auto s:aggsToCompute) {
         if(s.first == MyDB_AggType::avg || s.first == MyDB_AggType::sum){
-            cout<<"Build Agg List: "<<"+(" + s.second + ", [MyDB_AggAtt" + to_string (k++) + "])" <<endl;
+            cout<<"Build Agg List: "<<"+(" + s.second + ", [MyDB_AggAtt" + to_string (k) + "])" <<endl;
             aggList.push_back(tempRec->compileComputation("+(" + s.second + ", [MyDB_AggAtt" + to_string (k++) + "])"));
         }
 //        if(s.first == MyDB_AggType::avg){
