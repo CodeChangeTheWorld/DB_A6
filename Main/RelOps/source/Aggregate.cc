@@ -50,6 +50,10 @@ void Aggregate::run() {
     }
 
     mySchemaOut->appendAtt (make_pair ("MyCount", make_shared <MyDB_IntAttType> ()));
+
+    for(auto att:mySchemaOut->getAtts()){
+        cout<<"SchemaOut: "<<att.first<<endl;
+    }
     int attNum = mySchemaOut->getAtts().size();
 
     vector <MyDB_PageReaderWriter> allData;
@@ -118,16 +122,16 @@ void Aggregate::run() {
     //vector<func> avgList;
 
     for (int i=0;i<aggNum;i++) {
-//        auto s = aggsToCompute[i];
-//        if(s.first == MyDB_AggType::avg || s.first == MyDB_AggType::sum){
-//            cout<<"Build Agg List: "<<"+ (" + s.second + ", [MyDB_AggAtt" + to_string (i) + "])" <<endl;
-//            aggList.push_back(tempRec->compileComputation("+ (" + s.second + ", [MyDB_AggAtt" + to_string (i) + "])"));
-//
-//        }
-//        if(s.first == MyDB_AggType::avg){
-//            cout<<"Build Avg List: "<<"/ ( [MyDB_AggAtt" + to_string (i) + "],[MyCount])" <<endl;
-//           // avgList.push_back(tempRec->compileComputation("/ ([MyDB_AggAtt" + to_string (i) + "],[MyCount])"));
-//        }
+        auto s = aggsToCompute[i];
+        if(s.first == MyDB_AggType::avg || s.first == MyDB_AggType::sum){
+            cout<<"Build Agg List: "<<"+ (" + s.second + ", [MyDB_AggAtt" + to_string (i) + "])" <<endl;
+            aggList.push_back(tempRec->compileComputation("+ (" + s.second + ", [MyDB_AggAtt" + to_string (i) + "])"));
+
+        }
+        if(s.first == MyDB_AggType::avg){
+            cout<<"Build Avg List: "<<"/ ( [MyDB_AggAtt" + to_string (i) + "],[MyCount])" <<endl;
+           // avgList.push_back(tempRec->compileComputation("/ ([MyDB_AggAtt" + to_string (i) + "],[MyCount])"));
+        }
     }
 
     for ( auto it = myHash.begin(); it!= myHash.end(); ++it){
