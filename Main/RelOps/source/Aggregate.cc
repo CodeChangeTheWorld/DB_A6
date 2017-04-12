@@ -82,8 +82,8 @@ void Aggregate::run() {
             hashVal ^= f ()->hash ();
             combinedRec->getAtt(i++)->set(f());
         }
-        cout<<"hashVal:"<<hashVal<<endl;
-        cout<<"combinedRec:"<<combinedRec->getAtt(0).get()->toString()<<endl;
+//        cout<<"hashVal:"<<hashVal<<endl;
+//        cout<<"combinedRec:"<<combinedRec->getAtt(0).get()->toString()<<endl;
 
         for(auto f:groupAggs){
             combinedRec->getAtt(i++)->set(f());
@@ -101,17 +101,17 @@ void Aggregate::run() {
                 ptr= pageRW.appendAndReturnLocation(combinedRec);
             }
             myHash[hashVal].push_back(ptr);
-            testRec->fromBinary(myHash[hashVal][0]);
 
         }
+        testRec->fromBinary(myHash[hashVal][0]);
+            if(hashVal==97 && testRec->getAtt(0).get()->toInt()!=97){
 
-//            if(hashVal==97){
-//                for(int k=0;k<myHash[hashVal].size();k++){
-//                    cout<<"Hash Val:"<< hashVal<< endl;
-//                    cout<< "myHash adds: "<<myHash[hashVal][k] <<endl;
-//                    cout<<"New comb Att:" << testRec->getAtt(0).get()->toString()<<endl;
-//                }
-//            }
+                for(int k=0;k<myHash[hashVal].size();k++){
+                    cout<<"Hash Val:"<< hashVal<< endl;
+                    cout<< "myHash adds: "<<myHash[hashVal][k] <<endl;
+                    cout<<"New comb Att:" << testRec->getAtt(0).get()->toString()<<endl;
+                }
+            }
     }
 
 
