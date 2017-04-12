@@ -104,6 +104,7 @@ void Aggregate::run() {
             testRec->fromBinary(myHash[hashVal][myHash[hashVal].size()-1]);
 
             for(int i=0;i<attNum;i++){
+                cout<<"Hash Val:"<< hashVal<< endl;
                 cout<< "myHash adds: "<<myHash[hashVal][myHash[hashVal].size()-1] <<endl;
                 cout<<"New comb Att:" << testRec->getAtt(i).get()->toString()<<endl;
             }
@@ -129,7 +130,7 @@ void Aggregate::run() {
     }
 
     for ( auto it = myHash.begin(); it!= myHash.end(); ++it){
-
+        cout<<"Hash val new:"<<it->first<<endl;
         vector <void*> &groupRec = myHash [it->first];
         int count = groupRec.size();
         for(int i=0;i<count;i++){
@@ -182,7 +183,7 @@ void Aggregate::run() {
                     }
                 }
             }
-
+            cout<< "outputRec:"<< outputRec->getAtt(i).get()->toString() <<end;
         }
 
         outputRec->recordContentHasChanged();
