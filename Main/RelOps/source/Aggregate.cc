@@ -121,11 +121,11 @@ void Aggregate::run() {
     vector<func> aggList;
     //vector<func> avgList;
 
-    int k=0;
-    for (auto s:aggsToCompute) {
+
+    for (int i=0;i<aggsToCompute.size();i++) {
         if(s.first == MyDB_AggType::avg || s.first == MyDB_AggType::sum){
-            cout<<"Build Agg List: "<<"+(" + s.second + ", [MyDB_AggAtt" + to_string (k) + "])" <<endl;
-            aggList.push_back(tempRec->compileComputation("+(" + s.second + ", [MyDB_AggAtt" + to_string (k++) + "])"));
+            cout<<"Build Agg List: "<<"+(" + mySchemaOut->getAtts()[i+groupNum].first + ", [MyDB_AggAtt" + to_string (i) + "])" <<endl;
+            aggList.push_back(tempRec->compileComputation("+(" + mySchemaOut->getAtts()[i+groupNum].first + ", [MyDB_AggAtt" + to_string (i) + "])"));
         }
 //        if(s.first == MyDB_AggType::avg){
 //            cout<<"Build Avg List: "<<"/( [MyDB_AggAtt" + to_string (i) + "],[MyCount])" <<endl;
