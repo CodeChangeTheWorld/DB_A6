@@ -80,12 +80,12 @@ void Aggregate::run() {
         int i=0;
         for(auto f:groupFuncs){
             hashVal ^= f ()->hash ();
-            combinedRec->getAtt(i++)->set(f());
+            combinedRec->getAtt(i)->set(f());
+            cout<<"combinedRec:"<<combinedRec->getAtt(i++).get()->toString()<<endl;
         }
 
 
         for(auto f:groupAggs){
-            //hashVal ^= f ()->hash ();2
             combinedRec->getAtt(i++)->set(f());
         }
 
