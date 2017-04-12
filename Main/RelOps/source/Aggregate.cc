@@ -116,6 +116,7 @@ void Aggregate::run() {
         }
     }
 
+    cout << "how many hash? "<<myHash.size()<<'\n';
     MyDB_RecordPtr outputRec = outputTable->getEmptyRecord();
     MyDB_RecordPtr tempRec = make_shared <MyDB_Record> (mySchemaOut);
     vector<func> aggList;
