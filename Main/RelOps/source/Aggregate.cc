@@ -135,11 +135,10 @@ void Aggregate::run() {
         for(int i=0;i<count;i++){
             cout<<"groupRec[i]:"<<groupRec[i]<<endl;
             tempRec->fromBinary(groupRec[i]);
-//            if(tempRec->getAtt(0).get()->toInt()==100){
-//                for(int i=0;i<attNum;i++){
-//                cout<<"tempRec:"<<tempRec->getAtt(i).get()->toString() <<endl;
-//                }
-//            }
+                for(int i=0;i<attNum;i++){
+                cout<<"tempRec:"<<tempRec->getAtt(i).get()->toString() <<endl;
+                }
+
             int app = -1;
             for(int j= groupNum; j<groupNum+aggNum;j++){
                 if(aggsToCompute[j-groupNum].first == MyDB_AggType::sum || aggsToCompute[j-groupNum].first == MyDB_AggType::avg) {
