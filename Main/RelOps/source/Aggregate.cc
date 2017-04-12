@@ -118,6 +118,7 @@ void Aggregate::run() {
     MyDB_RecordPtr tempRec = make_shared <MyDB_Record> (mySchemaOut);
     vector<func> aggList;
     //vector<func> avgList;
+    cout<<"Hash Count2: "<< myHash.size() <<endl;
 
     for (int i=0;i<aggNum;i++) {
         auto s = aggsToCompute[i];
