@@ -114,7 +114,8 @@ void Aggregate::run() {
     cout << "print hash"<< myHash.size() << endl;
          for(auto it:myHash){
              cout<<"HashVal:"<<it.first<<endl;
-             testRec->fromBinary(it.second[0])->getAtt(0).get()->toString()<<endl;
+             testRec->fromBinary(it.second[0]);
+             testRec->getAtt(0).get()->toString()<<endl;
          }
 
     MyDB_RecordPtr outputRec = outputTable->getEmptyRecord();
@@ -170,7 +171,7 @@ void Aggregate::run() {
                       //  cout<<"agg:sum"<<endl;
                         break;
                     }
-                    case MyDB_AggType::avg : {
+                    case MyDB_AggType::avg :{
                        // cout << "agg:avg" << endl;
                         if (avgList.size() > 0) {
                         //    cout<<"in div"<<endl;
