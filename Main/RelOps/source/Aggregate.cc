@@ -103,6 +103,7 @@ void Aggregate::run() {
             myHash[hashVal].push_back(ptr);
 
         }
+
         testRec->fromBinary(myHash[hashVal][0]);
             if(hashVal==97 && testRec->getAtt(0).get()->toInt()!=97){
 
