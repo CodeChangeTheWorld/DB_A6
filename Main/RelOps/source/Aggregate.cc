@@ -72,12 +72,11 @@ void Aggregate::run() {
     MyDB_RecordPtr testRec = make_shared <MyDB_Record> (mySchemaOut);
     func finalPredicate = combinedRec->compileComputation (selectionPredicate);
 
-    size_t hashVal = 0;
     while (myIter->advance ()) {
         // hash the current record
         myIter->getCurrent (inputRec);
 
-        hashVal = 0;
+        size_t hashVal = 0;
         int i=0;
         for(auto f:groupFuncs){
             hashVal ^= f ()->hash ();
@@ -104,7 +103,7 @@ void Aggregate::run() {
             testRec->fromBinary(myHash[hashVal][myHash[hashVal].size()-1]);
 
             cout<<"Hash Val:"<< hashVal<< endl;
-            cout<< "myHash adds: "<<myHash[hashVal][myHash[hashVal].size()-1] <<endl;
+            cout<< "myHash adds: "<<myHash[hashVal][0] <<endl;
             cout<<"New comb Att:" << testRec->getAtt(0).get()->toString()<<endl;
         }
     }
