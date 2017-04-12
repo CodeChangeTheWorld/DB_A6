@@ -114,9 +114,9 @@ void Aggregate::run() {
              cout<<"HashVal:"<<it.first<<endl;
              cout<<"Hash Address begin:"<< it.second[0]<<endl;
              cout<<"Hash Address end:"<< it.second[myHash[it.first].size()-1]<<endl;
-             testRec->fromBinary(it.second[0])<<endl;
+             testRec->fromBinary(it.second[0]);
              cout<<"Hash Att begin:"<<testRec->getAtt(0).get()->toString()<<endl;
-             testRec->fromBinary(it.second[myHash[it.first].size()-1])<<endl;
+             testRec->fromBinary(it.second[myHash[it.first].size()-1]);
              cout<<"Hash Att end:"<<testRec->getAtt(0).get()->toString()<<endl;
          }
 
