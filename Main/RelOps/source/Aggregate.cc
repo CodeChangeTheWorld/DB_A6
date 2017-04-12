@@ -91,7 +91,6 @@ void Aggregate::run() {
 
         for(auto f:groupAggs){
             //hashVal ^= f ()->hash ();2
-
             combinedRec->getAtt(i++)->set(f());
         }
 
@@ -124,11 +123,9 @@ void Aggregate::run() {
     for (int i=0;i<aggsToCompute.size();i++) {
         auto s = aggsToCompute[i];
         if(s.first == MyDB_AggType::avg || s.first == MyDB_AggType::sum){
-          //  cout<<"Build Agg List: "<<"+([" + mySchemaOut->getAtts()[i+groupNum].first + "], [MyDB_AggAtt" + to_string (i) + "])" <<endl;
             aggList.push_back(tempRec->compileComputation("+([" + mySchemaOut->getAtts()[i+groupNum].first + "], [MyDB_AggAtt" + to_string (i) + "])"));
         }
         if(s.first == MyDB_AggType::avg){
-           // cout<<"Build Avg List: "<<"/( [MyDB_AggAtt" + to_string (i) + "],[MyCount])" <<endl;
             avgList.push_back(tempRec->compileComputation("/([MyDB_AggAtt" + to_string (i) + "],[MyCount])"));
         }
     }
@@ -137,7 +134,6 @@ void Aggregate::run() {
 
         vector <void*> &groupRec = myHash [it->first];
         int count = groupRec.size();
-
         for(int i=0;i<count;i++){
            // cout<<"groupRec[i]:"<<groupRec[i]<<endl;
             tempRec->fromBinary(groupRec[i]);

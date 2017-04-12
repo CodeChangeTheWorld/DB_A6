@@ -428,17 +428,17 @@ int main () {
 			cout << temp << "\n";
 		}
 
-		aggsToCompute.clear ();
-		aggsToCompute.push_back (make_pair (MyDB_AggType :: sum, "[r_cnt]"));
-
-		groupings.clear ();
-		
-		MyDB_SchemaPtr mySchemaOutAgainAgain = make_shared <MyDB_Schema> ();
-		mySchemaOutAgainAgain->appendAtt (make_pair ("final_cnt", make_shared <MyDB_IntAttType> ()));
-		MyDB_TablePtr aggTableFinal = make_shared <MyDB_Table> ("aggOutOut", "aggOutOut.bin", mySchemaOutAgainAgain);
-		MyDB_TableReaderWriterPtr aggTableOutFinal = make_shared <MyDB_TableReaderWriter> (aggTableFinal, myMgr);
-
-		Aggregate myOpOnceAgain (aggTableOut, aggTableOutFinal, aggsToCompute, groupings, "bool [true]");
+//		aggsToCompute.clear ();
+//		aggsToCompute.push_back (make_pair (MyDB_AggType :: sum, "[r_cnt]"));
+//
+//		groupings.clear ();
+//
+//		MyDB_SchemaPtr mySchemaOutAgainAgain = make_shared <MyDB_Schema> ();
+//		mySchemaOutAgainAgain->appendAtt (make_pair ("final_cnt", make_shared <MyDB_IntAttType> ()));
+//		MyDB_TablePtr aggTableFinal = make_shared <MyDB_Table> ("aggOutOut", "aggOutOut.bin", mySchemaOutAgainAgain);
+//		MyDB_TableReaderWriterPtr aggTableOutFinal = make_shared <MyDB_TableReaderWriter> (aggTableFinal, myMgr);
+//
+//		Aggregate myOpOnceAgain (aggTableOut, aggTableOutFinal, aggsToCompute, groupings, "bool [true]");
 		//
 		// Assuming that the output of the last query has the schema (r_suppkey, r_suppkey_avg, r_acctbal_avg, r_cnt)
 		//
@@ -447,16 +447,16 @@ int main () {
 		// SELECT SUM (r_cnt)
 		// FROM lastResult
 		//
-		myOpOnceAgain.run ();
-
-		cout << "\nThere should be one result: 320000.\n";
-                temp = aggTableOutFinal->getEmptyRecord ();
-                myIter = aggTableOutFinal->getIteratorAlt ();
-
-                while (myIter->advance ()) {
-                        myIter->getCurrent (temp);
-			cout << temp << "\n";
-		}
+//		myOpOnceAgain.run ();
+//
+//		cout << "\nThere should be one result: 320000.\n";
+//                temp = aggTableOutFinal->getEmptyRecord ();
+//                myIter = aggTableOutFinal->getIteratorAlt ();
+//
+//                while (myIter->advance ()) {
+//                        myIter->getCurrent (temp);
+//			cout << temp << "\n";
+//		}
 	}
 
 //	{
