@@ -113,9 +113,9 @@ void Aggregate::run() {
          for ( unsigned i = 0; i < myHash.bucket_count(); ++i) {
              for ( auto local_it = myHash.begin(i); local_it!= myHash.end(i); ++local_it ){
                  cout<<"HashVal:"<<local_it->first<<endl;
-                 for(auto vec:local_it->second){
-                     cout<<"hash adds:"<< vec;
-                     testRec->fromBinary(vec);
+                 for(int k=0;k<myHash[local_it],size;k++){
+                     cout<<"hash adds:"<< myHash[local_it->first][k]<<endl;
+                     testRec->fromBinary(myHash[local_it->first][k]);
                      cout<<"Hash Att:" << testRec->getAtt(0).get()->toString()<<endl;
                  }
              }
