@@ -51,10 +51,10 @@ void Aggregate::run() {
 
     mySchemaOut->appendAtt (make_pair ("MyCount", make_shared <MyDB_IntAttType> ()));
 
-    for(auto att:mySchemaOut->getAtts()){
-        cout<<"SchemaOut: "<< att.first<<endl;
-        cout<<"SchemaOut Type: "<< att.second->toString()<<endl;
-    }
+//    for(auto att:mySchemaOut->getAtts()){
+//        cout<<"SchemaOut: "<< att.first<<endl;
+//        cout<<"SchemaOut Type: "<< att.second->toString()<<endl;
+//    }
     int attNum = mySchemaOut->getAtts().size();
 
     vector <MyDB_PageReaderWriter> allData;
@@ -78,7 +78,8 @@ void Aggregate::run() {
     vector <MyDB_PageReaderWriter> tmpPages;
     MyDB_PageReaderWriter pageRW =  MyDB_PageReaderWriter(*myMgr1);
 
-    MyDB_RecordPtr testRec = make_shared <MyDB_Record> (mySchemaOut);
+    //MyDB_RecordPtr testRec = make_shared <MyDB_Record> (mySchemaOut);
+
     func finalPredicate = combinedRec->compileComputation (selectionPredicate);
 
     while (myIter->advance ()) {
@@ -109,14 +110,14 @@ void Aggregate::run() {
                 ptr= pageRW.appendAndReturnLocation(combinedRec);
             }
             myHash[hashVal].push_back(ptr);
-            testRec->fromBinary(myHash[hashVal][myHash[hashVal].size()-1]);
-            for(int i=0;i<attNum;i++){
-                cout<<"combinedrec Att:" << testRec->getAtt(i).get()->toString()<<endl;
-            }
+            //testRec->fromBinary(myHash[hashVal][myHash[hashVal].size()-1]);
+//            for(int i=0;i<attNum;i++){
+//                cout<<"combinedrec Att:" << testRec->getAtt(i).get()->toString()<<endl;
+//            }
         }
     }
 
-    cout << "how many hash? "<<myHash.size()<<'\n';
+   // cout << "how many hash? "<<myHash.size()<<'\n';
     MyDB_RecordPtr outputRec = outputTable->getEmptyRecord();
     MyDB_RecordPtr tempRec = make_shared <MyDB_Record> (mySchemaOut);
     vector<func> aggList;
@@ -126,11 +127,11 @@ void Aggregate::run() {
     for (int i=0;i<aggsToCompute.size();i++) {
         auto s = aggsToCompute[i];
         if(s.first == MyDB_AggType::avg || s.first == MyDB_AggType::sum){
-            cout<<"Build Agg List: "<<"+([" + mySchemaOut->getAtts()[i+groupNum].first + "], [MyDB_AggAtt" + to_string (i) + "])" <<endl;
+          //  cout<<"Build Agg List: "<<"+([" + mySchemaOut->getAtts()[i+groupNum].first + "], [MyDB_AggAtt" + to_string (i) + "])" <<endl;
             aggList.push_back(tempRec->compileComputation("+([" + mySchemaOut->getAtts()[i+groupNum].first + "], [MyDB_AggAtt" + to_string (i) + "])"));
         }
         if(s.first == MyDB_AggType::avg){
-            cout<<"Build Avg List: "<<"/( [MyDB_AggAtt" + to_string (i) + "],[MyCount])" <<endl;
+           // cout<<"Build Avg List: "<<"/( [MyDB_AggAtt" + to_string (i) + "],[MyCount])" <<endl;
             avgList.push_back(tempRec->compileComputation("/([MyDB_AggAtt" + to_string (i) + "],[MyCount])"));
         }
     }
@@ -141,12 +142,12 @@ void Aggregate::run() {
         int count = groupRec.size();
 
         for(int i=0;i<count;i++){
-            cout<<"groupRec[i]:"<<groupRec[i]<<endl;
+           // cout<<"groupRec[i]:"<<groupRec[i]<<endl;
             tempRec->fromBinary(groupRec[i]);
 
-            for(int i=0;i<attNum;i++){
-                cout<<"tempRec:"<<tempRec->getAtt(i).get()->toString() <<endl;
-            }
+//            for(int i=0;i<attNum;i++){
+//                cout<<"tempRec:"<<tempRec->getAtt(i).get()->toString() <<endl;
+//            }
             int app = -1;
             for(int j= groupNum; j<groupNum+aggNum;j++){
                 if(aggsToCompute[j-groupNum].first == MyDB_AggType::sum || aggsToCompute[j-groupNum].first == MyDB_AggType::avg) {
@@ -154,7 +155,7 @@ void Aggregate::run() {
                     if (i > 0) tempRec->getAtt(idx)->set(outputRec->getAtt(j));
                     func f = aggList[app];
                     tempRec->getAtt(idx)->set(f ());
-                    cout << "New Assigned Sum : "<< tempRec->getAtt(idx).get()->toString()<<endl;
+                  //  cout << "New Assigned Sum : "<< tempRec->getAtt(idx).get()->toString()<<endl;
                     outputRec->getAtt(j)->set(tempRec->getAtt(idx));
                 }
             }
@@ -170,13 +171,13 @@ void Aggregate::run() {
                 MyDB_AggType aggtype = aggsToCompute[i-groupNum].first;
                 switch(aggtype){
                     case MyDB_AggType::sum :{
-                        cout<<"agg:sum"<<endl;
+                      //  cout<<"agg:sum"<<endl;
                         break;
                     }
                     case MyDB_AggType::avg : {
-                        cout << "agg:avg" << endl;
+                       // cout << "agg:avg" << endl;
                         if (avgList.size() > 0) {
-                            cout<<"in div"<<endl;
+                        //    cout<<"in div"<<endl;
                             func f = avgList[div++];
                             outputRec->getAtt(i)->set(f());
                            // outputRec->getAtt(i)->fromInt(0);
@@ -184,7 +185,7 @@ void Aggregate::run() {
                         break;
                     }
                     case MyDB_AggType::cnt:{
-                        cout<<"agg:count"<<endl;
+                       // cout<<"agg:count"<<endl;
                         outputRec->getAtt(i)->fromInt(count);
                         break;
                     }
@@ -193,9 +194,9 @@ void Aggregate::run() {
 
         }
 
-        for(int i=0;i<outputRec->getSchema()->getAtts().size();i++)  {
-            cout<<"outRec Att: "<< outputRec->getAtt(i).get()->toString()<<endl;
-        }
+//        for(int i=0;i<outputRec->getSchema()->getAtts().size();i++)  {
+//            cout<<"outRec Att: "<< outputRec->getAtt(i).get()->toString()<<endl;
+//        }
 
         outputRec->recordContentHasChanged();
         outputTable->append(outputRec);
