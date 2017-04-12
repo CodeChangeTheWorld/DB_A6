@@ -14,6 +14,7 @@
   <component name="ChangeListManager">
     <list default="true" id="99ba2a56-fb9e-461e-8178-4d8ecc379d43" name="Default" comment="debugging">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main/RelOpTest/source/RelOpQUnit.cc" afterPath="$PROJECT_DIR$/Main/RelOpTest/source/RelOpQUnit.cc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main/RelOps/source/Aggregate.cc" afterPath="$PROJECT_DIR$/Main/RelOps/source/Aggregate.cc" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -33,12 +34,12 @@
       <file leaf-file-name="Aggregate.cc" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Main/RelOps/source/Aggregate.cc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="135" column="9" lean-forward="true" selection-start-line="135" selection-start-column="9" selection-end-line="135" selection-end-column="9" />
+            <state relative-caret-position="211">
+              <caret line="56" column="7" lean-forward="true" selection-start-line="56" selection-start-column="7" selection-end-line="56" selection-end-column="7" />
               <folding>
                 <element signature="e#42#64#0" expanded="true" />
-                <marker date="1492010646000" expanded="true" signature="4663:4818" ph="..." />
-                <marker date="1492010646000" expanded="true" signature="4697:4808" ph="..." />
+                <marker date="1492016537000" expanded="true" signature="4789:4944" ph="..." />
+                <marker date="1492016537000" expanded="true" signature="4823:4934" ph="..." />
               </folding>
             </state>
           </provider>
@@ -47,9 +48,11 @@
       <file leaf-file-name="RelOpQUnit.cc" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Main/RelOpTest/source/RelOpQUnit.cc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="394" column="79" lean-forward="false" selection-start-line="394" selection-start-column="70" selection-end-line="394" selection-end-column="79" />
-              <folding />
+            <state relative-caret-position="-1073">
+              <caret line="354" column="0" lean-forward="false" selection-start-line="354" selection-start-column="0" selection-end-line="354" selection-end-column="0" />
+              <folding>
+                <marker date="1491848880000" expanded="true" signature="624:27014" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -744,28 +747,7 @@
       <workItem from="1491788272544" duration="8638000" />
       <workItem from="1491846657742" duration="2171000" />
       <workItem from="1491849514209" duration="27343000" />
-      <workItem from="1491924696917" duration="52580000" />
-    </task>
-    <task id="LOCAL-00103" summary="debugging">
-      <created>1491958710814</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1491958710814</updated>
-    </task>
-    <task id="LOCAL-00104" summary="debugging">
-      <created>1491959609647</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1491959609647</updated>
-    </task>
-    <task id="LOCAL-00105" summary="debugging">
-      <created>1491960345062</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1491960345062</updated>
+      <workItem from="1491924696917" duration="56371000" />
     </task>
     <task id="LOCAL-00106" summary="debugging">
       <created>1491960551513</created>
@@ -1089,11 +1071,32 @@
       <option name="project" value="LOCAL" />
       <updated>1492010375833</updated>
     </task>
-    <option name="localTasksCounter" value="152" />
+    <task id="LOCAL-00152" summary="debugging">
+      <created>1492010662593</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1492010662593</updated>
+    </task>
+    <task id="LOCAL-00153" summary="debugging">
+      <created>1492011489193</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1492011489193</updated>
+    </task>
+    <task id="LOCAL-00154" summary="debugging">
+      <created>1492013225218</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1492013225218</updated>
+    </task>
+    <option name="localTasksCounter" value="155" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="124637000" />
+    <option name="totallyTimeSpent" value="128428000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="712" extended-state="0" />
@@ -1227,8 +1230,8 @@
           <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding>
             <element signature="e#42#64#0" expanded="true" />
-            <marker date="1492010646000" expanded="true" signature="4663:4818" ph="..." />
-            <marker date="1492010646000" expanded="true" signature="4697:4808" ph="..." />
+            <marker date="1492016537000" expanded="true" signature="4789:4944" ph="..." />
+            <marker date="1492016537000" expanded="true" signature="4823:4934" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1534,20 +1537,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Main/RelOpTest/source/RelOpQUnit.cc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="394" column="79" lean-forward="false" selection-start-line="394" selection-start-column="70" selection-end-line="394" selection-end-column="79" />
-          <folding />
+        <state relative-caret-position="-1073">
+          <caret line="354" column="0" lean-forward="false" selection-start-line="354" selection-start-column="0" selection-end-line="354" selection-end-column="0" />
+          <folding>
+            <marker date="1491848880000" expanded="true" signature="624:27014" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Main/RelOps/source/Aggregate.cc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="135" column="9" lean-forward="true" selection-start-line="135" selection-start-column="9" selection-end-line="135" selection-end-column="9" />
+        <state relative-caret-position="211">
+          <caret line="56" column="7" lean-forward="true" selection-start-line="56" selection-start-column="7" selection-end-line="56" selection-end-column="7" />
           <folding>
             <element signature="e#42#64#0" expanded="true" />
-            <marker date="1492010646000" expanded="true" signature="4663:4818" ph="..." />
-            <marker date="1492010646000" expanded="true" signature="4697:4808" ph="..." />
+            <marker date="1492016537000" expanded="true" signature="4789:4944" ph="..." />
+            <marker date="1492016537000" expanded="true" signature="4823:4934" ph="..." />
           </folding>
         </state>
       </provider>
