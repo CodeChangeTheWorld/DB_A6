@@ -398,7 +398,7 @@ pair <func, MyDB_AttTypePtr> MyDB_Record :: fromData (string attName) {
 }
 
 pair <func, MyDB_AttTypePtr> MyDB_Record :: plus (pair <func, MyDB_AttTypePtr> lhs, pair <func, MyDB_AttTypePtr> rhs) {
-
+    cout<<"in plus func"<<endl;
 	// if both sides can be cast upwards to be ints, then do so
 	if (lhs.second->promotableToInt () && rhs.second->promotableToInt ()) {
 		MyDB_IntAttValPtr temp = make_shared <MyDB_IntAttVal> ();
