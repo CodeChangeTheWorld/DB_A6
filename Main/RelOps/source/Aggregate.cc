@@ -107,7 +107,7 @@ void Aggregate::run() {
                 cout<< "myHash adds: "<<myHash[hashVal][myHash[hashVal].size()-1] <<endl;
                 cout<<"New comb Att:" << testRec->getAtt(i).get()->toString()<<endl;
             }
-            
+
         }
     }
 
