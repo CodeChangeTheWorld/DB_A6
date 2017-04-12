@@ -74,7 +74,7 @@ void Aggregate::run() {
     vector <MyDB_PageReaderWriter> tmpPages;
     MyDB_PageReaderWriter pageRW =  MyDB_PageReaderWriter(*myMgr1);
 
-    //MyDB_RecordPtr testRec = make_shared <MyDB_Record> (mySchemaOut);
+    MyDB_RecordPtr testRec = make_shared <MyDB_Record> (mySchemaOut);
 
     func finalPredicate = combinedRec->compileComputation (selectionPredicate);
 
