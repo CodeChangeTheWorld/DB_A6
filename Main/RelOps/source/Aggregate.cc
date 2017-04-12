@@ -117,7 +117,7 @@ void Aggregate::run() {
         }
     }
 
-   // cout << "how many hash? "<<myHash.size()<<'\n';
+    cout << "how many hash? "<<myHash.size()<<'\n';
     MyDB_RecordPtr outputRec = outputTable->getEmptyRecord();
     MyDB_RecordPtr tempRec = make_shared <MyDB_Record> (mySchemaOut);
     vector<func> aggList;
@@ -159,6 +159,7 @@ void Aggregate::run() {
                     outputRec->getAtt(j)->set(tempRec->getAtt(idx));
                 }
             }
+
             tempRec->getAtt(attNum-1)->fromInt(count);
         }
 
@@ -193,10 +194,6 @@ void Aggregate::run() {
             }
 
         }
-
-//        for(int i=0;i<outputRec->getSchema()->getAtts().size();i++)  {
-//            cout<<"outRec Att: "<< outputRec->getAtt(i).get()->toString()<<endl;
-//        }
 
         outputRec->recordContentHasChanged();
         outputTable->append(outputRec);
