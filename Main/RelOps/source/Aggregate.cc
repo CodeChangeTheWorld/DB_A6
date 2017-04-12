@@ -50,6 +50,10 @@ void Aggregate::run() {
     }
 
     mySchemaOut->appendAtt (make_pair ("MyCount", make_shared <MyDB_IntAttType> ()));
+
+    for(auto att:mySchemaOut->getAtts()){
+        cout<<"SchemaOut: "<<att.first<<endl;
+    }
     int attNum = mySchemaOut->getAtts().size();
 
     vector <MyDB_PageReaderWriter> allData;
