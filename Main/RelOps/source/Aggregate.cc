@@ -133,7 +133,7 @@ void Aggregate::run() {
         }
     }
 
-    for ( auto it: myHash){
+    for ( auto it:myHash){
         cout<<"Hash val new:"<<it.first<<endl;
         vector <void*> &groupRec = it.second;
         int count = groupRec.size();
