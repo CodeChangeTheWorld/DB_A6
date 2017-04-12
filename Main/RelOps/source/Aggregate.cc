@@ -110,7 +110,7 @@ void Aggregate::run() {
             }
             myHash[hashVal].push_back(ptr);
             testRec->fromBinary(myHash[hashVal][myHash[hashVal].size()-1]);
-            for(int i=0;i<attNum-1;i++){
+            for(int i=0;i<attNum;i++){
                 cout<<"combinedrec Att:" << testRec->getAtt(i).get()->toString()<<endl;
             }
         }
