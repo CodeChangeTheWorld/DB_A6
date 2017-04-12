@@ -36,8 +36,6 @@ void Aggregate::run() {
         groupAggs.push_back(inputRec->compileComputation(agg.second));
     }
 
-    cout<<"pushed"<<endl;
-
     MyDB_SchemaPtr mySchemaOut = make_shared <MyDB_Schema> ();
     for(auto att: outputTable->getTable()->getSchema()->getAtts()){
         mySchemaOut->appendAtt(att);
@@ -118,7 +116,6 @@ void Aggregate::run() {
     MyDB_RecordPtr tempRec = make_shared <MyDB_Record> (mySchemaOut);
     vector<func> aggList;
     //vector<func> avgList;
-    cout<<"Hash Count2: "<< myHash.size() <<endl;
 
     for (int i=0;i<aggNum;i++) {
         auto s = aggsToCompute[i];
@@ -132,12 +129,11 @@ void Aggregate::run() {
 //            avgList.push_back(tempRec->compileComputation("/ ([MyDB_AggAtt" + to_string (i) + "],[MyCount])"));
 //        }
     }
-    cout<<"Hash Count1: "<< myHash.size() <<endl;
 
     for ( auto it = myHash.begin(); it!= myHash.end(); ++it){
         vector <void*> &groupRec = myHash [it->first];
         int count = groupRec.size();
-        cout<<"Hash Count: "<< count <<endl;
+
         for(int i=0;i<count;i++){
             cout<<"groupRec[i]:"<<groupRec[i]<<endl;
             tempRec->fromBinary(groupRec[i]);
