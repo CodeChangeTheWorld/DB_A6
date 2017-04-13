@@ -65,7 +65,7 @@ set(SOURCE_FILES
         Main/RelOps/headers/SortMergeJoin.h
         Main/RelOps/headers/ScanJoin.h
         Main/RelOps/source/ScanJoin.cc
-        Main/RelOps/source/SortMergeJoin.cc)
+        Main/RelOps/source/SortMergeJoin.cc Main/RelOps/source/BPlusSelection.cc Main/RelOps/source/RegularSelection.cc)
 include_directories(
         Main/BufferMgr/headers
         Main/Catalog/headers
@@ -74,4 +74,4 @@ include_directories(
         Main/Record/headers
         Main/SQL/headers
         Main/RelOps/headers)
-add_executable(DB_A6 ${SOURCE_FILES} Main/RelOps/source/SortMergeJoin.cc)
+add_executable(DB_A6 ${SOURCE_FILES} Main/RelOps/source/SortMergeJoin.cc Main/RelOps/source/BPlusSelection.cc Main/RelOps/source/RegularSelection.cc)
