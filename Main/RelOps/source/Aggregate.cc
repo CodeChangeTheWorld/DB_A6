@@ -166,7 +166,7 @@ void Aggregate::run() {
                         break;
                     }
                     case MyDB_AggType::cnt:{
-                        outputRec->getAtt(i)-set(combinedRec->getAtt(attNum-1));
+                        outputRec->getAtt(i)->set(combinedRec->getAtt(attNum-1));
                         break;
                     }
                 }
