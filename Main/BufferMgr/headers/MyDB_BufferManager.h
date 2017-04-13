@@ -63,7 +63,7 @@ public:
 	// 2) the number of pages managed by the buffer manager is numPages;
 	// 3) temporary pages are written to the file tempFile
 	MyDB_BufferManager (size_t pageSize, size_t numPages, string tempFile);
-	
+
 	// when the buffer manager is destroyed, all of the dirty pages need to be
 	// written back to disk, and any temporary files need to be deleted
 	~MyDB_BufferManager ();
@@ -73,7 +73,7 @@ public:
 
 	// returns the number of pages in the buffer manager:
 	size_t getNumberPages();
-	
+
 private:
 
 	// tells us the LRU number of each of the pages
@@ -81,7 +81,7 @@ private:
 
 	// list of ALL of the page objects that are currently in existence
 	map <pair <MyDB_TablePtr, size_t>, MyDB_PagePtr, PageCompare> allPages;
-	
+
 	// lists the FDs for all of the files
 	map <MyDB_TablePtr, int, TableCompare> fds;
 

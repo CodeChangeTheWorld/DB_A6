@@ -29,7 +29,7 @@ size_t MyDB_BufferManager :: getPageSize () {
 }
 
 MyDB_PageHandle MyDB_BufferManager :: getPage (MyDB_TablePtr whichTable, long i) {
-		
+
 	// open the file, if it is not open
 	if (fds.count (whichTable) == 0) {
 		int fd = open (whichTable->getStorageLoc ().c_str (), O_CREAT | O_RDWR, 0666);
@@ -41,7 +41,7 @@ MyDB_PageHandle MyDB_BufferManager :: getPage (MyDB_TablePtr whichTable, long i)
 		cout << "Can't allocate a page with a null table!!\n";
 		exit (1);
 	}
-	
+
 	// next, see if the page is already in existence
 	pair <MyDB_TablePtr, long> whichPage = make_pair (whichTable, i);
 	if (allPages.count (whichPage) == 0) {
@@ -81,7 +81,7 @@ MyDB_PageHandle MyDB_BufferManager :: getPage () {
 }
 
 void MyDB_BufferManager :: kickOutPage () {
-	
+
 	// find the oldest page
 	auto it = lastUsed.begin();
 	auto page = *it;
@@ -102,7 +102,7 @@ void MyDB_BufferManager :: kickOutPage () {
 }
 
 void MyDB_BufferManager :: killPage (MyDB_Page &killMe) {
-	
+
 	// we have no refreences left to him
 	killMe.refCount = -1;
 
@@ -123,12 +123,12 @@ void MyDB_BufferManager :: killPage (MyDB_Page &killMe) {
 		// kill from the LRU list, if needed
 		if (lastUsed.count (temp) != 0) {
 			auto page = *(lastUsed.find (temp));
-		       	lastUsed.erase (page);
+			lastUsed.erase (page);
 		}
 
 		// kill from the list of all pages
 		auto page = allPages.find (whichPage);
-		allPages.erase (page); 
+		allPages.erase (page);
 		temp->unlink ();
 	}
 
@@ -147,7 +147,7 @@ void MyDB_BufferManager :: killPage (MyDB_Page &killMe) {
 }
 
 void MyDB_BufferManager :: access (MyDB_Page &updateMeIn) {
-	
+
 	// if this page was just accessed, get outta here
 	if (updateMeIn.timeTick > lastTimeTick - (numPages / 2) && updateMeIn.bytes != nullptr) {
 		return;
@@ -164,9 +164,9 @@ void MyDB_BufferManager :: access (MyDB_Page &updateMeIn) {
 		updateMe->timeTick = ++lastTimeTick;
 		lastUsed.insert (temp);
 
-	// verify that we are not pinned
+		// verify that we are not pinned
 	} else if (updateMe->bytes == nullptr) {
-		
+
 		// not in the LRU list means that we don't have its contents buffered
 		// see if there is space
 		if (availableRam.size () == 0)
@@ -179,7 +179,7 @@ void MyDB_BufferManager :: access (MyDB_Page &updateMeIn) {
 		}
 
 		// get some RAM for the page
-		updateMe->bytes = availableRam[availableRam.size () - 1]; 
+		updateMe->bytes = availableRam[availableRam.size () - 1];
 		updateMe->numBytes = pageSize;
 		availableRam.pop_back ();
 
@@ -218,7 +218,7 @@ MyDB_PageHandle MyDB_BufferManager :: getPinnedPage (MyDB_TablePtr whichTable, l
 		returnVal = make_shared <MyDB_Page> (whichTable, i, *this);
 		allPages [whichPage] = returnVal;
 
-	// in this case, we do
+		// in this case, we do
 	} else {
 
 		// get him out of the LRU list if he is there
@@ -226,7 +226,7 @@ MyDB_PageHandle MyDB_BufferManager :: getPinnedPage (MyDB_TablePtr whichTable, l
 		auto temp = make_shared <MyDB_PageHandleBase> (returnVal);
 		if (lastUsed.count (temp) != 0) {
 			auto page = *(lastUsed.find (temp));
-	       		lastUsed.erase (page);
+			lastUsed.erase (page);
 		}
 	}
 
@@ -238,7 +238,7 @@ MyDB_PageHandle MyDB_BufferManager :: getPinnedPage (MyDB_TablePtr whichTable, l
 			kickOutPage ();
 
 		// if there is no space, we cannot do anything
-		if (availableRam.size () == 0) 
+		if (availableRam.size () == 0)
 			return nullptr;
 
 		// set up the return val
@@ -251,7 +251,7 @@ MyDB_PageHandle MyDB_BufferManager :: getPinnedPage (MyDB_TablePtr whichTable, l
 		lseek (fds[returnVal->myTable], returnVal->pos * pageSize, SEEK_SET);
 		read (fds[returnVal->myTable], returnVal->bytes, pageSize);
 
-	}	
+	}
 
 	// get outta here
 	return make_shared <MyDB_PageHandleBase> (returnVal);
@@ -264,7 +264,7 @@ MyDB_PageHandle MyDB_BufferManager :: getPinnedPage () {
 		kickOutPage ();
 
 	// if there is no space, we cannot do anything
-	if (availableRam.size () == 0) 
+	if (availableRam.size () == 0)
 		return nullptr;
 
 	// get a page to return
@@ -305,11 +305,11 @@ MyDB_BufferManager :: MyDB_BufferManager (size_t pageSizeIn, size_t numPagesIn, 
 	// create all of the RAM
 	for (size_t i = 0; i < numPages; i++) {
 		availableRam.push_back (malloc (pageSizeIn));
-	}	
+	}
 }
 
 MyDB_BufferManager :: ~MyDB_BufferManager () {
-	
+
 	// kill the list of all pages
 	map <pair <MyDB_TablePtr, size_t>, MyDB_PagePtr, PageCompare> empty;
 	allPages = empty;

@@ -31,7 +31,7 @@ void RegularSelection::run() {
         myIter->getCurrent(judgeRec);
 
         if(finalPredicate()->toBool()){
-            cout<<"got one\n";
+//            cout<<"got one\n";
             int i = 0;
             for(auto f : finalComputations){
                 outputRec->getAtt(i++)->set(f());
