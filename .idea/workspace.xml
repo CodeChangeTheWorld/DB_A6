@@ -14,6 +14,7 @@
   <component name="ChangeListManager">
     <list default="true" id="99ba2a56-fb9e-461e-8178-4d8ecc379d43" name="Default" comment="fix bug">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main/RelOps/source/Aggregate.cc" afterPath="$PROJECT_DIR$/Main/RelOps/source/Aggregate.cc" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,23 +33,11 @@
       <file leaf-file-name="Aggregate.cc" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Main/RelOps/source/Aggregate.cc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="168" column="45" lean-forward="true" selection-start-line="168" selection-start-column="45" selection-end-line="168" selection-end-column="45" />
+            <state relative-caret-position="461">
+              <caret line="112" column="0" lean-forward="true" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
               <folding>
                 <element signature="e#42#64#0" expanded="true" />
-                <marker date="1492027700000" expanded="true" signature="4524:4679" ph="..." />
-                <marker date="1492027700000" expanded="true" signature="4558:4669" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BPlusSelection.cc" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Main/RelOps/source/BPlusSelection.cc">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="38" column="30" lean-forward="false" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -56,8 +45,48 @@
       <file leaf-file-name="RelOpQUnit.cc" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Main/RelOpTest/source/RelOpQUnit.cc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="426" column="36" lean-forward="true" selection-start-line="426" selection-start-column="36" selection-end-line="426" selection-end-column="36" />
+            <state relative-caret-position="-22">
+              <caret line="402" column="7" lean-forward="false" selection-start-line="402" selection-start-column="7" selection-end-line="402" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MyDB_Record.cc" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Main/Record/source/MyDB_Record.cc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="884" column="5" lean-forward="true" selection-start-line="884" selection-start-column="5" selection-end-line="884" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MyDB_Record.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Main/Record/headers/MyDB_Record.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="278">
+              <caret line="45" column="42" lean-forward="false" selection-start-line="45" selection-start-column="42" selection-end-line="45" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SortMergeJoin.cc" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Main/RelOps/source/SortMergeJoin.cc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1186">
+              <caret line="87" column="16" lean-forward="false" selection-start-line="87" selection-start-column="16" selection-end-line="87" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BPlusSelection.cc" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Main/RelOps/source/BPlusSelection.cc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="16" lean-forward="true" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -66,8 +95,8 @@
       <file leaf-file-name="ScanJoin.cc" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Main/RelOps/source/ScanJoin.cc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="165" column="59" lean-forward="false" selection-start-line="165" selection-start-column="52" selection-end-line="165" selection-end-column="59" />
+            <state relative-caret-position="-122">
+              <caret line="98" column="66" lean-forward="true" selection-start-line="98" selection-start-column="8" selection-end-line="98" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -77,13 +106,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>sort</find>
-      <find>allPages</find>
-      <find>priority_queue</find>
-      <find>sortIntoMe</find>
-      <find>leftPred</find>
-      <find>sortinplace</find>
-      <find>finalPredicate</find>
       <find>rightinputrec</find>
       <find>merge</find>
       <find>leftEqualities</find>
@@ -106,7 +128,14 @@
       <find>do you want to run a</find>
       <find>==1</find>
       <find>int j</find>
+      <find>fromB</find>
+      <find>myHash</find>
+      <find>hashVal</find>
       <find>groupings.push_back</find>
+      <find>it</find>
+      <find>unorder</find>
+      <find>-&gt;has</find>
+      <find>tempRec</find>
     </findStrings>
     <replaceStrings>
       <replace>DB_A6</replace>
@@ -131,8 +160,6 @@
         <option value="$PROJECT_DIR$/Main/SQL/headers/ParserHelperFunctions.h" />
         <option value="$PROJECT_DIR$/Main/SQL/headers/ParserTypes.h" />
         <option value="$PROJECT_DIR$/Main/SQL/source/Parser.y" />
-        <option value="$PROJECT_DIR$/Main/Record/source/MyDB_Record.cc" />
-        <option value="$PROJECT_DIR$/Main/Record/headers/MyDB_Record.h" />
         <option value="$PROJECT_DIR$/Main/SQLTest/source/main.cc" />
         <option value="$PROJECT_DIR$/Main/RelOps/source/ScanJoin.cc" />
         <option value="$PROJECT_DIR$/Main/RelOps/headers/SortMergeJoin.h" />
@@ -145,6 +172,8 @@
         <option value="$PROJECT_DIR$/Main/RelOps/source/RegularSelection.cc" />
         <option value="$PROJECT_DIR$/Main/RelOps/source/SortMergeJoin.cc" />
         <option value="$PROJECT_DIR$/Main/RelOpTest/source/RelOpQUnit.cc" />
+        <option value="$PROJECT_DIR$/Main/Record/source/MyDB_Record.cc" />
+        <option value="$PROJECT_DIR$/Main/Record/headers/MyDB_Record.h" />
         <option value="$PROJECT_DIR$/Main/RelOps/source/Aggregate.cc" />
       </list>
     </option>
@@ -157,8 +186,8 @@
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
-    <option name="y" value="45" />
+    <option name="x" value="19" />
+    <option name="y" value="25" />
     <option name="width" value="1280" />
     <option name="height" value="712" />
   </component>
@@ -1697,181 +1726,6 @@
       <workItem from="1491766015479" duration="7367000" />
       <workItem from="1491890650594" duration="2592000" />
     </task>
-    <task id="LOCAL-00001" summary="sort &amp; merge">
-      <created>1491711127292</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1491711127292</updated>
-    </task>
-    <task id="LOCAL-00002" summary="fix bug">
-      <created>1491711613692</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1491711613692</updated>
-    </task>
-    <task id="LOCAL-00003" summary="fix bug">
-      <created>1491711795274</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1491711795274</updated>
-    </task>
-    <task id="LOCAL-00004" summary="fix bug">
-      <created>1491711863611</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1491711863611</updated>
-    </task>
-    <task id="LOCAL-00005" summary="fix bug">
-      <created>1491712007538</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1491712007538</updated>
-    </task>
-    <task id="LOCAL-00006" summary="fix bug">
-      <created>1491712517200</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1491712517200</updated>
-    </task>
-    <task id="LOCAL-00007" summary="fix bug">
-      <created>1491712862539</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1491712862539</updated>
-    </task>
-    <task id="LOCAL-00008" summary="testing">
-      <created>1491713680850</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1491713680850</updated>
-    </task>
-    <task id="LOCAL-00009" summary="fix bug">
-      <created>1491716979262</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1491716979262</updated>
-    </task>
-    <task id="LOCAL-00010" summary="fix bug">
-      <created>1491717145043</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1491717145043</updated>
-    </task>
-    <task id="LOCAL-00011" summary="fix bug">
-      <created>1491717438241</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1491717438241</updated>
-    </task>
-    <task id="LOCAL-00012" summary="testing">
-      <created>1491717680506</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1491717680506</updated>
-    </task>
-    <task id="LOCAL-00013" summary="debugging">
-      <created>1491717908880</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1491717908880</updated>
-    </task>
-    <task id="LOCAL-00014" summary="debugging">
-      <created>1491718095731</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1491718095731</updated>
-    </task>
-    <task id="LOCAL-00015" summary="finish sort merge">
-      <created>1491719683197</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1491719683197</updated>
-    </task>
-    <task id="LOCAL-00016" summary="testing">
-      <created>1491719818393</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1491719818393</updated>
-    </task>
-    <task id="LOCAL-00017" summary="sortmerge done">
-      <created>1491720135878</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1491720135878</updated>
-    </task>
-    <task id="LOCAL-00018" summary="test BP selection">
-      <created>1491769214744</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1491769214744</updated>
-    </task>
-    <task id="LOCAL-00019" summary="fix bug">
-      <created>1491769408807</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1491769408807</updated>
-    </task>
-    <task id="LOCAL-00020" summary="fix bug">
-      <created>1491769550454</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1491769550454</updated>
-    </task>
-    <task id="LOCAL-00021" summary="fix bug">
-      <created>1491769721838</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1491769721838</updated>
-    </task>
-    <task id="LOCAL-00022" summary="for regular select">
-      <created>1491770389250</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1491770389250</updated>
-    </task>
-    <task id="LOCAL-00023" summary="test cases">
-      <created>1491778094498</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1491778094498</updated>
-    </task>
-    <task id="LOCAL-00024" summary="fix bug">
-      <created>1491778579440</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1491778579440</updated>
-    </task>
-    <task id="LOCAL-00025" summary="test">
-      <created>1492013572408</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1492013572408</updated>
-    </task>
     <task id="LOCAL-00026" summary="fix bug">
       <created>1492013721589</created>
       <option name="number" value="00026" />
@@ -2019,22 +1873,218 @@
       <option name="project" value="LOCAL" />
       <updated>1492027826381</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="fix bug">
+      <created>1492028365526</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1492028365526</updated>
+    </task>
+    <task id="LOCAL-00048" summary="fix bug">
+      <created>1492028632573</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1492028632573</updated>
+    </task>
+    <task id="LOCAL-00049" summary="fix bug">
+      <created>1492029538347</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1492029538347</updated>
+    </task>
+    <task id="LOCAL-00050" summary="fix bug">
+      <created>1492029646705</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1492029646705</updated>
+    </task>
+    <task id="LOCAL-00051" summary="fix bug">
+      <created>1492030551864</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1492030551864</updated>
+    </task>
+    <task id="LOCAL-00052" summary="fix bug">
+      <created>1492030914822</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1492030914822</updated>
+    </task>
+    <task id="LOCAL-00053" summary="fix bug">
+      <created>1492031000387</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1492031000388</updated>
+    </task>
+    <task id="LOCAL-00054" summary="fix bug">
+      <created>1492032425957</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1492032425957</updated>
+    </task>
+    <task id="LOCAL-00055" summary="fix bug">
+      <created>1492032573364</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1492032573364</updated>
+    </task>
+    <task id="LOCAL-00056" summary="fix bug">
+      <created>1492032748129</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1492032748130</updated>
+    </task>
+    <task id="LOCAL-00057" summary="fix bug">
+      <created>1492033224120</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1492033224121</updated>
+    </task>
+    <task id="LOCAL-00058" summary="fix bug">
+      <created>1492033633352</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1492033633352</updated>
+    </task>
+    <task id="LOCAL-00059" summary="fix bug">
+      <created>1492033765770</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1492033765770</updated>
+    </task>
+    <task id="LOCAL-00060" summary="fix bug">
+      <created>1492034179809</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1492034179809</updated>
+    </task>
+    <task id="LOCAL-00061" summary="fix bug">
+      <created>1492034485914</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1492034485915</updated>
+    </task>
+    <task id="LOCAL-00062" summary="fix bug">
+      <created>1492034629539</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1492034629539</updated>
+    </task>
+    <task id="LOCAL-00063" summary="fix bug">
+      <created>1492035131954</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1492035131954</updated>
+    </task>
+    <task id="LOCAL-00064" summary="fix bug">
+      <created>1492036051714</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1492036051715</updated>
+    </task>
+    <task id="LOCAL-00065" summary="fix bug">
+      <created>1492037517332</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1492037517333</updated>
+    </task>
+    <task id="LOCAL-00066" summary="fix bug">
+      <created>1492038428740</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1492038428741</updated>
+    </task>
+    <task id="LOCAL-00067" summary="fix bug">
+      <created>1492038620054</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1492038620054</updated>
+    </task>
+    <task id="LOCAL-00068" summary="fix bug">
+      <created>1492039301971</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1492039301971</updated>
+    </task>
+    <task id="LOCAL-00069" summary="fix bug">
+      <created>1492040088287</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1492040088287</updated>
+    </task>
+    <task id="LOCAL-00070" summary="fix bug">
+      <created>1492040156731</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1492040156731</updated>
+    </task>
+    <task id="LOCAL-00071" summary="fix bug">
+      <created>1492048046207</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1492048046207</updated>
+    </task>
+    <task id="LOCAL-00072" summary="fix bug">
+      <created>1492048203838</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1492048203839</updated>
+    </task>
+    <task id="LOCAL-00073" summary="fix bug">
+      <created>1492048401699</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1492048401699</updated>
+    </task>
+    <task id="LOCAL-00074" summary="fix bug">
+      <created>1492048607646</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1492048607646</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71880000" />
+    <option name="totallyTimeSpent" value="91743000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="45" width="1280" height="712" extended-state="0" />
+    <frame x="19" y="25" width="1280" height="712" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.196875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1984375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35095447" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23295455" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934928" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17131475" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15085536" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47122863" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2090,7 +2140,15 @@
     <option name="LAST_COMMIT_MESSAGE" value="fix bug" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Main/RelOps/source/Aggregate.cc</url>
+          <line>74</line>
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -2216,13 +2274,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main/Record/source/MyDB_AttVal.cc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3795">
-          <caret line="253" column="24" lean-forward="false" selection-start-line="253" selection-start-column="24" selection-end-line="253" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Main/SQL/source/Parser.y">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="960">
@@ -2312,14 +2363,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main/Record/headers/MyDB_Record.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="37" lean-forward="false" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Main/Record/headers/MyDB_AttVal.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -2346,13 +2389,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
           <caret line="33" column="60" lean-forward="false" selection-start-line="33" selection-start-column="60" selection-end-line="33" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Main/Record/source/MyDB_Record.cc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13005">
-          <caret line="867" column="20" lean-forward="false" selection-start-line="867" selection-start-column="20" selection-end-line="867" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -2388,14 +2424,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main/RelOps/source/SortMergeJoin.cc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3375">
-          <caret line="230" column="68" lean-forward="false" selection-start-line="230" selection-start-column="68" selection-end-line="230" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Main/DatabaseTable/source/Sorting.cc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1065">
@@ -2419,38 +2447,68 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Main/RelOps/source/ScanJoin.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-122">
+          <caret line="98" column="66" lean-forward="true" selection-start-line="98" selection-start-column="8" selection-end-line="98" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main/Record/source/MyDB_AttVal.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="66" column="0" lean-forward="true" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Main/RelOps/source/BPlusSelection.cc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="38" column="30" lean-forward="false" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
+        <state relative-caret-position="180">
+          <caret line="12" column="16" lean-forward="true" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main/RelOps/source/SortMergeJoin.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1186">
+          <caret line="87" column="16" lean-forward="false" selection-start-line="87" selection-start-column="16" selection-end-line="87" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main/Record/source/MyDB_Record.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="884" column="5" lean-forward="true" selection-start-line="884" selection-start-column="5" selection-end-line="884" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main/Record/headers/MyDB_Record.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="45" column="42" lean-forward="false" selection-start-line="45" selection-start-column="42" selection-end-line="45" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Main/RelOpTest/source/RelOpQUnit.cc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="426" column="36" lean-forward="true" selection-start-line="426" selection-start-column="36" selection-end-line="426" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Main/RelOps/source/ScanJoin.cc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="165" column="59" lean-forward="false" selection-start-line="165" selection-start-column="52" selection-end-line="165" selection-end-column="59" />
+        <state relative-caret-position="-22">
+          <caret line="402" column="7" lean-forward="false" selection-start-line="402" selection-start-column="7" selection-end-line="402" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Main/RelOps/source/Aggregate.cc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="168" column="45" lean-forward="true" selection-start-line="168" selection-start-column="45" selection-end-line="168" selection-end-column="45" />
+        <state relative-caret-position="461">
+          <caret line="112" column="0" lean-forward="true" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
           <folding>
             <element signature="e#42#64#0" expanded="true" />
-            <marker date="1492027700000" expanded="true" signature="4524:4679" ph="..." />
-            <marker date="1492027700000" expanded="true" signature="4558:4669" ph="..." />
           </folding>
         </state>
       </provider>

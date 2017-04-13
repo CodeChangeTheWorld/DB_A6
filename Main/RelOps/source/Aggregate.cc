@@ -51,6 +51,7 @@ void Aggregate::run() {
 
     mySchemaOut->appendAtt (make_pair ("MyCount", make_shared <MyDB_IntAttType> ()));
 
+    cout<< "schema build"<<endl;
 
     int attNum = mySchemaOut->getAtts().size();
     vector <MyDB_PageReaderWriter> allData;
@@ -66,7 +67,7 @@ void Aggregate::run() {
     MyDB_RecordPtr combinedRec = make_shared <MyDB_Record> (mySchemaOut);
     MyDB_RecordIteratorAltPtr myIter = getIteratorAlt(allData);
     vector <MyDB_PageReaderWriter> tmpPages;
-    MyDB_PageReaderWriter pageRW =  MyDB_PageReaderWriter(*inputTable->getBufferMgr());
+    MyDB_PageReaderWriter pageRW =  MyDB_PageReaderWriter(true, *(input->getBufferMgr ()));
 
     MyDB_RecordPtr groupRec = make_shared <MyDB_Record> (mySchemaOut);
     func finalPredicate = inputRec->compileComputation (selectionPredicate);
@@ -86,9 +87,11 @@ void Aggregate::run() {
     }
     func cntfunc =  combinedRec->compileComputation("+( int[1], [MyCount])");
 
-    int recnum=-1;
+    cout<<"build all func"<<endl;
+
     while (myIter->advance ()) {
         // hash the current record
+        cout<<"in iter1"<<endl;
         myIter->getCurrent (inputRec);
 
         if(finalPredicate ()->toBool()) continue;
