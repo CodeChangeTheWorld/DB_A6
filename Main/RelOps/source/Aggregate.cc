@@ -46,7 +46,7 @@ void Aggregate::run() {
 
     for(int i= 0;i<aggNum;i++){
         if(aggsToCompute[i].first == MyDB_AggType ::sum || aggsToCompute[i].first == MyDB_AggType ::avg)
-            mySchemaOut->appendAtt(make_pair ("MyDB_AggAtt" + to_string (i), outputTable->getTable()->getSchema()->getAtts()[i+groupNum].second));
+            mySchemaOut->appendAtt(make_pair ("aggAtt" + to_string (i), outputTable->getTable()->getSchema()->getAtts()[i+groupNum].second));
     }
 
     mySchemaOut->appendAtt (make_pair ("MyCount", make_shared <MyDB_IntAttType> ()));
@@ -65,59 +65,12 @@ void Aggregate::run() {
     //Scan Input table Write, write record to new page & Hash record
     MyDB_RecordPtr combinedRec = make_shared <MyDB_Record> (mySchemaOut);
     MyDB_RecordIteratorAltPtr myIter = getIteratorAlt(allData);
-    MyDB_BufferManagerPtr myMgr1 = make_shared <MyDB_BufferManager> (131072, 128, "tempFile1");
     vector <MyDB_PageReaderWriter> tmpPages;
-    MyDB_PageReaderWriter pageRW =  MyDB_PageReaderWriter(*myMgr1);
+    MyDB_PageReaderWriter pageRW =  MyDB_PageReaderWriter(*inputTable->getBufferMgr());
 
-    MyDB_RecordPtr testRec = make_shared <MyDB_Record> (mySchemaOut);
-    func finalPredicate = combinedRec->compileComputation (selectionPredicate);
+    MyDB_RecordPtr groupRec = make_shared <MyDB_Record> (mySchemaOut);
+    func finalPredicate = inputRec->compileComputation (selectionPredicate);
 
-    while (myIter->advance ()) {
-        // hash the current record
-        myIter->getCurrent (inputRec);
-
-        size_t hashVal = 0;
-        int i=0;
-        for(auto f:groupFuncs){
-            hashVal ^= f ()->hash ();
-            combinedRec->getAtt(i++)->set(f());
-        }
-//        cout<<"hashVal:"<<hashVal<<endl;
-//        cout<<"combinedRec:"<<combinedRec->getAtt(0).get()->toString()<<endl;
-
-        for(auto f:groupAggs){
-            combinedRec->getAtt(i++)->set(f());
-        }
-
-        while(i<attNum) combinedRec->getAtt(i++)->fromInt(0);
-
-        if(finalPredicate ()->toBool()) {
-            combinedRec->recordContentHasChanged();
-            void *ptr = pageRW.appendAndReturnLocation(combinedRec);
-
-            if(ptr == nullptr){
-                tmpPages.push_back(pageRW);
-                pageRW = MyDB_PageReaderWriter(*myMgr1);
-                ptr= pageRW.appendAndReturnLocation(combinedRec);
-            }
-            myHash[hashVal].push_back(ptr);
-
-        }
-
-        testRec->fromBinary(myHash[hashVal][0]);
-            if(hashVal==97 && testRec->getAtt(0).get()->toInt()!=97){
-
-                for(int k=0;k<myHash[hashVal].size();k++){
-                    cout<<"Hash Val:"<< hashVal<< endl;
-                    cout<< "myHash adds: "<<myHash[hashVal][k] <<endl;
-                    cout<<"New comb Att:" << testRec->getAtt(0).get()->toString()<<endl;
-                }
-            }
-    }
-
-
-    MyDB_RecordPtr outputRec = outputTable->getEmptyRecord();
-    MyDB_RecordPtr tempRec = make_shared <MyDB_Record> (mySchemaOut);
     vector<func> aggList;
     vector<func> avgList;
 
@@ -125,76 +78,104 @@ void Aggregate::run() {
     for (int i=0;i<aggsToCompute.size();i++) {
         auto s = aggsToCompute[i];
         if(s.first == MyDB_AggType::avg || s.first == MyDB_AggType::sum){
-            aggList.push_back(tempRec->compileComputation("+([" + mySchemaOut->getAtts()[i+groupNum].first + "], [MyDB_AggAtt" + to_string (i) + "])"));
+            aggList.push_back(combinedRec->compileComputation("+([" + mySchemaOut->getAtts()[i+groupNum].first + "], [aggAtt" + to_string (i) + "])"));
         }
         if(s.first == MyDB_AggType::avg){
-            avgList.push_back(tempRec->compileComputation("/([MyDB_AggAtt" + to_string (i) + "],[MyCount])"));
+            avgList.push_back(combinedRec->compileComputation("/([aggAtt" + to_string (i) + "],[MyCount])"));
+        }
+    }
+    func cntfunc =  combinedRec->compileComputation("+( int[1], [MyCount])");
+
+    int recnum=-1;
+    while (myIter->advance ()) {
+        // hash the current record
+        myIter->getCurrent (inputRec);
+
+        if(finalPredicate ()->toBool()) continue;
+
+        size_t hashVal = 0;
+        int i=0;
+        for(auto f:groupFuncs){
+            hashVal ^= f ()->hash ();
+            combinedRec->getAtt(i++)->set(f());
+        }
+
+        for(auto f:groupAggs){
+            combinedRec->getAtt(i++)->set(f());
+        }
+
+        while(i<attNum) combinedRec->getAtt(i++)->fromInt(0);
+
+        void * ptr = myHash[hashVal][0];
+
+        if(ptr != nullptr){
+            groupRec->fromBinary(ptr);
+            combinedRec->copyRecord(groupRec, groupNum+aggNum);
+        }
+
+        int app = -1;
+        for(int j= groupNum; j<groupNum+aggNum;j++){
+            if(aggsToCompute[j-groupNum].first == MyDB_AggType::sum || aggsToCompute[j-groupNum].first == MyDB_AggType::avg) {
+                int idx = groupNum + aggNum + (++app);
+                func f = aggList[app];
+                combinedRec->getAtt(idx)->set(f ());
+            }
+        }
+
+        combinedRec->getAtt(attNum-1)->set(cntfunc ());
+
+        if(ptr == nullptr){
+            combinedRec->recordContentHasChanged();
+            ptr = pageRW.appendAndReturnLocation(combinedRec);
+
+            if(ptr == nullptr){
+                tmpPages.push_back(pageRW);
+                pageRW = MyDB_PageReaderWriter(*inputTable->getBufferMgr());
+                ptr= pageRW.appendAndReturnLocation(combinedRec);
+            }
+            myHash[hashVal].push_back(ptr);
+        }else{
+            combinedRec->toBinary(ptr);
         }
     }
 
-    for ( auto it:myHash){
-       // cout<<"Hash val new:"<< it.first<<endl;
-        vector <void*> &groupRec = it.second;
-        int count = groupRec.size();
-        //cout<<"bucket count:"<<count;
-        for(int i=0;i<count;i++){
-        //    cout<<"groupRec[i]:"<<groupRec[i]<<endl;
-            tempRec->fromBinary(groupRec[i]);
-         //   cout<<"tempRec:"<<tempRec->getAtt(0).get()->toString() <<endl;
 
-            int app = -1;
-            for(int j= groupNum; j<groupNum+aggNum;j++){
-                if(aggsToCompute[j-groupNum].first == MyDB_AggType::sum || aggsToCompute[j-groupNum].first == MyDB_AggType::avg) {
-                    int idx = groupNum + aggNum + (++app);
-                    if (i > 0) tempRec->getAtt(idx)->set(outputRec->getAtt(j));
-                    func f = aggList[app];
-                    tempRec->getAtt(idx)->set(f ());
-                  //  cout << "New Assigned Sum : "<< tempRec->getAtt(idx).get()->toString()<<endl;
-                    outputRec->getAtt(j)->set(tempRec->getAtt(idx));
-                }
-            }
+    MyDB_RecordPtr outputRec = outputTable->getEmptyRecord();
+    MyDB_RecordIteratorAltPtr myIterAgain = getIteratorAlt (tmpPages);
 
-            tempRec->getAtt(attNum-1)->fromInt(count);
-        }
+    while(myIterAgain->advance()){
+        myIter->getCurrent (combinedRec);
 
-        int div=0;
+        int agg=0,div=0;
         for(int i=0;i<outputRec->getSchema()->getAtts().size();i++){
-
             if(i<groupNum ){
-                outputRec->getAtt(i)->set(tempRec->getAtt(i));
+                outputRec->getAtt(i)->set(combinedRec->getAtt(i));
             }else{
-                MyDB_AggType aggtype = aggsToCompute[i-groupNum].first;
-                switch(aggtype){
+                switch(aggsToCompute[i-groupNum].first){
                     case MyDB_AggType::sum :{
-                      //  cout<<"agg:sum"<<endl;
+                        outputRec->getAtt(i)->set(tempRec->getAtt(groupNum+aggNum+(a++)));
                         break;
                     }
                     case MyDB_AggType::avg :{
                        // cout << "agg:avg" << endl;
+                        a++;
                         if (avgList.size() > 0) {
-                        //    cout<<"in div"<<endl;
                             func f = avgList[div++];
                             outputRec->getAtt(i)->set(f());
                         }
                         break;
                     }
                     case MyDB_AggType::cnt:{
-                       // cout<<"agg:count"<<endl;
-                        outputRec->getAtt(i)->fromInt(count);
+                        outputRec->getAtt(i)-set(tempRec->getAtt(attNum-1));
                         break;
                     }
                 }
-            }
+             }
 
-            cout<< "outputRec:"<< outputRec->getAtt(i).get()->toString() <<endl;
+                outputRec->recordContentHasChanged();
+                outputTable->append(outputRec);
         }
-
-        outputRec->recordContentHasChanged();
-        outputTable->append(outputRec);
     }
-
-        tmpPages.clear();
-        remove("tempFile1");
 }
 
 #endif

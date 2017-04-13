@@ -876,6 +876,16 @@ void MyDB_Record :: buildFrom (MyDB_RecordPtr left, MyDB_RecordPtr right) {
         values = newValues;
 }
 
+void MyDB_Record :: copyRecord (MyDB_RecordPtr cyRec, int idx) {
+	vector <MyDB_AttValPtr> newValues;
+	int i =0;
+	for (auto v : cyRec->values) {
+		if(i++ < idx) continue;
+		newValues.push_back (v);
+	}
+	values = newValues;
+}
+
 MyDB_Record :: ~MyDB_Record () {
 	delete [] buffer;
 }
