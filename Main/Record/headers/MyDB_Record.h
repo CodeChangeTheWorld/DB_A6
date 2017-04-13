@@ -33,7 +33,8 @@ public:
 
 	// makes it so that this record is a composite of the two input records
 	void buildFrom (MyDB_RecordPtr left, MyDB_RecordPtr right);
-	void MyDB_Record :: copyRecord (MyDB_RecordPtr cyRec,int idx);
+
+	void copyRecord (MyDB_RecordPtr cyRec,int idx);
 	// write the contents of the record in binary to the specifed location; return
 	// the location of the next byte that was not writen... thus, the code:
 	//
