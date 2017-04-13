@@ -67,7 +67,7 @@ void Aggregate::run() {
     MyDB_RecordPtr combinedRec = make_shared <MyDB_Record> (mySchemaOut);
     MyDB_RecordIteratorAltPtr myIter = getIteratorAlt(allData);
     vector <MyDB_PageReaderWriter> tmpPages;
-    MyDB_PageReaderWriter pageRW =  MyDB_PageReaderWriter(true, *(input->getBufferMgr ()));
+    MyDB_PageReaderWriter pageRW =  MyDB_PageReaderWriter(true, *(inputTable->getBufferMgr ()));
 
     MyDB_RecordPtr groupRec = make_shared <MyDB_Record> (mySchemaOut);
     func finalPredicate = inputRec->compileComputation (selectionPredicate);
